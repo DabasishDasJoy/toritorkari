@@ -16,7 +16,7 @@ const Main = () => {
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
-        <div className="menu w-80 bg-white relative min-h-screen">
+        <div className="menu w-96 bg-white relative min-h-screen max-h-screen">
           {/* <!-- Sidebar content here --> */}
 
           <MyCart></MyCart>

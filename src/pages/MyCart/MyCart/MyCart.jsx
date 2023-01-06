@@ -17,8 +17,8 @@ const MyCart = () => {
       {/* Top section end */}
 
       {/* Cart Items */}
-      <div className="mt-[65px]">
-        {[...Array(5).keys()].map((idx) => (
+      <div className="my-[65px] overflow-y-scroll">
+        {[...Array(10).keys()].map((idx) => (
           <CartItem></CartItem>
         ))}
       </div>
