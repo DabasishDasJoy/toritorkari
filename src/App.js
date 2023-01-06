@@ -5,6 +5,7 @@ function App() {
     <div>
       <h1>Hello Worlds</h1>
       <p>hello</p>
+      <button className="btn-primary">Button</button>
     </div>
   );
 }
