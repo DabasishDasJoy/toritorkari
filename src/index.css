@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.component {
+  @apply px-10 py-2;
+}
+.link {
+  @apply hover:text-primary transition-all delay-75 no-underline;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
