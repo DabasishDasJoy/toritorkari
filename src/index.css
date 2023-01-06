@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 .component {
-  @apply px-10 py-2;
+  @apply lg:px-10 lg:py-2;
 }
 .link {
   @apply hover:text-primary transition-all delay-75 no-underline;
+}
+.icon {
+  @apply w-5 h-5 cursor-pointer;
 }
 
 body {
