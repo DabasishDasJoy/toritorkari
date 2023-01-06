@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import MyCart from "../../pages/MyCart/MyCart/MyCart";
 import Footer from "../../pages/shared/Footer/Footer";
 import Header from "../../pages/shared/Header/Header/Header";
 
@@ -15,9 +16,10 @@ const Main = () => {
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
-        <div className="menu p-4 w-80 bg-white">
+        <div className="menu w-80 bg-white relative min-h-screen">
           {/* <!-- Sidebar content here --> */}
-          <div className="bg-primary"></div>
+
+          <MyCart></MyCart>
         </div>
       </div>
     </div>
