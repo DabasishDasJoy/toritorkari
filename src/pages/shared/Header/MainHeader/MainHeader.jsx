@@ -3,18 +3,23 @@ import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 import Indicator from "../../../../components/Indicator/Indicator";
+import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 const MainHeader = () => {
   return (
     <div className="drawer">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
-        <div className="w-full navbar bg-primary text-white min-h-0 px-10 py-3 justify-between">
+        <div className="w-full navbar bg-primary text-white min-h-0 lg:px-10 py-3 justify-between">
           {/* menu icon */}
-          <div className="flex-none lg:hidden">
-            <label htmlFor="my-drawer-3" className="">
+          <div className="flex-none lg:hidden ">
+            <label
+              htmlFor="mobile-drawer"
+              className="cursor-pointer"
+              type="button"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -93,16 +98,11 @@ const MainHeader = () => {
         <Footer></Footer>
       </div>
       <div className="drawer-side">
-        <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 bg-base-100">
+        <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
+        <div className="menu w-80 bg-base-100">
           {/* <!-- Sidebar content here --> */}
-          <li>
-            <a>Sidebar Item 1</a>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
-        </ul>
+          <MobileSideBarLayout></MobileSideBarLayout>
+        </div>
       </div>
     </div>
   );

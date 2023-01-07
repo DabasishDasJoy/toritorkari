@@ -1,19 +1,19 @@
 import React from "react";
-import { AiOutlineArrowRight, AiOutlineRight } from "react-icons/ai";
-import { BsBagCheck } from "react-icons/bs";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { BsChevronDoubleRight } from "react-icons/bs";
+import SidebarHeader from "../../../components/SidebarHeader/SidebarHeader";
 import EmptyCart from "../EmplyCart/EmptyCart";
 const MyCart = () => {
   return (
     <>
       {/* Top section */}
-      <div className="bg-secondary px-3 py-2 fixed w-full top-0 text-neutral flex justify-between items-center">
-        <h3 className="font-semibold text-base leading-9 uppercase flex gap-2 items-center">
-          <BsBagCheck className="icon" /> My Cart
-        </h3>
-        <label htmlFor="cart-drawer">
-          <AiOutlineRight className="icon" />
-        </label>
-      </div>
+      <SidebarHeader
+        title={"My Cart"}
+        position={"right-0"}
+        drawer={"cart-drawer"}
+      >
+        <BsChevronDoubleRight className="icon" />
+      </SidebarHeader>
       {/* Top section end */}
 
       {/* Cart Items */}

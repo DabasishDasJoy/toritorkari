@@ -12,6 +12,13 @@
   @apply w-5 h-5 cursor-pointer;
 }
 
+.sidebarMenu {
+  @apply border w-full py-1;
+}
+
+.section {
+  @apply lg:px-10 lg:py-5;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
