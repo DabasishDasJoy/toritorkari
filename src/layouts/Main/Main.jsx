@@ -14,7 +14,6 @@ const Main = () => {
 
         <div className="menu bg-white relative min-h-screen max-h-screen">
           {/* <!-- Sidebar content here --> */}
-
           <MyCart></MyCart>
         </div>
       </div>

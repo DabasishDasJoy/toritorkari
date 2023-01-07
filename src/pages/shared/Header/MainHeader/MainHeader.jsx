@@ -4,6 +4,7 @@ import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 import Indicator from "../../../../components/Indicator/Indicator";
 import Footer from "../../Footer/Footer";
+import BottomHeader from "../BottomHeader/BottomHeader";
 const MainHeader = () => {
   return (
     <div className="drawer">
@@ -87,6 +88,7 @@ const MainHeader = () => {
           </div>
         </div>
         {/* <!-- Page content here --> */}
+        <BottomHeader></BottomHeader>
         <Outlet></Outlet>
         <Footer></Footer>
       </div>
