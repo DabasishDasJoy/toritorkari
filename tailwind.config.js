@@ -6,13 +6,18 @@ module.exports = {
       {
         mytheme: {
           primary: "#10B981",
-          secondary: "#F3F4F6",
-          accent: "#000000",
+          secondary: "#EEF2FF",
+          accent: "#F97316",
           neutral: "#374151",
           warning: "#EF4444",
         },
       },
     ],
+  },
+  theme: {
+    fontFamily: {
+      san: ["Open Sans", "sans-serif"],
+    },
   },
   plugins: [require("daisyui")],
 };

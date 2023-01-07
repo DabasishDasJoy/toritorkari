@@ -1,117 +1,106 @@
 import React from "react";
 import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Indicator from "../../../../components/Indicator/Indicator";
-
+import Footer from "../../Footer/Footer";
 const MainHeader = () => {
   return (
-    <div className="navbar text-white bg-primary component">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <a className="justify-between">
-                Parent
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                </svg>
-              </a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
-        </div>
-        <Link to={"/"} className="normal-case text-xl lg:block hidden">
-          Toritorkari
-        </Link>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li tabIndex={0}>
-            <a>
-              Parent
+    <div className="drawer">
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        {/* <!-- Navbar --> */}
+        <div className="w-full navbar bg-primary text-white min-h-0 px-10 py-3 justify-between">
+          {/* menu icon */}
+          <div className="flex-none lg:hidden">
+            <label htmlFor="my-drawer-3" className="">
               <svg
-                className="fill-current"
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                fill="none"
                 viewBox="0 0 24 24"
+                className="inline-block w-6 h-6 stroke-current"
               >
-                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
               </svg>
-            </a>
-            <ul className="p-2">
-              <li>
-                <a>Submenu 1</a>
-              </li>
-              <li>
-                <a>Submenu 2</a>
-              </li>
-            </ul>
+            </label>
+          </div>
+
+          {/* title */}
+          <div className="lg:block hidden">Toritorkari</div>
+
+          {/* Search Option */}
+          <div className="flex-1">
+            {/* <!-- Navbar menu content here --> */}
+            <div className="flex items-center text-neutral rounded-md overflow-hidden lg:w-[80%] w-[90%] mx-auto">
+              <div className="bg-gray-200 py-1">
+                <select
+                  name=""
+                  id=""
+                  className="outline-none bg-transparent text-center text-sm font-medium"
+                >
+                  <option selected value="">
+                    All
+                  </option>
+                  <option value="">fish</option>
+                  <option value="">fish</option>
+                  <option value="">fishery</option>
+                  <option value="">fish</option>
+                  <option value="">fish</option>
+                </select>
+              </div>
+
+              <div className="flex flex-1 py-1 justify-between bg-white items-center">
+                <input
+                  type="text"
+                  placeholder="Search Products(e.g. Fist, Oil etc.)"
+                  className="outline-none px-1 w-full"
+                />
+                <button className="px-1">
+                  <AiOutlineSearch className="icon" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Navbar icons */}
+          <div className="flex gap-5">
+            <div className="indicator">
+              <FaRegHeart className="icon" />
+              <Indicator>10</Indicator>
+            </div>
+
+            <div className="indicator">
+              <label htmlFor="cart-drawer">
+                <AiOutlineShoppingCart className="icon" />
+                <Indicator>8</Indicator>
+              </label>
+            </div>
+
+            <div className="lg:block hidden">
+              <FaRegUser className="icon" />
+            </div>
+          </div>
+        </div>
+        {/* <!-- Page content here --> */}
+        <Outlet></Outlet>
+        <Footer></Footer>
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
+        <ul className="menu p-4 w-80 bg-base-100">
+          {/* <!-- Sidebar content here --> */}
+          <li>
+            <a>Sidebar Item 1</a>
           </li>
           <li>
-            <a>Item 3</a>
+            <a>Sidebar Item 2</a>
           </li>
         </ul>
-      </div>
-      <div className="navbar-end flex gap-5">
-        <div className="indicator">
-          <FaRegHeart className="icon" />
-          <Indicator>10</Indicator>
-        </div>
-        <div className="indicator">
-          <label htmlFor="cart-drawer">
-            <AiOutlineShoppingCart className="icon" />
-            <Indicator>8</Indicator>
-          </label>
-        </div>
-        <div>
-          <AiOutlineSearch className="icon" />
-        </div>
-        <div>
-          <FaRegUser className="icon" />
-        </div>
       </div>
     </div>
   );

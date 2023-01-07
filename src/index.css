@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .component {
-  @apply lg:px-10 lg:py-2;
+  @apply lg:px-10 lg:py-1;
 }
 .link {
   @apply hover:text-primary transition-all delay-75 no-underline;

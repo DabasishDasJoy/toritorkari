@@ -1,12 +1,12 @@
 import React from "react";
 import { AiOutlineArrowRight, AiOutlineRight } from "react-icons/ai";
 import { BsBagCheck } from "react-icons/bs";
-import CartItem from "../CartItem/CartItem";
+import EmptyCart from "../EmplyCart/EmptyCart";
 const MyCart = () => {
   return (
     <>
       {/* Top section */}
-      <div className="bg-primary px-3 py-2 fixed w-full top-0 text-white flex justify-between items-center">
+      <div className="bg-secondary px-3 py-2 fixed w-full top-0 text-neutral flex justify-between items-center">
         <h3 className="font-semibold text-base leading-9 uppercase flex gap-2 items-center">
           <BsBagCheck className="icon" /> My Cart
         </h3>
@@ -17,10 +17,11 @@ const MyCart = () => {
       {/* Top section end */}
 
       {/* Cart Items */}
-      <div className="my-[65px] overflow-y-scroll">
-        {[...Array(10).keys()].map((idx) => (
+      <div className="my-[65px] overflow-y-scroll h-full">
+        <EmptyCart></EmptyCart>
+        {/* {[...Array(10).keys()].map((idx) => (
           <CartItem></CartItem>
-        ))}
+        ))} */}
       </div>
       {/* Cart Items End */}
 

@@ -1,7 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
-import Footer from "../../pages/shared/Footer/Footer";
 import Header from "../../pages/shared/Header/Header/Header";
 
 const Main = () => {
@@ -10,13 +8,11 @@ const Main = () => {
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <Header></Header>
-        <Outlet></Outlet>
-        <Footer></Footer>
       </div>
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
-        <div className="menu w-96 bg-white relative min-h-screen max-h-screen">
+        <div className="menu bg-white relative min-h-screen max-h-screen">
           {/* <!-- Sidebar content here --> */}
 
           <MyCart></MyCart>
