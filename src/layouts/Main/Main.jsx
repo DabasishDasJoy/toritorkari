@@ -1,13 +1,13 @@
 import React from "react";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
-import Header from "../../pages/shared/Header/Header/Header";
+import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
 
 const Main = () => {
   return (
     <div className="drawer drawer-end">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <Header></Header>
+        <MainHeader></MainHeader>
       </div>
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>

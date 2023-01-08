@@ -15,10 +15,13 @@
 .sidebarMenu {
   @apply border w-full py-1;
 }
-
 .section {
-  @apply lg:px-10 lg:py-5 px-1;
+  @apply lg:py-5 pb-2;
 }
+.sub-section {
+  @apply lg:px-10 lg:py-5 px-1 py-3;
+}
+
 .tori-btn-primary {
   @apply bg-primary text-white rounded-full px-3 py-2 font-medium text-sm;
 }

@@ -14,7 +14,7 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 const AdvertiseProducts = () => {
   return (
-    <div className="swiper-container col-span-3">
+    <div className="swiper-container lg:col-span-3 col-span-1">
       <Swiper
         pagination={{
           dynamicBullets: true,

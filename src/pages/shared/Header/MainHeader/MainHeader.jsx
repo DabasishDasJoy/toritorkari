@@ -6,13 +6,15 @@ import Indicator from "../../../../components/Indicator/Indicator";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
+import TopHeader from "../TopHeader/TopHeader";
 const MainHeader = () => {
   return (
     <div className="drawer">
       <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
-        <div className="w-full navbar bg-primary text-white min-h-0 lg:px-10 py-3 justify-between">
+        <TopHeader></TopHeader>
+        <div className="w-full navbar bg-primary lg:px-10 min-h-16 text-white justify-between">
           {/* menu icon */}
           <div className="flex-none lg:hidden ">
             <label
