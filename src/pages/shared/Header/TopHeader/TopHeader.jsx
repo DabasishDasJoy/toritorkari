@@ -3,7 +3,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
 const TopHeader = () => {
   return (
-    <div className="justify-between font-medium text-xs leading-5 text-neutral bg-secondary component lg:flex hidden">
+    <div className="justify-between font-medium text-xs leading-5 tori-text-neutral bg-secondary component lg:flex hidden">
       {/* left  */}
       <div>
         <p>

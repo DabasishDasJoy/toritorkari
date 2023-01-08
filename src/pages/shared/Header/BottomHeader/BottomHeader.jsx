@@ -4,7 +4,7 @@ import "./BottomHeader.css";
 
 const BottomHeader = () => {
   return (
-    <div className="px-10 py-2 flex justify-between border-b text-black text-sm font-medium">
+    <div className="px-10 py-2 lg:flex hidden justify-between border-b text-black text-sm font-medium">
       <div className="flex gap-5">
         <select className="outline-none border-none">
           <option value="" disabled selected>

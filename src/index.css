@@ -17,12 +17,28 @@
 }
 
 .section {
-  @apply lg:px-10 lg:py-5;
+  @apply lg:px-10 lg:py-5 px-1;
 }
 
 .tori-btn-secondary {
   @apply bg-primary text-white rounded-md px-3 py-2 font-medium text-sm;
 }
+
+.tori-text-neutral {
+  @apply text-[#374151];
+}
+.tori-bg-gray {
+  @apply bg-[#F9FAFB];
+}
+
+.tori-btn-active {
+  @apply bg-primary/10 text-primary rounded-full px-2 py-[1px] font-medium;
+}
+
+.coupon-tag {
+  @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

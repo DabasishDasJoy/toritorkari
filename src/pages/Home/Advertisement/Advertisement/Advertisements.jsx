@@ -1,12 +1,12 @@
 import React from "react";
-import AdvertiseOffer from "../AdvertiseOffer/AdvertiseOffer";
+import AdvertiseOffers from "../AdvertiseOffers/AdvertiseOffers";
 import AdvertiseProducts from "../AdvertiseProducts/AdvertiseProducts";
 
 const Advertisements = () => {
   return (
-    <section className="section grid grid-cols-5 gap-5 border">
+    <section className="section grid grid-cols-1 lg:grid-cols-5 lg:gap-5 gap-y-5">
       <AdvertiseProducts></AdvertiseProducts>
-      <AdvertiseOffer></AdvertiseOffer>
+      <AdvertiseOffers></AdvertiseOffers>
     </section>
   );
 };

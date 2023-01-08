@@ -42,7 +42,7 @@ const MainHeader = () => {
           {/* Search Option */}
           <div className="flex-1">
             {/* <!-- Navbar menu content here --> */}
-            <div className="flex items-center text-neutral rounded-md overflow-hidden lg:w-[80%] w-[90%] mx-auto">
+            <div className="flex items-center tori-text-neutral rounded-md overflow-hidden lg:w-[80%] w-[90%] mx-auto">
               <div className="bg-gray-200 py-1">
                 <select
                   name=""
