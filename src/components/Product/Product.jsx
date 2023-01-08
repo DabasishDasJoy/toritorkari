@@ -9,7 +9,7 @@ const Product = () => {
         <img
           src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.postimg.cc%2FbvrsZtMt%2FCalabaza-Squash-Package-each.jpg&w=256&q=75"
           alt=""
-          className="w-28 h-28 image"
+          className="w-24 h-24 image"
         />
       </div>
       <div className="row-span-1 text-sm font-medium px-1">

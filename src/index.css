@@ -19,7 +19,7 @@
   @apply lg:py-5 pb-2;
 }
 .sub-section {
-  @apply lg:px-10 lg:py-5 px-1 py-3;
+  @apply lg:px-10 lg:py-5 px-2 py-3;
 }
 
 .tori-btn-primary {

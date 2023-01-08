@@ -2,7 +2,7 @@ import React from "react";
 
 const Coupon = () => {
   return (
-    <div className="grid lg:grid-cols-6 grid-cols-1 px-2 py-3 rounded-md bg-white shadow-md lg:gap-0 gap-2">
+    <div className="grid lg:grid-cols-6 grid-cols-1 px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
       <div className="lg:col-span-4 lg:border-r-2 border-dashed flex gap-3">
         <div className="flex items-center">
           <img
