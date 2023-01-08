@@ -19,7 +19,9 @@
 .section {
   @apply lg:px-10 lg:py-5 px-1;
 }
-
+.tori-btn-primary {
+  @apply bg-primary text-white rounded-full px-3 py-2 font-medium text-sm;
+}
 .tori-btn-secondary {
   @apply bg-primary text-white rounded-md px-3 py-2 font-medium text-sm;
 }
