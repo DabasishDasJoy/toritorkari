@@ -44,6 +44,10 @@
   @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
 }
 
+.link {
+  @apply hover:text-primary transition-all delay-[30ms];
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

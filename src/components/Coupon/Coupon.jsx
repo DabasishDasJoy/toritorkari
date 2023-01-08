@@ -11,14 +11,14 @@ const Coupon = () => {
             className="w-16 h-16"
           />
         </div>
-        <div className="text-black flex flex-col gap-1">
+        <div className="text-black flex flex-col lg:gap-1 gap-2">
           <div className="flex justify-between">
             <p>
               <span className="text-warning font-bold text-lg">10%</span> Off
             </p>
             <span className="tori-btn-active">Active</span>
           </div>
-          <p className="font-semibold text-lg  leading-8">
+          <p className="font-semibold lg:text-lg text-md lg:leading-8">
             October Gift Voucher
           </p>
 
@@ -36,7 +36,7 @@ const Coupon = () => {
         </div>
       </div>
 
-      <div className="lg:col-span-2 px-2 gap-2 flex flex-col items-center">
+      <div className="lg:col-span-2 px-2 gap-2 flex flex-col lg:items-center items-start">
         <span className="coupon-tag">October21</span>
         <p className="text-xs font-medium text-black/80">
           Enjoy 10% discount on more than{" "}

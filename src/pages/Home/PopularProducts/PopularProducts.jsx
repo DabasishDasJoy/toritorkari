@@ -13,7 +13,7 @@ const PopularProducts = () => {
         Popular Products for Daily Shopping
       </SectionHeader>
 
-      <div className="sub-section grid grid-cols-6 gap-3">
+      <div className="sub-section grid lg:grid-cols-6 grid-cols-2 gap-3">
         <Product></Product>
         <Product></Product>
         <Product></Product>

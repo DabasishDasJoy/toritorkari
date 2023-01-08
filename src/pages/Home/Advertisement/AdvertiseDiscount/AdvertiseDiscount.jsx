@@ -2,15 +2,15 @@ import React from "react";
 
 const AdvertiseDiscount = () => {
   return (
-    <div className="bg-neutral col-span-full gap-3 flex lg:flex-row flex-col lg:px-10 lg:py-6 p-5 justify-between items-center rounded-md">
+    <div className="bg-neutral col-span-full gap-3 flex lg:flex-row flex-col lg:px-10 lg:py-6 p-5 justify-between lg:items-center items-start rounded-md">
       <div>
-        <h1 className="text-xl text-black">
+        <h1 className="lg:text-xl text-lg text-black">
           <span className="text-primary font-semibold">
             100% Natural Quality{" "}
           </span>{" "}
           Organic Product
         </h1>
-        <p className="text-black/80">
+        <p className="text-black/80 lg:text-sm text-xs">
           See Our latest discounted products from here and get a special{" "}
           <a
             href="#discount-Product"

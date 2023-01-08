@@ -1,6 +1,8 @@
 import React from "react";
 import Advertisements from "../Advertisement/Advertisement/Advertisements";
+import AppAdvertise from "../AppAdvertise/AppAdvertise";
 import FeaturedCategories from "../FeaturedCategories/FeaturedCategories/FeaturedCategories";
+import LatestDiscounts from "../LatestDiscounts/LatestDiscounts";
 import PopularProducts from "../PopularProducts/PopularProducts";
 
 const Home = () => {
@@ -9,6 +11,8 @@ const Home = () => {
       <Advertisements></Advertisements>
       <FeaturedCategories></FeaturedCategories>
       <PopularProducts></PopularProducts>
+      <AppAdvertise></AppAdvertise>
+      <LatestDiscounts></LatestDiscounts>
     </div>
   );
 };
