@@ -12,7 +12,7 @@ const AppDownload = () => {
           />
         </div>
         <div className="text-black lg:text-center flex flex-col justify-center gap-3 lg:p-0 p-2">
-          <h1 className="text-2xl font-bold">
+          <h1 className="lg:text-2xl text-xl font-bold">
             Get Your Daily Needs From Our KachaBazar Store
           </h1>
           <p>

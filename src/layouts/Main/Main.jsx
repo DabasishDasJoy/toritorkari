@@ -4,7 +4,7 @@ import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
 
 const Main = () => {
   return (
-    <div className="drawer drawer-end">
+    <div className="drawer drawer-end ">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <MainHeader></MainHeader>

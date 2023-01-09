@@ -5,7 +5,7 @@ const SideBarHeader = () => {
   return (
     <div>
       <div
-        className={`bg-secondary px-3 py-1 fixed w-full top-0 left-0 text-neutral flex justify-between items-center`}
+        className={`bg-secondary px-3 py-1 fixed w-full top-0 left-0 text-black flex justify-between items-center`}
       >
         <button className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
           <AiOutlineUser />

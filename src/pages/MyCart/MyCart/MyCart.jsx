@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsChevronDoubleRight } from "react-icons/bs";
 import SidebarHeader from "../../../components/SidebarHeader/SidebarHeader";
-import EmptyCart from "../EmplyCart/EmptyCart";
+import CartItem from "../CartItem/CartItem";
 const MyCart = () => {
   return (
     <>
@@ -17,11 +17,11 @@ const MyCart = () => {
       {/* Top section end */}
 
       {/* Cart Items */}
-      <div className="my-[65px] overflow-y-scroll h-full">
-        <EmptyCart></EmptyCart>
-        {/* {[...Array(10).keys()].map((idx) => (
+      <div className="my-[65px] divide-y overflow-y-scroll h-full">
+        {/* <EmptyCart></EmptyCart> */}
+        {[...Array(10).keys()].map((idx) => (
           <CartItem></CartItem>
-        ))} */}
+        ))}
       </div>
       {/* Cart Items End */}
 

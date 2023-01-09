@@ -5,8 +5,8 @@ import { RiSecurePaymentLine } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
 const Supports = () => {
   return (
-    <div className="flex text-black sub-section justify-around border-b-2">
-      <p className=" flex gap-2 items-center text-base">
+    <div className="flex text-black sub-section lg:justify-around justify-evenly gap-2 flex-wrap">
+      <p className=" flex gap-2 items-center text-sm">
         <TbTruckDelivery className="text-primary w-5 h-5" /> Free Shipping From
         $500
       </p>
