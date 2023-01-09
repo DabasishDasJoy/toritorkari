@@ -1,4 +1,5 @@
 import React from "react";
+import Login from "../../pages/Login/Login";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
 import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
 
@@ -8,6 +9,7 @@ const Main = () => {
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <MainHeader></MainHeader>
+        <Login></Login>
       </div>
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>

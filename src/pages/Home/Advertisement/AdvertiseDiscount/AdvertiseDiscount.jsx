@@ -2,7 +2,7 @@ import React from "react";
 
 const AdvertiseDiscount = () => {
   return (
-    <div className="bg-neutral col-span-full gap-3 flex lg:flex-row flex-col lg:px-10 lg:py-6 p-5 justify-between lg:items-center items-start rounded-md">
+    <div className="bg-[#FFEDD5] col-span-full gap-3 flex lg:flex-row flex-col lg:px-10 lg:py-6 p-5 justify-between lg:items-center items-start rounded-md">
       <div>
         <h1 className="lg:text-xl text-lg text-black">
           <span className="text-primary font-semibold">

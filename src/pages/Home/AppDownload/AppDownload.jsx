@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 const AppDownload = () => {
   return (
     <div className="bg-[#EEF2FF]">
-      <div className="grid lg:grid-cols-3">
-        <div className="lg:block hidden">
+      <div className="grid lg:grid-cols-3 py-10">
+        <div className="lg:flex items-center  hidden">
           <img
             src="https://kachabazar-store.vercel.app/_next/image?url=%2Fapp-download-img-left.png&w=640&q=75"
             alt=""
+            className="w-4/5 mx-auto"
           />
         </div>
         <div className="text-black lg:text-center flex flex-col justify-center gap-3 lg:p-0 p-2">
@@ -35,10 +36,11 @@ const AppDownload = () => {
             </Link>
           </div>
         </div>
-        <div className="lg:block hidden">
+        <div className="lg:flex items-center  hidden">
           <img
             src="https://kachabazar-store.vercel.app/_next/image?url=%2Fapp-download-img.png&w=640&q=75"
             alt=""
+            className="w-4/5 mx-auto"
           />
         </div>
       </div>

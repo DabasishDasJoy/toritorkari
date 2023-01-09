@@ -89,9 +89,9 @@ const MainHeader = () => {
               </label>
             </div>
 
-            <div className="lg:block hidden">
+            <label htmlFor="login-modal" className="lg:block hidden">
               <FaRegUser className="icon" />
-            </div>
+            </label>
           </div>
         </div>
         {/* <!-- Page content here --> */}

@@ -48,6 +48,10 @@
   @apply hover:text-primary transition-all delay-[30ms];
 }
 
+.tori-input {
+  @apply focus:outline-none border px-2 placeholder:text-xs border-black/20 rounded-sm text-black text-sm py-1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

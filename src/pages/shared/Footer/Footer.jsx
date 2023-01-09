@@ -47,7 +47,7 @@ const Footer = () => {
       <div className="border-t-[1px] w-[50%] mx-auto"></div>
       <div className="lg:px-10 lg:pb-5 px-3 pb-5">
         <div className="bg-[#F9FAFB] grid lg:grid-cols-3 py-5 lg:px-10 px-5 gap-5 w-full rounded-md text-black">
-          <div className="flex flex-col items-center justify-center gap-2">
+          <div className="flex flex-col lg:items-start items-center justify-center gap-2">
             <p>Follow Us</p>
             <div className="flex gap-3">
               <a>
