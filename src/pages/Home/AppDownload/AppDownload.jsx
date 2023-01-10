@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const AppDownload = () => {
   return (
     <div className="bg-[#EEF2FF]">
-      <div className="grid lg:grid-cols-3 py-10">
-        <div className="lg:flex items-center  hidden">
+      <div className="grid lg:grid-cols-3 py-1">
+        <div className="lg:flex items-center hidden">
           <img
             src="https://kachabazar-store.vercel.app/_next/image?url=%2Fapp-download-img-left.png&w=640&q=75"
             alt=""
@@ -26,12 +26,14 @@ const AppDownload = () => {
               <img
                 src="https://kachabazar-store.vercel.app/app/app-store.svg"
                 alt=""
+                className="w-32"
               />
             </Link>
             <Link>
               <img
                 src="https://kachabazar-store.vercel.app/app/play-store.svg"
                 alt=""
+                className="w-32"
               />
             </Link>
           </div>

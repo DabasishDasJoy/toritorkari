@@ -1,10 +1,14 @@
 import React from "react";
+import AppDownload from "../../Home/AppDownload/AppDownload";
+import Supports from "../../Home/Supports/Supports";
 
 const Footer = () => {
   return (
     <>
+      <AppDownload></AppDownload>
+      <Supports></Supports>
       <div className="border-t-[1px] w-[50%] mx-auto"></div>
-      <footer className="footer lg:p-10 p-5 gl:grid-cols-2 grid-cols-2 text-black">
+      <footer className="footer p-10  text-black">
         <div>
           <svg
             width="50"

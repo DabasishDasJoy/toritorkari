@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Indicator from "../../../../components/Indicator/Indicator";
+import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
 const MainHeader = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="drawer">
       <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
@@ -76,7 +79,7 @@ const MainHeader = () => {
           </div>
 
           {/* Navbar icons */}
-          <div className="flex gap-5">
+          <div className="flex gap-5 items-center">
             <div className="indicator">
               <FaRegHeart className="icon" />
               <Indicator>10</Indicator>
@@ -89,9 +92,18 @@ const MainHeader = () => {
               </label>
             </div>
 
-            <label htmlFor="login-modal" className="lg:block hidden">
-              <FaRegUser className="icon" />
-            </label>
+            {user && user.uid ? (
+              <Link
+                to={"/user/dashboard"}
+                className="border-2 w-8 rounded-full overflow-hidden"
+              >
+                <img src={user.photoURL} alt="" className="w-full" />
+              </Link>
+            ) : (
+              <label htmlFor="login-modal" className="lg:block hidden">
+                <FaRegUser className="icon" />
+              </label>
+            )}
           </div>
         </div>
         {/* <!-- Page content here --> */}

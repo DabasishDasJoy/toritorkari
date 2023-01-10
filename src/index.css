@@ -52,6 +52,10 @@
   @apply focus:outline-none border px-2 placeholder:text-xs border-black/20 rounded-sm text-black text-sm py-1;
 }
 
+.dashboard-link {
+  @apply flex hover:bg-[#F9FAFB] p-2 hover:text-primary items-center gap-1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

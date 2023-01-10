@@ -7,7 +7,7 @@ const CartItem = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="flex gap-5 items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
+    <div className="flex gap-5 items-center justify-center px-5 py-2  hover:bg-slate-50 cursor-pointer">
       <div className="">
         <img src={meat} alt="" className="w-16 h-full rounded-lg" />
       </div>
