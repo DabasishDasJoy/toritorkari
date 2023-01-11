@@ -42,7 +42,9 @@ const MainHeader = () => {
           </div>
 
           {/* title */}
-          <div className="lg:block hidden">Toritorkari</div>
+          <Link to={"/"} className="lg:block hidden">
+            Toritorkari
+          </Link>
 
           {/* Search Option */}
           <div className="flex-1">

@@ -1,5 +1,5 @@
 import React from "react";
-import DiscountedProduct from "../../../components/DiscountedProduct/DiscountedProduct";
+import Product from "../../../components/Product/Product";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 
 const LatestDiscounts = () => {
@@ -13,20 +13,17 @@ const LatestDiscounts = () => {
         Latest Dicounted Products
       </SectionHeader>
       <div className="grid lg:grid-cols-6 grid-cols-2 gap-3 sub-section">
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
-        <DiscountedProduct></DiscountedProduct>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
       </div>
     </div>
   );

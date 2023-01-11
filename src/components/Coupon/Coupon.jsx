@@ -1,4 +1,5 @@
 import React from "react";
+import StatusTag from "../StatusTag/StatusTag";
 
 const Coupon = () => {
   return (
@@ -12,11 +13,11 @@ const Coupon = () => {
           />
         </div>
         <div className="text-black flex flex-col lg:gap-1 gap-2">
-          <div className="flex justify-between">
+          <div className="flex items-center justify-between">
             <p>
               <span className="text-warning font-bold text-lg">10%</span> Off
             </p>
-            <span className="tori-btn-active">Active</span>
+            <StatusTag color={"primary"}>Active</StatusTag>
           </div>
           <p className="font-semibold lg:text-lg text-md lg:leading-8">
             October Gift Voucher

@@ -36,10 +36,9 @@
   @apply bg-[#F9FAFB];
 }
 
-.tori-btn-active {
-  @apply bg-primary/10 text-primary rounded-full px-2 py-[1px] font-medium;
+.price {
+  @apply font-extrabold text-xl;
 }
-
 .coupon-tag {
   @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
 }
@@ -53,7 +52,7 @@
 }
 
 .dashboard-link {
-  @apply flex hover:bg-[#F9FAFB] p-2 hover:text-primary items-center gap-1;
+  @apply flex hover:bg-[#F9FAFB] p-2 hover:text-primary text-sm font-medium items-center gap-1;
 }
 
 body {

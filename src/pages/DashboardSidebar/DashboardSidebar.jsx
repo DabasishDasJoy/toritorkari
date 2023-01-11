@@ -18,7 +18,7 @@ const DashboardSidebar = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="bg-white col-span-3 text-black p-10">
+    <div className="bg-white col-span-3 text-black py-10 px-5 rounded-sm">
       <div className="flex flex-col gap-2">
         <Link to={"/user/dashboard"} className="dashboard-link">
           <RiDashboardLine />
