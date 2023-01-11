@@ -3,7 +3,7 @@ import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../pages/Home/Home/Home";
-import ProductDetails from "../../pages/ProductDetails/ProductDetails";
+import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDetails";
 
 export const router = createBrowserRouter([
   {

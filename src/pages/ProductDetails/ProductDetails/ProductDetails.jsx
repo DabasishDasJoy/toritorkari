@@ -1,6 +1,7 @@
 import React from "react";
-import Product from "../../components/Product/Product";
-import StatusTag from "../../components/StatusTag/StatusTag";
+import Product from "../../../components/Product/Product";
+import StatusTag from "../../../components/StatusTag/StatusTag";
+import ProductFeature from "../ProductFeature/ProductFeature";
 
 const ProductDetails = () => {
   return (
@@ -19,15 +20,16 @@ const ProductDetails = () => {
       </div>
       <div className="bg-white rounded-md">
         {/* Details */}
-        <div className="rounded-sm grid grid-cols-3 px-5 py-7 gap-5">
-          <div className=" flex items-start justify-center">
+        <div className="rounded-sm grid lg:grid-cols-4 lg:px-5 px-2 lg:py-7 py-5 gap-5">
+          <div className="col-span-1 flex items-start justify-center">
             <img
               src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.postimg.cc%2FbvrsZtMt%2FCalabaza-Squash-Package-each.jpg&w=256&q=75"
               alt=""
+              className=" w-full"
             />
           </div>
 
-          <div className="text-black  flex flex-col gap-3">
+          <div className="col-span-2 text-black  flex flex-col gap-3">
             <h1 className="text-2xl font-semibold">Iglotex Cauliflower</h1>
             <div>
               <StatusTag color={"primary"}>In Stock</StatusTag>
@@ -42,13 +44,13 @@ const ProductDetails = () => {
             <p className="price">$11</p>
 
             {/* Add to cart */}
-            <div className="flex justify-between items-center gap-5">
+            <div className="flex justify-start items-center gap-5">
               <div className="flex  py-1 border-2 rounded-sm text-[#374151] font-semibold items-center">
                 <button className="px-5 hover:bg-white">-</button>
                 <span className=" text-sm">1</span>
                 <button className="px-5 hover:bg-white">+</button>
               </div>
-              <button className="tori-btn-secondary w-full">Add to Cart</button>
+              <button className="tori-btn-secondary w-1/2">Add to Cart</button>
             </div>
 
             {/* category */}
@@ -118,6 +120,8 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+
+          <ProductFeature></ProductFeature>
         </div>
       </div>
 

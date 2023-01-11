@@ -9,7 +9,7 @@
   @apply hover:text-primary transition-all delay-75 no-underline;
 }
 .icon {
-  @apply w-5 h-5 cursor-pointer;
+  @apply w-5 h-5 cursor-pointer min-w-max;
 }
 
 .sidebarMenu {

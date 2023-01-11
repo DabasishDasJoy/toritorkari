@@ -5,14 +5,10 @@ import StatusTag from "../StatusTag/StatusTag";
 const ProductModal = () => {
   return (
     <div>
-      <label htmlFor="product-modal" className="btn">
-        open modal
-      </label>
-
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="product-modal" className="modal-toggle" />
       <div className="modal bg-black/80">
-        <div className="modal-box w-6/12 max-w-5xl relative rounded-sm grid grid-cols-5 px-5 py-7 gap-5">
+        <div className="modal-box lg:w-6/12 max-w-5xl relative rounded-sm grid lg:grid-cols-5 px-5 py-7 gap-5">
           <label
             htmlFor="product-modal"
             className="absolute right-2 text-black hover:text-primary cursor-pointer font-semibold top-1"
@@ -20,14 +16,14 @@ const ProductModal = () => {
             ✕
           </label>
 
-          <div className="col-span-2 flex items-center justify-center">
+          <div className="lg:col-span-2 flex items-center justify-center">
             <img
               src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.postimg.cc%2FbvrsZtMt%2FCalabaza-Squash-Package-each.jpg&w=256&q=75"
               alt=""
             />
           </div>
 
-          <div className="text-black col-span-3 flex flex-col gap-3">
+          <div className="text-black lg:col-span-3 flex flex-col gap-3">
             <h1 className="text-2xl font-semibold">Iglotex Cauliflower</h1>
             <div>
               <StatusTag color={"primary"}>In Stock</StatusTag>
