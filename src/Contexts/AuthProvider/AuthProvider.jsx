@@ -5,7 +5,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import app from "../../firebase/firebase.config.init";
 
 // Create context
@@ -15,6 +15,7 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
+  const loginModal = useRef();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -23,14 +24,17 @@ const AuthProvider = ({ children }) => {
 
   //   Google SignIn
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const logout = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
   const authInfo = {
+    loginModal,
     googleSignIn,
     user,
     loading,

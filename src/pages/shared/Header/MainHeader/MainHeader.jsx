@@ -97,7 +97,7 @@ const MainHeader = () => {
             {user && user.uid ? (
               <Link
                 to={"/user/dashboard"}
-                className="border-2 w-8 rounded-full overflow-hidden"
+                className="border-2 w-8 rounded-full overflow-hidden lg:block hidden"
               >
                 <img src={user.photoURL} alt="" className="w-full" />
               </Link>

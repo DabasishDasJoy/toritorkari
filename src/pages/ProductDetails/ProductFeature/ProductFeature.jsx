@@ -9,7 +9,7 @@ import { TbTruckReturn } from "react-icons/tb";
 
 const ProductFeature = () => {
   return (
-    <div className="bg-[#F9FAFB] col-span-1 rounded-md justify-center flex px-5 flex-col gap-2 text-sm text-[#6b7280]">
+    <div className="bg-[#F9FAFB] lg:col-span-1 py-5 rounded-md justify-center flex px-5 flex-col gap-2 text-sm text-[#6b7280]">
       <span className="flex gap-2 items-center">
         <MdOutlineLocalShipping className="icon" />
         <p>

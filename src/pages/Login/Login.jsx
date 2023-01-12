@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const loginModal = useRef();
+  const { loginModal } = useContext(AuthContext);
 
   return (
     <div className="">

@@ -20,7 +20,7 @@ const ProductDetails = () => {
       </div>
       <div className="bg-white rounded-md">
         {/* Details */}
-        <div className="rounded-sm grid lg:grid-cols-4 lg:px-5 px-2 lg:py-7 py-5 gap-5">
+        <div className="rounded-sm grid lg:grid-cols-4 grid-cols-1 lg:px-5 px-2 lg:py-7 py-5 gap-5">
           <div className="col-span-1 flex items-start justify-center">
             <img
               src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.postimg.cc%2FbvrsZtMt%2FCalabaza-Squash-Package-each.jpg&w=256&q=75"
@@ -29,7 +29,7 @@ const ProductDetails = () => {
             />
           </div>
 
-          <div className="col-span-2 text-black  flex flex-col gap-3">
+          <div className="lg:col-span-2 text-black  flex flex-col gap-3">
             <h1 className="text-2xl font-semibold">Iglotex Cauliflower</h1>
             <div>
               <StatusTag color={"primary"}>In Stock</StatusTag>

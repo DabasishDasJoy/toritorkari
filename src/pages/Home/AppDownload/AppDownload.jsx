@@ -14,9 +14,9 @@ const AppDownload = () => {
         </div>
         <div className="text-black lg:text-center flex flex-col justify-center gap-3 lg:p-0 p-2">
           <h1 className="lg:text-2xl text-xl font-bold">
-            Get Your Daily Needs From Our KachaBazar Store
+            Get Your Daily Needs From Our ToriTorkari Store
           </h1>
-          <p>
+          <p className="text-sm">
             There are many products you will find our shop, Choose your daily
             necessary product from our KachaBazar shop and get some special
             offer.

@@ -4,8 +4,8 @@ import "./BottomHeader.css";
 
 const BottomHeader = () => {
   return (
-    <div className="px-10 py-2 lg:flex hidden justify-between border-b text-black text-sm font-medium">
-      <div className="flex gap-5">
+    <div className="px-10 py-2 lg:flex hidden justify-between border-b text-black text-[16px] font-medium">
+      <div className="flex gap-3">
         <select className="outline-none border-none">
           <option value="" disabled selected>
             Categories
