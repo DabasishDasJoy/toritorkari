@@ -18,7 +18,9 @@ const AdvertiseProducts = () => {
       <Swiper
         pagination={{
           dynamicBullets: true,
+          clickable: true,
         }}
+        loop={true}
         spaceBetween={5}
         slidesPerView={1}
         autoplay
