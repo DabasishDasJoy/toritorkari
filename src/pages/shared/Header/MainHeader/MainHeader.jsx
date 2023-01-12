@@ -9,7 +9,7 @@ import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
 const MainHeader = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   return (
     <div className="drawer">
@@ -94,12 +94,12 @@ const MainHeader = () => {
               </label>
             </div>
 
-            {user && user.uid ? (
+            {user && user?.uid ? (
               <Link
                 to={"/user/dashboard"}
-                className="border-2 w-8 rounded-full overflow-hidden lg:block hidden"
+                className="border-2 w-6 h-6 rounded-full overflow-hidden  hidden lg:flex justify-center items-center font-bold"
               >
-                <img src={user.photoURL} alt="" className="w-full" />
+                {user.displayName[0]}
               </Link>
             ) : (
               <label htmlFor="login-modal" className="lg:block hidden">

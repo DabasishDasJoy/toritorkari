@@ -1,6 +1,6 @@
 import React from "react";
+import CategoryCard from "../../../../components/CategoryCard/CategoryCard";
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
-import Category from "../../Category/Category";
 
 const FeaturedCategories = () => {
   return (
@@ -14,20 +14,16 @@ const FeaturedCategories = () => {
       </SectionHeader>
 
       <div className="sub-section grid lg:grid-cols-6 grid-cols-2 gap-[2px]">
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
-        <Category></Category>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
+        <CategoryCard></CategoryCard>
       </div>
     </div>
   );
