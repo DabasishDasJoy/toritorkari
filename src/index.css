@@ -35,7 +35,9 @@
 .tori-bg-gray {
   @apply bg-[#F9FAFB];
 }
-
+.tori-title {
+  @apply font-bold text-base;
+}
 .price {
   @apply font-extrabold text-xl;
 }
@@ -48,7 +50,11 @@
 }
 
 .tori-input {
-  @apply focus:outline-none border px-2 placeholder:text-xs border-black/20 rounded-sm text-black text-sm py-1;
+  @apply focus:outline-none border px-2 placeholder:text-xs border-black/20 rounded-sm text-black text-sm py-1 w-full;
+}
+
+.tori-label {
+  @apply text-sm block text-gray-500;
 }
 
 .dashboard-link {
