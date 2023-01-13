@@ -1,8 +1,10 @@
 import React from "react";
 import { FcShipped } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 import Required from "../../../components/Required/Required";
 
 const CheckoutForm = () => {
+  const navigate = useNavigate();
   return (
     <div className="text-black lg:p-5 px-2 py-5 flex flex-col gap-3">
       <h4 className="tori-title">01. Personal Details</h4>
@@ -147,7 +149,13 @@ const CheckoutForm = () => {
         <button className="w-full bg-accent text-white rounded-md py-2">
           Continue Shopping
         </button>
-        <button className="tori-btn-secondary w-full">Confirm</button>
+        <button
+          onClick={() => navigate("/invoice")}
+          className="tori-btn-secondary w-full"
+          type="submit"
+        >
+          Confirm
+        </button>
       </div>
     </div>
   );

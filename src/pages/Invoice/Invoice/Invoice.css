@@ -1,0 +1,6 @@
+tr {
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {
+  background-color: #f2f8f8;
+}
