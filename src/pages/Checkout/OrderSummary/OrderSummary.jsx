@@ -6,7 +6,7 @@ const OrderSummary = () => {
     <div className="py-3 sticky top-0 bg-white rounded-md flex flex-col gap-3 border">
       <h4 className="tori-title text-black text-center">Order Summury</h4>
       <hr />
-      <div className="h-[300px] overflow-y-scroll flex flex-col items-start">
+      <div className="h-[300px] overflow-y-scroll flex items-center flex-col items-start">
         <CartItem></CartItem>
         <CartItem></CartItem>
         <CartItem></CartItem>

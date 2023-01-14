@@ -16,7 +16,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      san: ["Open Sans", "sans-serif"],
+      rubik: ["Rubik", "sans-serif"],
     },
   },
   plugins: [require("daisyui")],

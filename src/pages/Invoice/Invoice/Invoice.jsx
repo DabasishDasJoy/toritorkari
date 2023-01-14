@@ -50,9 +50,10 @@ const Invoice = () => {
               <thead className="bg-secondary">
                 <tr>
                   <th>No</th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Item Price</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>

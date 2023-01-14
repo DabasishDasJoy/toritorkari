@@ -6,6 +6,7 @@ import Checkout from "../../pages/Checkout/Checkout/Checkout";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
+import Offers from "../../pages/Offers/Offers/Offers";
 import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDetails";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/product",
         element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "/offers",
+        element: <Offers></Offers>,
       },
       {
         path: "/checkout",

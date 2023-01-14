@@ -22,7 +22,7 @@ const BottomHeader = () => {
         </select>
         <NavLink>Todays Deal</NavLink>
         <NavLink
-          to={"/offer"}
+          to={"/offers"}
           className={
             "bg-warning/20 text-warning rounded-sm px-2 relative indicator"
           }

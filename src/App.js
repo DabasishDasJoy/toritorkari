@@ -4,7 +4,7 @@ import { router } from "./routes/publicRoutes/router";
 
 function App() {
   return (
-    <div className="font-san">
+    <div className="font-rubik">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );

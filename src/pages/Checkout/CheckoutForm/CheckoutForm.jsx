@@ -110,8 +110,11 @@ const CheckoutForm = () => {
             Shipping Cost <Required></Required>
           </label>
 
-          <div className="flex justify-between lg:gap-10 gap-2 lg:flex-nowrap flex-wrap">
-            <div className="text-sm flex items-center justify-between gap-2 px-3 border rounded-md w-full">
+          <div className="flex justify-between lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
+            <label
+              for="fedx"
+              className="text-sm flex items-center justify-between gap-2 px-2 py-2 border rounded-md w-full"
+            >
               <div className="flex gap-3 items-center">
                 <FcShipped className="w-10 h-10" />
                 <div>
@@ -122,10 +125,18 @@ const CheckoutForm = () => {
                   </small>
                 </div>
               </div>
-              <input type="radio" name="radio-1" className="icon" />
-            </div>
+              <input
+                id="fedx"
+                type="radio"
+                name="shippingOption"
+                className="icon accent-primary"
+              />
+            </label>
 
-            <div className="text-sm flex items-center justify-between gap-2 px-3 border rounded-md w-full">
+            <label
+              for="ups"
+              className="text-sm flex items-center justify-between gap-2 px-2 py-2 border rounded-md w-full"
+            >
               <div className="flex gap-3 items-center">
                 <FcShipped className="w-10 h-10" />
                 <div>
@@ -136,8 +147,13 @@ const CheckoutForm = () => {
                   </small>
                 </div>
               </div>
-              <input type="radio" name="radio-1" className="icon" />
-            </div>
+              <input
+                id="ups"
+                type="radio"
+                name="shippingOption"
+                className="icon accent-primary"
+              />
+            </label>
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import StatusTag from "../StatusTag/StatusTag";
 
 const Coupon = () => {
+  const [copy, setCopy] = useState("Click to Copy");
+
   return (
     <div className="grid lg:grid-cols-6 grid-cols-1 px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
       <div className="lg:col-span-4 lg:border-r-2 border-dashed flex gap-3">
@@ -38,7 +40,16 @@ const Coupon = () => {
       </div>
 
       <div className="lg:col-span-2 px-2 gap-2 flex flex-col lg:items-center items-start">
-        <span className="coupon-tag">October21</span>
+        <span
+          className="coupon-tag cursor-pointer tooltip tooltip-secondary"
+          data-tip={copy}
+          onClick={(e) => {
+            navigator.clipboard.writeText(e.target.innerText);
+            setCopy("Copied");
+          }}
+        >
+          October21
+        </span>
         <p className="text-xs font-medium text-black/80">
           Enjoy 10% discount on more than{" "}
           <span className="font-semibold">$500</span> Shoppings.
