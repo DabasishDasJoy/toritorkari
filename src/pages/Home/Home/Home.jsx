@@ -18,6 +18,7 @@ const Home = () => {
         />
       </Helmet>
       <Advertisements></Advertisements>
+
       <FeaturedCategories></FeaturedCategories>
       <PopularProducts></PopularProducts>
       <AppAdvertise></AppAdvertise>

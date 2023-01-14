@@ -9,7 +9,7 @@ import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
 const MainHeader = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="drawer">
@@ -47,34 +47,32 @@ const MainHeader = () => {
           </Link>
 
           {/* Search Option */}
-          <div className="flex-1">
+          <div className="flex-1 h-full">
             {/* <!-- Navbar menu content here --> */}
-            <div className="flex items-center tori-text-neutral rounded-md overflow-hidden lg:w-[80%] w-[90%] mx-auto">
-              <div className="bg-gray-200 py-1">
-                <select
-                  name=""
-                  id=""
-                  className="outline-none bg-transparent text-center text-sm font-medium"
-                >
+            <div className="flex mx-auto items-center tori-text-neutral text-sm rounded-full  lg:w-[60%] w-[90%] h-[70%] overflow-hidden my-auto">
+              <div className="bg-gray-200 h-full border px-1">
+                <select className="outline-none bg-transparent text-center font-medium h-full cursor-pointer">
                   <option selected value="">
                     All
                   </option>
+                  <option className="" value="">
+                    fish
+                  </option>
                   <option value="">fish</option>
-                  <option value="">fish</option>
-                  <option value="">fishery</option>
+                  <option value="">Fistery</option>
                   <option value="">fish</option>
                   <option value="">fish</option>
                 </select>
               </div>
 
-              <div className="flex flex-1 py-1 justify-between bg-white items-center">
+              <div className="flex flex-1 justify-between bg-white items-center h-full">
                 <input
                   type="text"
                   placeholder="Search Products(e.g. Fist, Oil etc.)"
                   className="outline-none px-1 w-full"
                 />
-                <button className="px-1">
-                  <AiOutlineSearch className="icon" />
+                <button className="lg:px-5 px-1 h-full bg-accent">
+                  <AiOutlineSearch className="icon text-white" />
                 </button>
               </div>
             </div>
