@@ -1,4 +1,5 @@
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -22,12 +23,18 @@ const AuthProvider = ({ children }) => {
   // PRoviders
   const googleProvider = new GoogleAuthProvider();
 
+  // Email SignIn
+  const signUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
   //   Google SignIn
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
+  // Logout
   const logout = () => {
     setLoading(true);
     return signOut(auth);
@@ -39,6 +46,7 @@ const AuthProvider = ({ children }) => {
     user,
     loading,
     logout,
+    signUp,
   };
 
   //   manage user

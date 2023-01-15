@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import LoginModal from "../../components/LoginModal/LoginModal";
 import ProductModal from "../../components/ProductModal/ProductModal";
-import Login from "../../pages/Login/Login";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
 import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
 
 const Main = () => {
+  const [loginOrRegister, setLoginOrRegister] = useState("login");
+
   return (
     <div className="drawer drawer-end ">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <MainHeader></MainHeader>
-        <Login></Login>
+        <MainHeader setLoginOrRegister={setLoginOrRegister}></MainHeader>
+        <LoginModal
+          loginOrRegister={loginOrRegister}
+          setLoginOrRegister={setLoginOrRegister}
+        ></LoginModal>
         <ProductModal></ProductModal>
       </div>
       <div className="drawer-side">

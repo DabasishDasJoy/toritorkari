@@ -5,9 +5,7 @@
 .component {
   @apply lg:px-10 lg:py-1;
 }
-.link {
-  @apply hover:text-primary transition-all delay-75 no-underline;
-}
+
 .icon {
   @apply w-5 h-5 cursor-pointer min-w-max;
 }
@@ -45,12 +43,16 @@
   @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
 }
 
-.link {
-  @apply hover:text-primary transition-all delay-[30ms];
+.tori-link {
+  @apply hover:text-primary border-none hover:text-primary transition-all delay-75 no-underline;
 }
 
 .tori-input {
   @apply focus:outline-none border px-2 placeholder:text-xs border-black/20 rounded-sm text-black text-sm py-1 w-full;
+}
+
+.tori-input-wrapper {
+  @apply flex items-center border px-2 border-black/20 rounded-sm;
 }
 
 .tori-label {

@@ -43,7 +43,6 @@ const Coupon = () => {
           data-tip="Click to Copy"
           onClick={(e) => {
             navigator.clipboard.writeText(e.target.innerText);
-            console.log(navigator.clipboard.readText());
           }}
         >
           October22

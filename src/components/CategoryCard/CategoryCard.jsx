@@ -19,7 +19,7 @@ const CategoryCard = () => {
         <h6 className="mb-1">Fish & Meat</h6>
         <Link
           to={"/category/id"}
-          className="link flex items-center gap-1 text-black/70"
+          className="tori-link flex items-center gap-1 text-black/70"
         >
           <BiChevronRight /> Fish
         </Link>

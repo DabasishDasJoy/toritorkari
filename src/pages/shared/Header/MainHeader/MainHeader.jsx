@@ -1,22 +1,20 @@
-import React, { useContext } from "react";
-import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
-import { FaRegHeart, FaRegUser } from "react-icons/fa";
+import React from "react";
+import { AiOutlineSearch } from "react-icons/ai";
+import { BsCart3 } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import Indicator from "../../../../components/Indicator/Indicator";
-import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
-const MainHeader = () => {
-  const { user } = useContext(AuthContext);
-
+const MainHeader = ({ setLoginOrRegister }) => {
   return (
     <div className="drawer">
       <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
-        <TopHeader></TopHeader>
+        <TopHeader setLoginOrRegister={setLoginOrRegister}></TopHeader>
         <div className="w-full navbar bg-primary lg:px-10 min-h-16 text-white justify-between">
           {/* menu icon */}
           <div className="flex-none lg:hidden ">
@@ -87,23 +85,10 @@ const MainHeader = () => {
 
             <div className="indicator">
               <label htmlFor="cart-drawer">
-                <AiOutlineShoppingCart className="icon" />
+                <BsCart3 className="icon" />
                 <Indicator>8</Indicator>
               </label>
             </div>
-
-            {user && user?.uid ? (
-              <Link
-                to={"/user/dashboard"}
-                className="border-2 w-6 h-6 rounded-full overflow-hidden  hidden lg:flex justify-center items-center font-bold"
-              >
-                {user.displayName[0]}
-              </Link>
-            ) : (
-              <label htmlFor="login-modal" className="lg:block hidden">
-                <FaRegUser className="icon" />
-              </label>
-            )}
           </div>
         </div>
         {/* <!-- Page content here --> */}

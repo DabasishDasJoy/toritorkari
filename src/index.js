@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
+import { Toaster } from "react-hot-toast";
 import App from "./App";
 import AuthProvider from "./Contexts/AuthProvider/AuthProvider";
 import "./index.css";
@@ -11,6 +12,9 @@ root.render(
   <React.StrictMode>
     <HelmetProvider>
       <AuthProvider>
+        <div>
+          <Toaster />
+        </div>
         <App />
       </AuthProvider>
     </HelmetProvider>
