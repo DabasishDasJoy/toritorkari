@@ -6,6 +6,7 @@ import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import { FaUserTie } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
@@ -13,7 +14,12 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 const Register = ({ setLoginOrRegister }) => {
   const { loginModal, signUp } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log("location: ", location.pathname);
 
+  const from = location.state?.from?.pathname || location;
+  console.log("from: ", from);
   const {
     register,
     formState: { errors },
@@ -23,13 +29,17 @@ const Register = ({ setLoginOrRegister }) => {
   });
 
   const handleRegister = (data) => {
-    console.log(data);
     // SignUp Firebase
     signUp(data.email, data.password)
       .then((res) => {
         toast.success(`Welcome ${data.userName}`);
+        loginModal.current.checked = false;
+        navigate(from, { replace: true });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message);
+      });
   };
   return (
     <>
@@ -43,7 +53,7 @@ const Register = ({ setLoginOrRegister }) => {
       {/* Title End */}
 
       {/* Form div */}
-      <div className="col-span-4 py-10 lg:px-7 px-5 flex flex-col  items-center justify-center">
+      <div className="col-span-4 py-10 lg:px-10 px-5 flex flex-col  items-center justify-center">
         <form
           onSubmit={handleSubmit(handleRegister)}
           className="flex flex-col gap-2 w-full"

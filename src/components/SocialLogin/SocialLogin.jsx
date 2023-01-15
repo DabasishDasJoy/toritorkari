@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
@@ -7,13 +8,14 @@ const SocialLogin = ({ loginModal }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || location;
 
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then(() => {
-        navigate(from, { replace: true });
+      .then((res) => {
+        toast.success(`Welcome ${res.user.displayName}`);
         loginModal.current.checked = false;
+        navigate(from, { replace: true });
       })
       .catch((err) => console.error(err));
   };

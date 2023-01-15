@@ -34,7 +34,7 @@ const Login = ({ setLoginOrRegister }) => {
       </div>
 
       {/* Form Div */}
-      <div className="col-span-4 py-10 lg:px-7 px-5 flex flex-col  items-center justify-center">
+      <div className="col-span-4 py-10 lg:px-10 px-5 flex flex-col items-center justify-center">
         <form
           onSubmit={handleSubmit(handleLogin)}
           className="flex flex-col gap-2 w-full"

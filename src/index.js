@@ -13,7 +13,11 @@ root.render(
     <HelmetProvider>
       <AuthProvider>
         <div>
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              className: "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
+            }}
+          />
         </div>
         <App />
       </AuthProvider>

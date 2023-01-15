@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { FaRegUser } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -17,7 +18,14 @@ const TopHeader = ({ setLoginOrRegister }) => {
       </div>
 
       {/* right */}
-      <div className="flex justify-around gap-3">
+      <div className="flex justify-around gap-3 font-medium">
+        <button
+          onClick={() =>
+            toast.error(`Firebase: Error (auth/email-already-in-use)`)
+          }
+        >
+          Toast
+        </button>
         <Link className="tori-link" to={"/contact"}>
           Contact Us
         </Link>
