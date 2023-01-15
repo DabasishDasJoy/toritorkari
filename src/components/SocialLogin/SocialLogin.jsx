@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const SocialLogin = ({ loginModal }) => {
-  const { googleSignIn } = useContext(AuthContext);
+  const { googleSignIn, facebookSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -12,16 +12,27 @@ const SocialLogin = ({ loginModal }) => {
 
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then((res) => {
-        toast.success(`Welcome ${res.user.displayName}`);
-        loginModal.current.checked = false;
-        navigate(from, { replace: true });
-      })
+      .then((res) => succeAndRedirect(res))
       .catch((err) => console.error(err));
   };
 
+  const handleFacebookSignIn = () => {
+    facebookSignIn()
+      .then((res) => succeAndRedirect(res))
+      .catch((err) => console.error(err));
+  };
+
+  const succeAndRedirect = (res) => {
+    toast.success(`Welcome ${res.user.displayName}`);
+    loginModal.current.checked = false;
+    navigate(from, { replace: true });
+  };
+
   return (
-    <div className="flex justify-center items-center gap-5">
+    <div
+      onClick={handleFacebookSignIn}
+      className="flex justify-center cursor-pointer items-center gap-5"
+    >
       <svg
         width="30px"
         height="30px"

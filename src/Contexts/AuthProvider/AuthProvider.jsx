@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -24,6 +25,7 @@ const AuthProvider = ({ children }) => {
 
   // PRoviders
   const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
   // Email SignUP
   const signUp = (email, password) => {
@@ -43,8 +45,12 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // Update User
+  const facebookSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth, facebookProvider);
+  };
 
+  // Update User
   const updateUser = (name) => {
     setLoading(true);
     return updateProfile(auth.currentUser, { displayName: name });
@@ -64,6 +70,7 @@ const AuthProvider = ({ children }) => {
     signUp,
     updateUser,
     signIn,
+    facebookSignIn,
   };
 
   //   manage user
