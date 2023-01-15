@@ -12,14 +12,14 @@ import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Register = ({ setLoginOrRegister }) => {
-  const { loginModal, signUp } = useContext(AuthContext);
+  const { loginModal, signUp, updateUser } = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("location: ", location.pathname);
 
   const from = location.state?.from?.pathname || location;
-  console.log("from: ", from);
+
   const {
     register,
     formState: { errors },
@@ -32,15 +32,25 @@ const Register = ({ setLoginOrRegister }) => {
     // SignUp Firebase
     signUp(data.email, data.password)
       .then((res) => {
-        toast.success(`Welcome ${data.userName}`);
-        loginModal.current.checked = false;
-        navigate(from, { replace: true });
+        // Update user
+        updateUserProfile(data.userName);
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
       });
   };
+
+  const updateUserProfile = (userName) => {
+    updateUser(userName)
+      .then((res) => {
+        toast.success(`Welcome ${userName}`);
+        loginModal.current.checked = false;
+        navigate(from, { replace: true });
+      })
+      .catch((err) => toast.error(err.message));
+  };
+
   return (
     <>
       {/* Title */}

@@ -1,15 +1,22 @@
+import { ErrorMessage } from "@hookform/error-message";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = ({ setLoginOrRegister }) => {
-  const { loginModal } = useContext(AuthContext);
+  const { loginModal, signIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || location;
 
   const {
     register,
@@ -20,7 +27,13 @@ const Login = ({ setLoginOrRegister }) => {
   });
 
   const handleLogin = (data) => {
-    console.log(data);
+    signIn(data.email, data.password)
+      .then((res) => {
+        toast.success(`Welcome ${res.user?.displayName}`);
+        loginModal.current.checked = false;
+        navigate(from, { replace: true });
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   return (
@@ -40,34 +53,91 @@ const Login = ({ setLoginOrRegister }) => {
           className="flex flex-col gap-2 w-full"
         >
           {/* Email */}
-          <div className="tori-input-wrapper">
-            <MdEmail />
-            <input
-              type="email"
-              placeholder="Enter Your Email"
-              className="tori-input border-none"
+          <div>
+            <div className="tori-input-wrapper">
+              <MdEmail />
+              <input
+                type="email"
+                placeholder="Enter Your Email"
+                className="tori-input border-none"
+                {...register("email", {
+                  required: "Email is required!",
+                  pattern: {
+                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    message: "Invalid email!",
+                  },
+                })}
+              />
+            </div>
+            <ErrorMessage
+              errors={errors}
+              name="email"
+              render={({ messages }) => {
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <ValidationError
+                        key={type}
+                        message={message}
+                      ></ValidationError>
+                    ))
+                  : null;
+              }}
             />
           </div>
 
           {/* Password */}
-          <div className="tori-input-wrapper">
-            <RiLockPasswordFill />
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              className="tori-input border-none"
+          <div>
+            <div className="tori-input-wrapper">
+              <RiLockPasswordFill />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                className="tori-input border-none"
+                {...register("password", {
+                  required: "Password is required!",
+                  validate: {
+                    upperCase: (value) =>
+                      /.*?[A-Z]/.test(value) ||
+                      "Must have at least one uppercase character!",
+                    lowerCase: (value) =>
+                      /.*?[a-z]/.test(value) ||
+                      "Must have at least one lowercase character!",
+                    digit: (value) =>
+                      /.*?[0-9]/.test(value) || "At least one digit!",
+                    specialCharacter: (value) =>
+                      /.*?[#?!@$%^&*-]/.test(value) ||
+                      "Must have at least one special character!",
+                    minlength: (value) =>
+                      /.{8,}/.test(value) || "Must be 8 characters long!",
+                  },
+                })}
+              />
+              {showPassword ? (
+                <AiTwotoneEyeInvisible
+                  onClick={() => setShowPassword(false)}
+                  className="icon text-black/60"
+                />
+              ) : (
+                <AiFillEye
+                  onClick={() => setShowPassword(true)}
+                  className="icon text-black/60"
+                />
+              )}
+            </div>
+            <ErrorMessage
+              errors={errors}
+              name="password"
+              render={({ messages }) => {
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <ValidationError
+                        key={type}
+                        message={message}
+                      ></ValidationError>
+                    ))
+                  : null;
+              }}
             />
-            {showPassword ? (
-              <AiTwotoneEyeInvisible
-                onClick={() => setShowPassword(false)}
-                className="icon text-black/60"
-              />
-            ) : (
-              <AiFillEye
-                onClick={() => setShowPassword(true)}
-                className="icon text-black/60"
-              />
-            )}
           </div>
 
           {/* Input End */}

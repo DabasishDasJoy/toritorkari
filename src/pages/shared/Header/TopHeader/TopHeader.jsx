@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { toast } from "react-hot-toast";
 import { FaRegUser } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -7,7 +6,7 @@ import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 const TopHeader = ({ setLoginOrRegister }) => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="justify-between font-medium text-xs leading-5 tori-text-neutral bg-secondary component lg:flex hidden">
+    <div className="justify-between font-medium text-xs tori-text-neutral bg-secondary component lg:flex hidden">
       {/* left  */}
       <div>
         <p>
@@ -19,13 +18,6 @@ const TopHeader = ({ setLoginOrRegister }) => {
 
       {/* right */}
       <div className="flex justify-around gap-3 font-medium">
-        <button
-          onClick={() =>
-            toast.error(`Firebase: Error (auth/email-already-in-use)`)
-          }
-        >
-          Toast
-        </button>
         <Link className="tori-link" to={"/contact"}>
           Contact Us
         </Link>
@@ -44,7 +36,7 @@ const TopHeader = ({ setLoginOrRegister }) => {
             className="tori-link flex gap-1 items-center"
           >
             <FaRegUser className="" />
-            Account
+            Account / Dashboard
           </Link>
         ) : (
           <div className="dropdown dropdown-end dropdown-bottom dropdown-hover">
@@ -56,12 +48,12 @@ const TopHeader = ({ setLoginOrRegister }) => {
             </label>
             <div
               tabIndex={0}
-              className="dropdown-content px-2 py-3 shadow bg-base-100 rounded-sm flex flex-col gap-1 w-40 h-20 justify-center text-center"
+              className="dropdown-content px-5 py-3 shadow bg-base-100 rounded-sm flex flex-col gap-1 w-40 h-24 justify-center text-center"
             >
               <label
                 onClick={() => setLoginOrRegister("login")}
                 htmlFor="login-modal"
-                className="bg-accent cursor-pointer text-white rounded-sm hover:bg-primary py-1 font-bold w-full"
+                className="bg-accent cursor-pointer text-white rounded-sm hover:bg-primary py-2 font-bold w-full"
               >
                 Sign In
               </label>
