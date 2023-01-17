@@ -14,7 +14,10 @@ const DashboardSidebar = () => {
 
   const handleLogout = () => {
     logout()
-      .then(navigate("/"))
+      .then(() => {
+        navigate("/");
+        localStorage.removeItem("token");
+      })
       .catch((err) => console.log(err));
   };
   return (

@@ -7,14 +7,20 @@ import { FaUserTie } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "../../AxiosInstance/AxiosInstance";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useGetToken from "../../Hooks/useGetToken/useGetToken";
 
 const Register = ({ setLoginOrRegister }) => {
   const { loginModal, signUp, updateUser } = useContext(AuthContext);
-
   const [showPassword, setShowPassword] = useState(false);
+  const [registerLoading, setRegisterLoading] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const [token] = useGetToken(email);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,26 +35,52 @@ const Register = ({ setLoginOrRegister }) => {
   });
 
   const handleRegister = (data) => {
+    setRegisterLoading(true);
     // SignUp Firebase
     signUp(data.email, data.password)
       .then((res) => {
         // Update user
-        updateUserProfile(data.userName);
+        updateUserProfile(data);
       })
       .catch((err) => {
-        console.error(err);
-        toast.error(err.message);
+        setRegisterLoading(false);
+        return toast.error(err.message);
       });
   };
 
-  const updateUserProfile = (userName) => {
-    updateUser(userName)
+  const updateUserProfile = (data) => {
+    updateUser(data.userName)
       .then((res) => {
-        toast.success(`Welcome ${userName}`);
-        loginModal.current.checked = false;
-        navigate(from, { replace: true });
+        // Save user info in DB
+        saveUserToDb(data);
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err) => {
+        setRegisterLoading(false);
+        return toast.error(err.message);
+      });
+  };
+
+  const saveUserToDb = (data) => {
+    axios
+      .post("/users", {
+        name: data.userName,
+        email: data.email,
+      })
+      .then((res) => {
+        if (res.data.acknowledged) {
+          // Get JWT token here
+          setEmail(data.email);
+          toast.success(`Welcome ${data.userName}`);
+          loginModal.current.checked = false;
+          navigate(from, { replace: true });
+          setRegisterLoading(false);
+        } else {
+        }
+      })
+      .catch((err) => {
+        setRegisterLoading(false);
+        console.error(err);
+      });
   };
 
   return (
@@ -200,7 +232,12 @@ const Register = ({ setLoginOrRegister }) => {
           </div>
 
           {/* SUbmit */}
-          <button className="tori-btn-secondary">Sign Up</button>
+          <button
+            className={`tori-btn-secondary disabled:bg-primary/80`}
+            disabled={registerLoading}
+          >
+            {registerLoading ? <ButtonLoader /> : "Sign Up"}
+          </button>
 
           {/* Navigator */}
           <p className="text-xs text-black/50">

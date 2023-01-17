@@ -6,13 +6,20 @@ import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useGetToken from "../../Hooks/useGetToken/useGetToken";
 
 const Login = ({ setLoginOrRegister }) => {
   const { loginModal, signIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const [token] = useGetToken(email);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,13 +34,22 @@ const Login = ({ setLoginOrRegister }) => {
   });
 
   const handleLogin = (data) => {
+    setLoginLoading(true);
     signIn(data.email, data.password)
       .then((res) => {
+        console.log(res.user?.email);
+        setEmail(res?.user?.email);
+        // toast
         toast.success(`Welcome ${res.user?.displayName}`);
+        // Modal dissappear
         loginModal.current.checked = false;
+        // navigate
+        setLoginLoading(false);
         navigate(from, { replace: true });
       })
       .catch((err) => toast.error(err.message));
+
+    setLoginLoading(false);
   };
 
   return (
@@ -165,7 +181,12 @@ const Login = ({ setLoginOrRegister }) => {
           {/* End */}
 
           {/* Submit */}
-          <button className="tori-btn-secondary">Sign In</button>
+          <button
+            className="tori-btn-secondary disabled:bg-primary/80"
+            disabled={loginLoading}
+          >
+            {loginLoading ? <ButtonLoader></ButtonLoader> : "Sign In"}
+          </button>
 
           <p className="text-xs text-black/50">
             Don't have an account?{" "}

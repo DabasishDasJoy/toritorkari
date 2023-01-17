@@ -4,7 +4,9 @@ import StatusTag from "../StatusTag/StatusTag";
 const Coupon = () => {
   return (
     <div className="grid lg:grid-cols-6 grid-cols-1 px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
+      {/* First Part */}
       <div className="lg:col-span-4 lg:border-r-2 border-dashed flex gap-3">
+        {/* image */}
         <div className="flex items-center">
           <img
             src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.ibb.co%2F23kQcB9%2Fins3.jpg&w=128&q=75"
@@ -12,14 +14,15 @@ const Coupon = () => {
             className="w-16 h-16"
           />
         </div>
-        <div className="text-black flex flex-col lg:gap-1 gap-2">
-          <div className="flex items-center justify-between">
+        {/*  */}
+        <div className="text-black flex flex-col justify-center lg:gap-1 gap-2">
+          <div className="flex items-center justify-between ">
             <p>
               <span className="text-warning font-bold text-lg">10%</span> Off
             </p>
             <StatusTag color={"primary"}>Active</StatusTag>
           </div>
-          <p className="font-semibold lg:text-lg text-md lg:leading-8">
+          <p className="font-semibold lg:text-lg text-md">
             October Gift Voucher
           </p>
 
@@ -37,6 +40,7 @@ const Coupon = () => {
         </div>
       </div>
 
+      {/* Side Part */}
       <div className="lg:col-span-2 px-2 gap-2 flex flex-col lg:items-center items-start">
         <span
           className="coupon-tag cursor-pointer tooltip tooltip-secondary"

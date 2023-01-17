@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const PrivateRoutes = ({ children }) => {
@@ -7,13 +8,10 @@ const PrivateRoutes = ({ children }) => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  console.log("location", location);
-  console.log("from: ", from);
-
   if (loading) {
-    return <h1>Loaidng</h1>;
+    return <Loader></Loader>;
   }
-  if (user && user.uid) {
+  if (user && user?.uid) {
     return children;
   }
 

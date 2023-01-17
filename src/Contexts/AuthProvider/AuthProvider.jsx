@@ -52,7 +52,6 @@ const AuthProvider = ({ children }) => {
 
   // Update User
   const updateUser = (name) => {
-    setLoading(true);
     return updateProfile(auth.currentUser, { displayName: name });
   };
   // Logout
@@ -60,6 +59,18 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
+  //   manage user
+  useEffect(() => {
+    const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return () => {
+      unsubcribe();
+    };
+  }, []);
 
   const authInfo = {
     loginModal,
@@ -72,18 +83,6 @@ const AuthProvider = ({ children }) => {
     signIn,
     facebookSignIn,
   };
-
-  //   manage user
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
-    });
-
-    return () => {
-      unSubscribe();
-    };
-  }, []);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

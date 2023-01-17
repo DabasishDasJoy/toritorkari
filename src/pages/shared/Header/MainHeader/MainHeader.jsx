@@ -2,12 +2,15 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+
 import { Link, Outlet } from "react-router-dom";
 import Indicator from "../../../../components/Indicator/Indicator";
+import Logo from "../../../../components/Logo/Logo";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
+
 const MainHeader = ({ setLoginOrRegister }) => {
   return (
     <div className="drawer">
@@ -40,8 +43,8 @@ const MainHeader = ({ setLoginOrRegister }) => {
           </div>
 
           {/* title */}
-          <Link to={"/"} className="lg:block hidden">
-            Toritorkari
+          <Link to={"/"} className="lg:block hidden ">
+            <Logo></Logo>
           </Link>
 
           {/* Search Option */}
