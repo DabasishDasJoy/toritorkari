@@ -1,0 +1,77 @@
+[
+  {
+    "category": "Fish & Meat",
+    "tags": ["Fish", "Meat"],
+    "image": "https://i.ibb.co/jzkgdhh/image-7.webp"
+  },
+  {
+    "category": "Breakfast",
+    "tags": ["Bread", "Cereal"],
+    "image": "https://i.ibb.co/bbS2mJH/image-3.webp"
+  },
+  {
+    "category": "Drinks",
+    "tags": ["Tea", "Water", "Juice"],
+    "image": "https://i.ibb.co/mTdqZ78/image-1.webp"
+  },
+  {
+    "category": "Milk & Dairy",
+    "tags": ["Dairy", "Ice-cream", "Butter & Ghee"],
+    "image": "https://i.ibb.co/pWGt03f/image.webp"
+  },
+  {
+    "category": "Organic Food",
+    "tags": ["Organic Foods"],
+    "image": "https://i.ibb.co/nnQWKy7/image-6.webp"
+  },
+  {
+    "category": "Honey",
+    "tags": ["Honey"],
+    "image": "https://i.ibb.co/6HVzx7h/image-8.webp"
+  },
+  {
+    "category": "Sauces & Pickles",
+    "tags": ["Sauces", "Pickles & Condiments"],
+    "image": "https://i.ibb.co/Hr3Fx4B/image-13.webp"
+  },
+  {
+    "category": "Jam & Jelly",
+    "tags": ["Jam", "Jelly"],
+    "image": "https://i.ibb.co/195t7Mw/image-14.webp"
+  },
+  {
+    "category": "Snacks & Instant",
+    "tags": ["Chocolates", "Chips & Nuts", "Canned Food"],
+    "image": "https://i.ibb.co/YhnDTtm/image-2.webp"
+  },
+  {
+    "category": "Biscuits & Cakes",
+    "tags": ["Cakes", "Biscuits"],
+    "image": "https://i.ibb.co/6HVzx7h/image-8.webp"
+  },
+  {
+    "category": "Household Tools",
+    "tags": ["Cleaner", "Laundry", "Air Freshner"],
+    "image": "https://i.ibb.co/MZNDy4w/image-5.webp"
+  },
+  {
+    "category": "Baby Care",
+    "tags": ["Baby Food", "Baby Accessories"],
+    "image": "https://i.ibb.co/b2fg9Kt/image-10.webp"
+  },
+  {
+    "category": "Pet Care",
+    "tags": ["Cat", "Dog", "Bird"],
+    "image": "https://i.ibb.co/FXppSkK/image-11.webp"
+  },
+  {
+    "category": "Beauty & Health",
+    "tags": ["Bath", "Cosmetics", "Oral"],
+    "image": "https://i.ibb.co/rMJD5pm/image-12.webp"
+  },
+  {
+    "category": "Sports & Fitness",
+    "tags": ["Sports", "Fitness"],
+    "image": "https://i.ibb.co/pnRnGRN/image-4.webp"
+  }
+]

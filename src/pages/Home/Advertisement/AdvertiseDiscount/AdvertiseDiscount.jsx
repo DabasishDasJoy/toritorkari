@@ -12,10 +12,7 @@ const AdvertiseDiscount = () => {
         </h1>
         <p className="text-black/80 lg:text-sm text-xs">
           See Our latest discounted products from here and get a special{" "}
-          <a
-            href="#discount-Product"
-            className="text-primary hover:text-primary/50"
-          >
+          <a href="#discount" className="text-primary hover:text-primary/50">
             discount product.
           </a>
         </p>

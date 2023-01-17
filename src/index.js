@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
@@ -8,20 +9,25 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <AuthProvider>
-        <div>
-          <Toaster
-            toastOptions={{
-              className: "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
-            }}
-          />
-        </div>
-        <App />
-      </AuthProvider>
-    </HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <AuthProvider>
+          <div>
+            <Toaster
+              toastOptions={{
+                className:
+                  "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
+              }}
+            />
+          </div>
+          <App />
+        </AuthProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

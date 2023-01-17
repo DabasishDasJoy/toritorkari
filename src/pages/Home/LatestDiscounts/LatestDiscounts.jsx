@@ -4,7 +4,7 @@ import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 
 const LatestDiscounts = () => {
   return (
-    <div className="bg-[#F9FAFB] section">
+    <section id="discount" className="bg-[#F9FAFB] section">
       <SectionHeader
         subtitle={
           "See Our latest discounted products below. Choose your daily needs from here and get a special discount with free shipping."
@@ -25,7 +25,7 @@ const LatestDiscounts = () => {
         <Product></Product>
         <Product></Product>
       </div>
-    </div>
+    </section>
   );
 };
 

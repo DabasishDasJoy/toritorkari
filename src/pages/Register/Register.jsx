@@ -36,6 +36,7 @@ const Register = ({ setLoginOrRegister }) => {
 
   const handleRegister = (data) => {
     setRegisterLoading(true);
+    setEmail("");
     // SignUp Firebase
     signUp(data.email, data.password)
       .then((res) => {

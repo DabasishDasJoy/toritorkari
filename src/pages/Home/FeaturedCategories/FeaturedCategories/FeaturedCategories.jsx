@@ -3,6 +3,8 @@ import CategoryCard from "../../../../components/CategoryCard/CategoryCard";
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
 
 const FeaturedCategories = () => {
+  // Data fetch using react query
+
   return (
     <div className="bg-secondary section">
       <SectionHeader

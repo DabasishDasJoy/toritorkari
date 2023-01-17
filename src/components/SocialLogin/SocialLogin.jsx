@@ -1,29 +1,68 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "../../AxiosInstance/AxiosInstance";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useGetToken from "../../Hooks/useGetToken/useGetToken";
 
 const SocialLogin = ({ loginModal }) => {
   const { googleSignIn, facebookSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [token] = useGetToken(email);
   const from = location.state?.from?.pathname || location;
 
+  const createData = (res) => {
+    const data = {
+      userName: res?.user?.displayName,
+      email: res?.user?.email,
+    };
+    saveUserToDb(data);
+  };
+
   const handleGoogleLogin = () => {
+    setEmail("");
     googleSignIn()
-      .then((res) => succeAndRedirect(res))
+      .then((res) => {
+        // Token Generation
+        createData(res);
+      })
       .catch((err) => console.error(err));
   };
 
   const handleFacebookSignIn = () => {
+    setEmail("");
     facebookSignIn()
-      .then((res) => succeAndRedirect(res))
+      .then((res) => {
+        // token Generation
+        createData(res);
+      })
       .catch((err) => console.error(err));
   };
 
-  const succeAndRedirect = (res) => {
-    toast.success(`Welcome ${res.user.displayName}`);
+  const saveUserToDb = (data) => {
+    axios
+      .post("/users", {
+        name: data.userName,
+        email: data.email,
+      })
+      .then((res) => {
+        if (res.data.acknowledged) {
+          // Get JWT token here
+          setEmail(data.email);
+          succeAndRedirect(data);
+        } else {
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const succeAndRedirect = (data) => {
+    toast.success(`Welcome ${data.userName}`);
     loginModal.current.checked = false;
     navigate(from, { replace: true });
   };
