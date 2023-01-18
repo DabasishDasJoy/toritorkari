@@ -1,10 +1,22 @@
-import React, { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import axios from "../../../../AxiosInstance/AxiosInstance";
 import CategoryCard from "../../../../components/CategoryCard/CategoryCard";
 import Loader from "../../../../components/Loader/Loader";
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
-import { CategoriesContext } from "../../../../Contexts/AuthProvider/CategoriesProvider/CategoriesProvider";
+
 const FeaturedCategories = () => {
-  const { categories, isLoading } = useContext(CategoriesContext);
+  const {
+    isLoading,
+    error,
+    refetch,
+    data: { data: categories } = [],
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => {
+      return axios.get("/categories");
+    },
+  });
 
   return (
     <div className="bg-secondary section">

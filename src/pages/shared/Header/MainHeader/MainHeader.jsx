@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import React from "react";
+import { AiOutlineCaretDown, AiOutlineSearch } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 
 import { Link, Outlet } from "react-router-dom";
+import CategoriesDropdown from "../../../../components/CategoriesDropdown/CategoriesDropdown";
 import Indicator from "../../../../components/Indicator/Indicator";
 import Logo from "../../../../components/Logo/Logo";
-import { CategoriesContext } from "../../../../Contexts/AuthProvider/CategoriesProvider/CategoriesProvider";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
@@ -14,7 +14,6 @@ import TopHeader from "../TopHeader/TopHeader";
 
 const MainHeader = ({ setLoginOrRegister }) => {
   // Fetch Categories
-  const { categories, isLoading } = useContext(CategoriesContext);
 
   return (
     <div className="drawer">
@@ -56,32 +55,15 @@ const MainHeader = ({ setLoginOrRegister }) => {
             {/* <!-- Navbar menu content here --> */}
             <div className="flex mx-auto items-center tori-text-neutral text-sm rounded-full  lg:w-[60%] w-[90%] h-[70%] my-auto">
               {/* dropdown */}
-              <div className="dropdown bg-gray-300 rounded-l-full  h-full ">
+              <div className="dropdown dropdown-bottom bg-gray-300 rounded-l-full  h-full ">
                 <label
                   tabIndex={0}
-                  className="px-5 w-full h-full text-center flex items-center justify-center"
+                  className="lg:px-3 px-1 cursor-pointer w-full h-full text-center flex items-center gap-1 justify-center"
                 >
-                  All
+                  All <AiOutlineCaretDown className="w-3 h-3" />
                 </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content flex flex-col gap-1 p-5 shadow bg-base-100 rounded-md min-w-max h-52 overflow-y-auto divide-y-2"
-                >
-                  {categories?.map((category) => (
-                    <li key={category._id}>{category.categoryName}</li>
-                  ))}
-                </ul>
+                <CategoriesDropdown idText={"search"}></CategoriesDropdown>
               </div>
-              {/* <div className="bg-gray-200 h-full border">
-                <select className="outline-none bg-transparent text-center font-medium h-full cursor-pointer">
-                  <option value="">All</option>
-                  {categories?.map((category) => (
-                    <option key={category._id} className="" value="">
-                      {category.categoryName}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
 
               {/* Text input */}
               <div className="flex flex-1 justify-between rounded-r-full overflow-hidden bg-white items-center h-full">

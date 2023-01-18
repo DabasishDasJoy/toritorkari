@@ -1,0 +1,44 @@
+.drop-input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.accordion-wrapper {
+  overflow: hidden;
+  margin: 0 auto;
+}
+.accordion {
+  width: 100%;
+  overflow: hidden;
+}
+.accordion:last-child {
+  margin-bottom: 0;
+}
+.accordion-label {
+  display: flex;
+  -webkit-box-pack: justify;
+  /* justify-content: space-between; */
+  cursor: pointer;
+}
+
+.accordion-label::after {
+  content: "\276F";
+  text-align: center;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.accordion-content {
+  max-height: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+input:checked + .accordion-label::after {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+input:checked ~ .accordion-content {
+  max-height: 100vh;
+  padding-left: 20px;
+  padding-top: 10px;
+}
