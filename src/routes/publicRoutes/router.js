@@ -4,6 +4,7 @@ import Main from "../../layouts/Main/Main";
 import Category from "../../pages/Category/Category/Category";
 import Checkout from "../../pages/Checkout/Checkout/Checkout";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
+import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
 import Offers from "../../pages/Offers/Offers/Offers";
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    errorElement: <h1>Error</h1>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

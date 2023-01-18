@@ -20,7 +20,7 @@ const CategoryAds = () => {
     },
   ];
   return (
-    <div className="sub-section flex gap-5 lg:flex-nowrap flex-wrap">
+    <div className="component flex gap-5 lg:flex-nowrap flex-wrap">
       {ads.map((ad, idx) => (
         <CategoryAd key={idx} ad={ad}></CategoryAd>
       ))}

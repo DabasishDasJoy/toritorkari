@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Autoplay } from "swiper";
@@ -6,12 +7,28 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import axios from "../../../AxiosInstance/AxiosInstance";
 import CategoryCardMinified from "../../../components/CategoryCardMinified/CategoryCardMinified";
+import Loader from "../../../components/Loader/Loader";
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
+
 const Categories = () => {
+  // Fetch Categories
+  const {
+    isLoading,
+    error,
+    refetch,
+    data: { data: categories } = [],
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => {
+      return axios.get("/categories");
+    },
+  });
+
   return (
-    <div className="swiper-container sub-section py-0 relative lg:col-span-3 col-span-1">
+    <div className="swiper-container sub-section relative lg:col-span-3 col-span-1">
       <Swiper
         breakpoints={{
           // when window width is >= 640px
@@ -40,48 +57,18 @@ const Categories = () => {
         loop={true}
         className="categoriesSwipper"
       >
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategoryCardMinified></CategoryCardMinified>
-        </SwiperSlide>
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          categories?.map((category) => (
+            <SwiperSlide>
+              <CategoryCardMinified
+                key={category._id}
+                category={category}
+              ></CategoryCardMinified>
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
 
       <button className="absolute top-0 prev bottom-0 bg-primary w-6 rounded-r-md my-auto flex justify-center items-center h-7 z-10 lg:left-10 left-2">

@@ -13,8 +13,6 @@ import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
 
 const MainHeader = ({ setLoginOrRegister }) => {
-  // Fetch Categories
-
   return (
     <div className="drawer">
       <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
