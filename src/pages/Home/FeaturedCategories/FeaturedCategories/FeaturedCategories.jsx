@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import CategoryCard from "../../../../components/CategoryCard/CategoryCard";
+import Loader from "../../../../components/Loader/Loader";
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
-
+import { CategoriesContext } from "../../../../Contexts/AuthProvider/CategoriesProvider/CategoriesProvider";
 const FeaturedCategories = () => {
-  // Data fetch using react query
+  const { categories, isLoading } = useContext(CategoriesContext);
 
   return (
     <div className="bg-secondary section">
@@ -16,16 +17,15 @@ const FeaturedCategories = () => {
       </SectionHeader>
 
       <div className="sub-section grid lg:grid-cols-6 grid-cols-2 gap-[2px]">
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
-        <CategoryCard></CategoryCard>
+        {/* All the categroies display here */}
+
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          categories?.map((category) => (
+            <CategoryCard category={category} key={category._id}></CategoryCard>
+          ))
+        )}
       </div>
     </div>
   );

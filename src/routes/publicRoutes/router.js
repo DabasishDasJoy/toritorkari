@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import CategoriesProvider from "../../Contexts/AuthProvider/CategoriesProvider/CategoriesProvider";
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
 import Category from "../../pages/Category/Category/Category";
@@ -13,7 +14,11 @@ import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: (
+      <CategoriesProvider>
+        <Main></Main>
+      </CategoriesProvider>
+    ),
     errorElement: <h1>Error</h1>,
     children: [
       {

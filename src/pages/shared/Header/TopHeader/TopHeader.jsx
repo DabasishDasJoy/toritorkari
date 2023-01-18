@@ -69,24 +69,6 @@ const TopHeader = ({ setLoginOrRegister }) => {
               </p>
             </div>
           </div>
-          // <label
-          //   tabIndex={0}
-          //   className="flex items-center gap-1 cursor-pointer dropdown dropdown-hover"
-          // >
-          //   <FaRegUser className="" />
-          //   Account
-          //   <div
-          //     tabIndex={0}
-          //     className="dropdown-content  bg-secondary shadow text-center p-2 rounded-sm top-5 text-xs right-0 w-44 "
-          //   >
-          //     <label
-          //       htmlFor="login-modal"
-          //       className="bg-accent m-2 py-1 w-full mx-auto hover:bg-primary transition-all delay-75 text-base text-white rounded-md"
-          //     >
-          //       Sign In
-          //     </label>
-          //   </div>
-          // </label>
         )}
       </div>
     </div>

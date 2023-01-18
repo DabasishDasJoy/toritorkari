@@ -10,7 +10,7 @@ const Loader = () => {
               dx="0"
               dy="0"
               stdDeviation="1.5"
-              flood-color="#10B981"
+              floodColor="#10B981"
             />
           </filter>
         </defs>

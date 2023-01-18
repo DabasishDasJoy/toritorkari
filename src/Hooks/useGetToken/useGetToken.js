@@ -18,7 +18,7 @@ const useGetToken = (email) => {
         .catch((err) => console.error(err));
     }
   }, [email]);
-  console.log("Email: ", email);
+
   return [token];
 };
 
