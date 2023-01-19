@@ -44,6 +44,9 @@ export const router = createBrowserRouter([
       {
         path: "/category/:id",
         element: <Category></Category>,
+        // loader: ({ params }) => {
+        //   return axios.get(`/category/${params.categoryName}`);
+        // },
       },
       {
         path: "/user/dashboard",

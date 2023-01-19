@@ -1,26 +1,42 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useParams } from "react-router-dom";
+import axios from "../../../AxiosInstance/AxiosInstance";
+import Loader from "../../../components/Loader/Loader";
 import Product from "../../../components/Product/Product";
 import Categories from "../Categories/Categories";
 import CategoryAds from "../CategoryAds/CategoryAds";
 import TotalProduct from "../TotalProduct/TotalProduct";
 
 const Category = () => {
+  const { id } = useParams();
+
+  // Fetch Products
+  const {
+    data: { data: products } = [],
+    error,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: [id],
+    queryFn: () => {
+      return axios.get(`/category/${id}`);
+    },
+  });
+
   return (
     <div className="bg-[#F9FAFB] section">
       <CategoryAds></CategoryAds>
       <Categories></Categories>
-      <TotalProduct></TotalProduct>
+      <TotalProduct totalProuducts={products?.length}></TotalProduct>
       <div className="grid lg:grid-cols-6 grid-cols-2 sub-section gap-3">
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          products?.map((product) => (
+            <Product key={product._id} product={product}></Product>
+          ))
+        )}
       </div>
 
       {/* Pagination */}

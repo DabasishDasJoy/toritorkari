@@ -7,7 +7,7 @@
 }
 
 .action {
-  transform: translateX(25%);
+  transform: translateY(25%);
   opacity: 0;
   transition: all ease-in-out 300ms;
 }

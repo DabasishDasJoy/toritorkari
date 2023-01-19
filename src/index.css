@@ -21,10 +21,10 @@
 }
 
 .tori-btn-primary {
-  @apply bg-primary text-white rounded-full px-3 py-2 font-medium text-sm;
+  @apply bg-primary text-white rounded-full px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-75 font-bold;
 }
 .tori-btn-secondary {
-  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-2 font-medium text-sm;
+  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-75 font-bold;
 }
 
 .tori-text-neutral {

@@ -2,7 +2,9 @@ import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 
-const CategoryCard = ({ category: { _id, categoryName, image, tags } }) => {
+const CategoryCard = ({
+  category: { _id, categoryName, image, subCategories },
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -16,13 +18,13 @@ const CategoryCard = ({ category: { _id, categoryName, image, tags } }) => {
       <div className="lg:col-span-4 text-center lg:text-left">
         <h6 className="mb-1 text-sm">{categoryName}</h6>
         <div className="flex flex-col gap-1 lg:items-start items-center">
-          {tags?.map((tag, idx) => (
+          {subCategories?.map((subCategory, idx) => (
             <Link
               to={"/category/id"}
               key={idx}
               className="tori-link flex items-center gap-1 text-xs text-black/70"
             >
-              <BiChevronRight /> {tag}
+              <BiChevronRight /> {subCategory}
             </Link>
           ))}
         </div>

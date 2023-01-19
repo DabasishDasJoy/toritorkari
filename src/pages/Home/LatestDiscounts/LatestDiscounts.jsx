@@ -1,5 +1,4 @@
 import React from "react";
-import Product from "../../../components/Product/Product";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 
 const LatestDiscounts = () => {
@@ -13,6 +12,7 @@ const LatestDiscounts = () => {
         Latest Dicounted Products
       </SectionHeader>
       <div className="grid lg:grid-cols-6 grid-cols-2 gap-3 sub-section">
+        {/* <Product></Product>
         <Product></Product>
         <Product></Product>
         <Product></Product>
@@ -22,8 +22,7 @@ const LatestDiscounts = () => {
         <Product></Product>
         <Product></Product>
         <Product></Product>
-        <Product></Product>
-        <Product></Product>
+        <Product></Product> */}
       </div>
     </section>
   );

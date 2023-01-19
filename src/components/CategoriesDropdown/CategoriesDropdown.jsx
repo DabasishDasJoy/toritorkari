@@ -25,13 +25,15 @@ const CategoriesDropdown = ({ idText }) => {
       className="dropdown-content shadow bg-base-100 rounded-md h-64 py-5 min-w-max overflow-y-auto w-64"
     >
       <div
-        class={`accordion-wrapper flex ${isLoading && "h-full"} flex-col gap-5`}
+        className={`accordion-wrapper flex ${
+          isLoading && "h-full"
+        } flex-col gap-5`}
       >
         {isLoading ? (
           <Loader></Loader>
         ) : (
           categories?.map((category, idx) => (
-            <div key={category._id} class="accordion px-5">
+            <div key={category._id} className="accordion px-5">
               <input
                 className="drop-input"
                 type="checkbox"
@@ -40,15 +42,15 @@ const CategoriesDropdown = ({ idText }) => {
               />
 
               <label
-                class="accordion-label text-black text-sm gap-1 items-center"
-                for={`${idText}${idx + 1}`}
+                className="accordion-label text-black text-sm gap-1 items-center"
+                htmlFor={`${idText}${idx + 1}`}
               >
                 <img src={category.image} alt="" className="w-4 h-4" />
                 {category.categoryName}
               </label>
 
-              <div class="accordion-content flex flex-col">
-                {category.tags.map((tag, idx) => (
+              <div className="accordion-content flex flex-col">
+                {category.subCategories.map((tag, idx) => (
                   <Link
                     className="text-black/80 flex items-center gap-2 tori-link"
                     key={idx}
