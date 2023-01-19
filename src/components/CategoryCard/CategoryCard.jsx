@@ -11,7 +11,7 @@ const CategoryCard = ({ category: { _id, categoryName, image, tags } }) => {
       className="grid grid-cols-6 bg-white px-2 py-3 cursor-pointer gap-2 rounded-sm text-sm text-black/80 hover:text-primary shadow-sm hover:shadow-2xl transition-all delay-[30ms]"
     >
       <div className="flex items-center justify-center col-span-2">
-        <img src={image} alt="" />
+        <img src={image} alt="" className="w-[50%]" />
       </div>
       <div className="col-span-4">
         <h6 className="mb-1 text-sm">{categoryName}</h6>

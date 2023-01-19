@@ -1,8 +1,9 @@
 import React from "react";
+import { FaShoppingBag } from "react-icons/fa";
 import "./Loader.css";
 const Loader = () => {
   return (
-    <div className="w-[5%] mx-auto">
+    <div className="w-16 mx-auto my-auto relative col-span-full">
       <svg viewBox="0 0 100 100">
         <defs>
           <filter id="shadow">
@@ -19,7 +20,7 @@ const Loader = () => {
           style={{
             fill: "transparent",
             stroke: "#10B981",
-            strokeWidth: "7px",
+            strokeWidth: "3px",
             strokeLinecap: "round",
           }}
           cx="50"
@@ -27,6 +28,9 @@ const Loader = () => {
           r="45"
         />
       </svg>
+      <div className="absolute inset-0 flex justify-center items-center">
+        <FaShoppingBag className="w-4 h-4 text-primary " />
+      </div>
     </div>
   );
 };

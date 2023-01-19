@@ -37,14 +37,14 @@
   @apply font-bold text-base;
 }
 .price {
-  @apply font-extrabold text-xl;
+  @apply font-extrabold text-base;
 }
 .coupon-tag {
   @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
 }
 
 .tori-link {
-  @apply hover:text-primary border-none hover:text-primary transition-all delay-75 no-underline;
+  @apply hover:text-primary border-none  transition-all delay-75 no-underline;
 }
 
 .tori-input {

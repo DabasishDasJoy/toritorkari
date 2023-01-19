@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import StatusTag from "../StatusTag/StatusTag";
 
 const Coupon = () => {
@@ -47,6 +48,9 @@ const Coupon = () => {
           data-tip="Click to Copy"
           onClick={(e) => {
             navigator.clipboard.writeText(e.target.innerText);
+            toast.success("Copied", {
+              position: "top-right",
+            });
           }}
         >
           October22

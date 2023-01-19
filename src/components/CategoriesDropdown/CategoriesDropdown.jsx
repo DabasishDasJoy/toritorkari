@@ -24,7 +24,9 @@ const CategoriesDropdown = ({ idText }) => {
       tabIndex={0}
       className="dropdown-content shadow bg-base-100 rounded-md h-64 py-5 min-w-max overflow-y-auto w-64"
     >
-      <div class="accordion-wrapper flex flex-col gap-5">
+      <div
+        class={`accordion-wrapper flex ${isLoading && "h-full"} flex-col gap-5`}
+      >
         {isLoading ? (
           <Loader></Loader>
         ) : (
