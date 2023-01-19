@@ -30,7 +30,7 @@ const FeaturedCategories = () => {
 
       <div className="sub-section grid lg:grid-cols-6 grid-cols-2 gap-[2px]">
         {/* All the categroies display here */}
-        {true ? (
+        {isLoading ? (
           <Loader></Loader>
         ) : (
           categories?.map((category) => (

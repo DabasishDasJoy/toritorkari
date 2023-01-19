@@ -23,7 +23,6 @@ const Product = () => {
       </div> */}
 
       {/* View Or add to favourite */}
-
       <div className="flex action flex-col items-center justify-center  p-[2px] gap-2 bg-gray-100 rounded-full absolute bottom-[30%] right-2 z-10 ">
         <label
           htmlFor="product-modal"
@@ -35,6 +34,7 @@ const Product = () => {
           <AiOutlineHeart className="" />
         </button>
       </div>
+      {/* end */}
 
       <label
         htmlFor="product-modal"

@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import StatusTag from "../StatusTag/StatusTag";
 
 const ProductModal = () => {
+  const navigate = useNavigate();
   return (
     <div>
       {/* Put this part before </body> tag */}
@@ -48,9 +49,14 @@ const ProductModal = () => {
               <p className="text-black/80 text-sm font-semibold">
                 Category: Flour
               </p>
-              <Link to={"/product"} className="text-sm text-accent link">
+
+              <label
+                htmlFor="product-modal"
+                onClick={() => navigate("/product")}
+                className="text-sm text-accent link"
+              >
                 More Info
-              </Link>
+              </label>
             </div>
           </div>
         </div>

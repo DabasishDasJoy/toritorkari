@@ -6,7 +6,7 @@ const SectionHeader = ({ children, subtitle }) => {
       <h1 className="text-black font-semibold lg:text-2xl text-lg lg:leading-10">
         {children}
       </h1>
-      <p className="text-black/80 lg:text-sm text-xs w-[40%] mx-auto">
+      <p className="text-black/80 lg:text-sm text-xs lg:w-[40%] mx-auto">
         {subtitle}
       </p>
     </div>

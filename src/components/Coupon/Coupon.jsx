@@ -48,7 +48,7 @@ const Coupon = () => {
           data-tip="Click to Copy"
           onClick={(e) => {
             navigator.clipboard.writeText(e.target.innerText);
-            toast.success("Copied", {
+            toast.success("Copied !", {
               position: "top-right",
             });
           }}
