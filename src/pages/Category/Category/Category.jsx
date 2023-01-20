@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
+import NotFound from "../../../components/NotFound/NotFound";
 import Product from "../../../components/Product/Product";
 import Categories from "../Categories/Categories";
 import CategoryAds from "../CategoryAds/CategoryAds";
@@ -32,10 +33,12 @@ const Category = () => {
       <div className="grid lg:grid-cols-6 grid-cols-2 sub-section gap-3">
         {isLoading ? (
           <Loader></Loader>
-        ) : (
+        ) : products?.length ? (
           products?.map((product) => (
             <Product key={product._id} product={product}></Product>
           ))
+        ) : (
+          <NotFound></NotFound>
         )}
       </div>
 
