@@ -21,7 +21,7 @@ const Coupon = () => {
             <p>
               <span className="text-warning font-bold text-lg">10%</span> Off
             </p>
-            <StatusTag color={"primary"}>Active</StatusTag>
+            <StatusTag color={true}>Active</StatusTag>
           </div>
           <p className="font-semibold lg:text-lg text-md">
             October Gift Voucher

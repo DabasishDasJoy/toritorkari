@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 import App from "./App";
 import AuthProvider from "./Contexts/AuthProvider/AuthProvider";
+import ProductsProvider from "./Contexts/ProductsProvider/ProductsProvider";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
@@ -15,17 +16,19 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <AuthProvider>
-          <div>
-            <Toaster
-              toastOptions={{
-                className:
-                  "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
-              }}
-            />
-          </div>
-          <App />
-        </AuthProvider>
+        <ProductsProvider>
+          <AuthProvider>
+            <div>
+              <Toaster
+                toastOptions={{
+                  className:
+                    "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
+                }}
+              />
+            </div>
+            <App />
+          </AuthProvider>
+        </ProductsProvider>
       </HelmetProvider>
     </QueryClientProvider>
   </React.StrictMode>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LoginModal from "../../components/LoginModal/LoginModal";
+import ProductModal from "../../components/ProductModal/ProductModal";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
 import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
 
@@ -15,6 +16,7 @@ const Main = () => {
           loginOrRegister={loginOrRegister}
           setLoginOrRegister={setLoginOrRegister}
         ></LoginModal>
+        <ProductModal></ProductModal>
       </div>
       <div className="drawer-side">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>

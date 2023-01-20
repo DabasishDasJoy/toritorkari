@@ -24,7 +24,7 @@
   @apply bg-primary text-white rounded-full px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-75 font-bold;
 }
 .tori-btn-secondary {
-  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-75 font-bold;
+  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-[7px] text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-75 font-bold;
 }
 
 .tori-text-neutral {
@@ -37,14 +37,14 @@
   @apply font-bold text-base;
 }
 .price {
-  @apply font-extrabold text-base;
+  @apply font-extrabold text-base text-primary;
 }
 .coupon-tag {
   @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
 }
 
 .tori-link {
-  @apply hover:text-primary border-none  transition-all delay-75 no-underline;
+  @apply hover:text-primary border-none cursor-pointer flex items-center gap-1 transition-all delay-[100ms] no-underline;
 }
 
 .tori-input {
@@ -61,6 +61,24 @@
 
 .dashboard-link {
   @apply flex hover:bg-[#F9FAFB] p-2 hover:text-primary text-sm font-medium items-center gap-1;
+}
+
+.social-icon {
+  @apply border rounded-full p-3 cursor-pointer hover:text-white transition-all delay-[100ms];
+}
+
+.twitter {
+  @apply hover:bg-[#1DA1F2] text-[#1DA1F2];
+}
+
+.facebook {
+  @apply hover:bg-[#4867AA] text-[#4867AA];
+}
+.whatsApp {
+  @apply hover:bg-primary text-primary;
+}
+.google {
+  @apply hover:bg-[#DD5144] text-[#DD5144];
 }
 
 ::-webkit-scrollbar {

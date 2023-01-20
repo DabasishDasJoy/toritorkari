@@ -1,52 +1,71 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsBagPlusFill } from "react-icons/bs";
-import { FiEye } from "react-icons/fi";
+import { HiOutlineEye } from "react-icons/hi";
+import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
 const Product = ({
   product,
-  product: { name, image, price, status, subCategory },
+  product: { name, image, price, status, subCategory, _id },
 }) => {
+  const { setSelectedProduct } = useContext(ProductContext);
+
   return (
-    <div className="text-black/90 grid grid-rows-7 gap-1 bg-white rounded-sm p-2 product relative">
+    <div className="text-black/90 flex flex-col  gap-2 overflow-hidden bg-white  rounded-sm p-2 product relative">
+      {/* Offers */}
       {product?.discount && (
         <span
-          className={`bg-accent rounded-sm rounded-r-full text-[13px] font-semibold py-[2px] z-10 absolute text-white px-2 top-2 left-0`}
+          className={`bg-accent rounded-sm rounded-r-full text-[13px] font-medium py-[2px] z-10 absolute text-white px-2 top-2 left-0`}
         >
-          10% Off
+          {product?.discount}% Off
         </span>
       )}
 
-      <div className="action absolute bottom-[38%] right-0 left-0 z-10">
-        <div className="flex backdrop-blur-sm max-w-fit mx-auto items-center justify-center p-[2px] gap-2 bg-gray-100/10 rounded-full">
+      {/* View Button */}
+      <div className="action absolute bottom-[39%] right-0 left-0 z-10">
+        <div className="flex max-w-fit mx-auto items-center justify-center p-[2px] gap-2 bg-gray-200 rounded-full">
           <label
+            onClick={() => setSelectedProduct(product)}
             htmlFor="product-modal"
-            className=" transition-all cursor-pointer delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1"
+            data-tip="View"
+            className=" transition-all cursor-pointer delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
           >
-            <FiEye className="" />
+            <HiOutlineEye className="" />
           </label>
-          <button className=" transition-all delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1">
+          <button
+            data-tip="Add to Wishlist"
+            className=" transition-all delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
+          >
             <AiOutlineHeart className="" />
           </button>
         </div>
       </div>
       {/* end */}
 
+      {/* Image */}
       <label
+        onClick={() => setSelectedProduct(product)}
         htmlFor="product-modal"
-        className="row-span-4 cursor-pointer flex justify-center items-center py-2"
+        // to={`/product/${_id}`}
+        className="cursor-pointer flex justify-center items-center border-b overflow-hidden"
       >
-        <img src={image} alt="" className="w-28 h-28 image" />
+        <img src={image} alt="" className="w-28 h-full image z-0" />
       </label>
-      <div className="row-span-1 text-sm font-medium ">
+
+      {/* Text */}
+      <div className="text-sm font-medium z-10 mt-1">
         <div className="flex justify-between items-center">
           <span className="text-xs text-black/60">{subCategory}</span>
-          <StatusTag color={"primary"}>{status}</StatusTag>
+          <StatusTag color={status === "In Stock" ? true : false}>
+            {status}
+          </StatusTag>
         </div>
-        <p>{name}</p>
+        <p className="text-black/80">{name}</p>
       </div>
-      <div className="row-span-2 flex justify-between items-center">
+
+      {/* Price */}
+      <div className="flex justify-between items-center flex-1">
         <span className="price">
           ${product?.discount ? (product.discount / 100) * price : price}{" "}
           {product?.discount && (
@@ -55,10 +74,11 @@ const Product = ({
             </span>
           )}
         </span>
-        {/* <StatusTag color={"warning"}>Stock Out</StatusTag> */}
-        <div className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary">
-          <BsBagPlusFill className="w-4 h-4" />
-        </div>
+        {status === "In Stock" && (
+          <div className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary">
+            <BsBagPlusFill className="w-4 h-4" />
+          </div>
+        )}
       </div>
     </div>
   );

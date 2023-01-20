@@ -10,7 +10,6 @@ import Invoice from "../../pages/Invoice/Invoice/Invoice";
 import Offers from "../../pages/Offers/Offers/Offers";
 import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDetails";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +21,7 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/product",
+        path: "/product/:id",
         element: <ProductDetails></ProductDetails>,
       },
       {

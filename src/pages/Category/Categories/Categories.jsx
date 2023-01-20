@@ -61,11 +61,8 @@ const Categories = () => {
           <Loader></Loader>
         ) : (
           categories?.map((category) => (
-            <SwiperSlide>
-              <CategoryCardMinified
-                key={category._id}
-                category={category}
-              ></CategoryCardMinified>
+            <SwiperSlide key={category._id}>
+              <CategoryCardMinified category={category}></CategoryCardMinified>
             </SwiperSlide>
           ))
         )}

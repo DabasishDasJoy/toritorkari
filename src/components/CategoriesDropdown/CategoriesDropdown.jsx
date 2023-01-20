@@ -52,7 +52,7 @@ const CategoriesDropdown = ({ idText }) => {
               <div className="accordion-content flex flex-col">
                 {category.subCategories.map((tag, idx) => (
                   <Link
-                    className="text-black/80 flex items-center gap-2 tori-link"
+                    className="text-black/80 flex items-center gap-x-2 tori-link"
                     key={idx}
                   >
                     <AiOutlineRight />
