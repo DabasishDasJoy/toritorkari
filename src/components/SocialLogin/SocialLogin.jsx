@@ -29,7 +29,10 @@ const SocialLogin = ({ loginModal }) => {
         // Token Generation
         createData(res);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        return toast.error(err.message);
+      });
   };
 
   const handleFacebookSignIn = () => {
@@ -39,7 +42,10 @@ const SocialLogin = ({ loginModal }) => {
         // token Generation
         createData(res);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        return toast.error(err.message);
+      });
   };
 
   const saveUserToDb = (data) => {
@@ -58,6 +64,7 @@ const SocialLogin = ({ loginModal }) => {
       })
       .catch((err) => {
         console.error(err);
+        return toast.error(err.message);
       });
   };
 

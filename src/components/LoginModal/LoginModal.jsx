@@ -18,7 +18,7 @@ const LoginModal = ({ loginOrRegister, setLoginOrRegister }) => {
       />
 
       <div className="modal bg-black/80">
-        <div className="modal-box lg:w-6/12 w-11/12 max-w-5xl p-0 relative rounded-md grid lg:grid-cols-6 grid-cols-1">
+        <div className="modal-box lg:w-6/12 w-11/12 max-w-5xl p-0 relative rounded-sm grid lg:grid-cols-6 grid-cols-1">
           <label
             htmlFor="login-modal"
             className="absolute right-2 text-black hover:text-primary cursor-pointer font-semibold top-1"
