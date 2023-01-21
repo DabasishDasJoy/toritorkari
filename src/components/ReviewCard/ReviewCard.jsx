@@ -1,7 +1,9 @@
+import moment from "moment";
 import React from "react";
-import image from "../../assets/guarantee.webp";
 
-const ReviewCard = () => {
+const ReviewCard = ({
+  review: { image, userName, ratings, review, dateAdded },
+}) => {
   return (
     <div className="text-gray-700">
       {/* Name, image, and star */}
@@ -11,53 +13,27 @@ const ReviewCard = () => {
             <img src={image} alt="" />
           </div>
         </div>
-        <h4 className="font-semibold">Dabasish Das Joy</h4>
+        <h4 className="font-semibold">{userName}</h4>
 
         <div className="rating ">
-          <span
-            type="radio"
-            name="rating-2"
-            className="mask mask-star-2 bg-accent w-3 h-3"
-            checked
-          />
-          <span
-            type="radio"
-            name="rating-2"
-            className="mask mask-star-2 bg-accent w-3 h-3"
-            checked
-          />
-          <span
-            type="radio"
-            name="rating-2"
-            className="mask mask-star-2 bg-accent w-3 h-3"
-            checked
-          />
-          <span
-            type="radio"
-            name="rating-2"
-            className="mask mask-star-2 bg-accent w-3 h-3"
-            checked
-          />
-          <span
-            type="radio"
-            name="rating-2"
-            className="mask mask-star-2 bg-accent w-3 h-3"
-            checked
-          />
+          {[...Array(parseInt(ratings)).keys()].map((idx) => (
+            <span
+              key={idx}
+              type="radio"
+              name="rating-2"
+              className="mask mask-star-2 bg-accent w-3 h-3"
+            />
+          ))}
         </div>
-        <span>(5)</span>
+        <span>({ratings})</span>
+        <span className="italic text-xs flex-1 text-right leading-none">
+          {moment(dateAdded).fromNow()}
+        </span>
       </div>
 
       {/* Comment */}
       <div className="py-2">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad quia,
-          nulla facere praesentium optio saepe ducimus autem numquam reiciendis
-          commodi harum facilis possimus odit alias asperiores repellat corporis
-          culpa illum temporibus, blanditiis nisi. Id aliquam dolorem enim
-          quibusdam pariatur alias dicta quae iure earum veritatis, sunt modi
-          cum dolore voluptas?
-        </p>
+        <p>{review}</p>
       </div>
     </div>
   );

@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import axios from "../../AxiosInstance/AxiosInstance";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import ButtonLoader from "../ButtonLoader/ButtonLoader";
 
-const AddUserComment = ({ _id }) => {
+const AddUserComment = ({ _id, refetch }) => {
   const {
     register,
     formState: { errors },
@@ -12,23 +15,45 @@ const AddUserComment = ({ _id }) => {
   });
   const { user } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
+  const [addReviewLoading, setAddReviewLoading] = useState(false);
 
   const handleAddReview = (d) => {
+    setAddReviewLoading(true);
     const data = {
       ...d,
       userName: user?.displayName,
+      userEmail: user?.email,
       image: user?.photoURL,
       productId: _id,
+      dataAdded: new Date(),
     };
-    console.log(data);
+    axios
+      .post(`/reviews?email=${user?.email}`, data)
+      .then((res) => {
+        if (res?.data?.acknowledged) {
+          toast.success("Than you for your valuable opinion");
+          setAddReviewLoading(false);
+          refetch();
+        } else {
+          toast.error("Something went wrong! Please try again");
+          refetch();
+          setAddReviewLoading(false);
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.message || "Something Went Wrong");
+      });
+
+    setAddReviewLoading(false);
+    refetch();
   };
 
   return (
-    <div className="text-gray-700 flex flex-col">
+    <div className="text-gray-700 flex flex-col border-t py-2">
       <h2 className="text-base font-semibold mb-2">Your Opinion Matters</h2>
       <form
         onSubmit={handleSubmit(handleAddReview)}
-        className="flex flex-col gap-3"
+        className="flex flex-col gap-3 lg:w-[50%]"
       >
         <div className="rating">
           <span className="pr-2">Your Ratings:</span>
@@ -86,7 +111,7 @@ const AddUserComment = ({ _id }) => {
         <div className="flex items-center gap-5">
           {user && user?.uid ? (
             <button className="tori-btn-secondary" type="submit">
-              Add Comment
+              {addReviewLoading ? <ButtonLoader></ButtonLoader> : "Add Comment"}
             </button>
           ) : (
             <span

@@ -14,7 +14,7 @@ const ProductDetails = () => {
     refetch,
     data: { data: selectedProduct } = [],
   } = useQuery({
-    queryKey: [id],
+    queryKey: [id, "product"],
     queryFn: () => {
       return axios.get(`/product/${id}`);
     },

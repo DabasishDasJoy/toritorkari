@@ -5,7 +5,6 @@ import Register from "../../pages/Register/Register";
 
 const LoginModal = ({ loginOrRegister, setLoginOrRegister }) => {
   const { loginModal } = useContext(AuthContext);
-  console.log(loginOrRegister);
 
   return (
     <div className="">

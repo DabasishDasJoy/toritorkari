@@ -1,9 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import axios from "../../../AxiosInstance/AxiosInstance";
 import Description from "../Description/Description";
 import Reviews from "../Reviews/Reviews/Reviews";
-
 const DescriptionOrReview = ({ selectedProduct }) => {
+  // Fetch Reviews
+  const {
+    isLoading,
+    error,
+    refetch,
+    data: { data: reviews } = [],
+  } = useQuery({
+    queryKey: ["reviews", selectedProduct?._id],
+    queryFn: () => {
+      return axios.get(`/reviews/${selectedProduct?._id}`);
+    },
+  });
+
   const [isDesc, setIsDesc] = useState(true);
+
   return (
     <div className="my-10 bg-white py-3 text-sm rounded-sm">
       {/* Header */}
@@ -29,7 +44,12 @@ const DescriptionOrReview = ({ selectedProduct }) => {
       {isDesc ? (
         <Description desc={selectedProduct?.desc}></Description>
       ) : (
-        <Reviews selectedProduct={selectedProduct}></Reviews>
+        <Reviews
+          selectedProduct={selectedProduct}
+          reviews={reviews}
+          isLoading={isLoading}
+          refetch={refetch}
+        ></Reviews>
       )}
     </div>
   );
