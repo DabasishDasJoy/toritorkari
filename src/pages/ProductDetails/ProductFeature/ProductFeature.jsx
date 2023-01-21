@@ -8,7 +8,7 @@ import returnB from "../../../assets/return.webp";
 const ProductFeature = () => {
   return (
     <div className="w-full flex flex-col gap-5">
-      <div className="flex justify-evenly border-b border-t py-4">
+      <div className="flex lg:flex-row flex-col gap-3 justify-evenly border-b border-t py-4">
         <div className="flex items-center gap-1">
           <img src={freeShp} alt="" />
           <div>

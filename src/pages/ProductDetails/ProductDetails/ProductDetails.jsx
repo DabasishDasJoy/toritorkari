@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
 import ProductDetailsCard from "../../../components/ProductDetailsCard/ProductDetailsCard";
+import DescriptionOrReview from "../DescriptionOrReview/DescriptionOrReview";
 import ProductFeature from "../ProductFeature/ProductFeature";
 const ProductDetails = () => {
   const { id } = useParams();
@@ -45,9 +46,13 @@ const ProductDetails = () => {
           <ProductFeature></ProductFeature>
         </ProductDetailsCard>
       )}
+      {/* Description / Review */}
+      <DescriptionOrReview
+        selectedProduct={selectedProduct}
+      ></DescriptionOrReview>
 
       {/* related products */}
-      <div className="mt-10">
+      <div className="">
         <h3 className="text-lg font-bold">Related Products</h3>
         <div className="section grid lg:grid-cols-6 grid-cols-2 gap-3">
           {/* Related Proudcts Here */}

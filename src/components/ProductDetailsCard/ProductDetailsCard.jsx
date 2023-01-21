@@ -25,13 +25,13 @@ const ProductDetailsCard = ({
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="flex lg:gap-5 text-sm text-gray-700 lg:flex-nowrap flex-wrap">
+    <div className="flex lg:gap-5 text-[16px] text-gray-700 lg:flex-nowrap flex-wrap">
       {/* Image */}
       <div className="lg:w-[30%] w-full">
         <img
           src={image}
           alt=""
-          className="lg:w-full rounded-sm lg:hidden block mx-auto"
+          className="w-full rounded-sm lg:hidden block mx-auto"
         />
         <Swiper
           spaceBetween={10}
@@ -96,7 +96,7 @@ const ProductDetailsCard = ({
       {/* Intro */}
       <div className="border flex bg-white flex-col gap-2 rounded-sm lg:w-[70%] p-5">
         {/* tags */}
-        <div className="text-xs flex gap-2">
+        <div className="flex gap-2">
           {tags?.map((tag, idx) => (
             <Link className="border rounded-full px-2" key={idx}>
               {tag}
@@ -128,7 +128,7 @@ const ProductDetailsCard = ({
         </h6>
 
         {/* Tax & Brand */}
-        <div className="flex flex-col text-sm gap-1">
+        <div className="flex flex-col gap-1">
           <p>
             Ex tax: <span className="text-primary/80">$95.00</span>
           </p>
@@ -148,7 +148,7 @@ const ProductDetailsCard = ({
         </div>
 
         {/* Description */}
-        <div className="border-t border-b py-5 my-2 text-sm">
+        <div className="border-t border-b py-5 my-2">
           <p>{desc}</p>
         </div>
 
@@ -160,7 +160,7 @@ const ProductDetailsCard = ({
               <span className=" text-sm">1</span>
               <button className="px-5 hover:bg-white">+</button>
             </div>
-            <div className="lg:w-[30%] w-full">
+            <div className="lg:w-[30%] w-[70%]">
               <button className="tori-btn-secondary w-full">
                 + Add to Cart
               </button>
