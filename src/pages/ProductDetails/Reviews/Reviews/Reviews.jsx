@@ -8,7 +8,7 @@ const Reviews = ({ selectedProduct: { _id } }) => {
     <div className="py-5 lg:px-10 px-2 text-[16px] flex flex-col gap-5">
       {/* Review card */}
       <CustomerReviews></CustomerReviews>
-      <AddUserComment></AddUserComment>
+      <AddUserComment _id={_id}></AddUserComment>
       <div>
         <ReviewCard></ReviewCard>
       </div>

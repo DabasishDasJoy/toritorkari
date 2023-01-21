@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
-const AddUserComment = () => {
+const AddUserComment = ({ _id }) => {
   const {
     register,
     formState: { errors },
@@ -14,7 +14,13 @@ const AddUserComment = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   const handleAddReview = (d) => {
-    console.log(d);
+    const data = {
+      ...d,
+      userName: user?.displayName,
+      image: user?.photoURL,
+      productId: _id,
+    };
+    console.log(data);
   };
 
   return (
