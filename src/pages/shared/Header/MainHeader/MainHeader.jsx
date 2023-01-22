@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiOutlineCaretDown, AiOutlineSearch } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
@@ -7,12 +7,14 @@ import { Link, Outlet } from "react-router-dom";
 import CategoriesDropdown from "../../../../components/CategoriesDropdown/CategoriesDropdown";
 import Indicator from "../../../../components/Indicator/Indicator";
 import Logo from "../../../../components/Logo/Logo";
+import { CartContext } from "../../../../Contexts/CartProvider/CartProvider";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
 
 const MainHeader = ({ setLoginOrRegister }) => {
+  const { numberOfCartItems } = useContext(CartContext);
   return (
     <div className="drawer">
       <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
@@ -78,16 +80,18 @@ const MainHeader = ({ setLoginOrRegister }) => {
           </div>
 
           {/* Navbar icons */}
+          {/* wishlist */}
           <div className="flex gap-5 items-center">
             <div className="indicator">
               <FaRegHeart className="icon" />
-              <Indicator>10</Indicator>
+              <Indicator></Indicator>
             </div>
 
+            {/* cart */}
             <div className="indicator">
               <label htmlFor="cart-drawer">
                 <BsCart3 className="icon" />
-                <Indicator>8</Indicator>
+                <Indicator>{numberOfCartItems}</Indicator>
               </label>
             </div>
           </div>
