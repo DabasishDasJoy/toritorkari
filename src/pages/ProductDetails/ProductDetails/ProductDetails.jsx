@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
 import ProductDetailsCard from "../../../components/ProductDetailsCard/ProductDetailsCard";
@@ -8,6 +8,14 @@ import DescriptionOrReview from "../DescriptionOrReview/DescriptionOrReview";
 import ProductFeature from "../ProductFeature/ProductFeature";
 const ProductDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+  console.log(
+    "🚀 ~ file: ProductDetails.jsx:12 ~ ProductDetails ~ location",
+    location
+  );
+
+  const from = location?.state?.from?.pathname;
+
   const {
     isLoading,
     error,
@@ -23,7 +31,7 @@ const ProductDetails = () => {
   return (
     <div className="bg-[#F9FAFB] text-black sub-section">
       {/* Bread Cubs */}
-      <div className="text-sm breadcrumbs">
+      <div className="text-[16px] breadcrumbs">
         <ul>
           <li>
             <Link to={"/"} className="tori-link">
@@ -31,9 +39,11 @@ const ProductDetails = () => {
             </Link>
           </li>
           <li>
-            <Link to={"/"}>Category</Link>
+            <Link to={from} className="tori-link">
+              {selectedProduct?.category}
+            </Link>
           </li>
-          {/* <li>{selectedProduct?.name}</li> */}
+          <li>{selectedProduct?.name}</li>
         </ul>
       </div>
       {isLoading ? (

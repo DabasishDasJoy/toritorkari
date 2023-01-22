@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navigation } from "swiper/core";
 import "swiper/css";
 import "swiper/css/bundle";
@@ -23,6 +23,7 @@ const ProductDetailsCard = ({
 }) => {
   const navigate = useNavigate();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const location = useLocation();
 
   return (
     <div className="flex lg:gap-5 text-[16px] text-gray-700 lg:flex-nowrap flex-wrap">
@@ -180,7 +181,9 @@ const ProductDetailsCard = ({
         <div className="flex justify-center gap-5">
           <div className={`${display}`}>
             <label
-              onClick={() => navigate(`/product/${_id}`)}
+              onClick={() =>
+                navigate(`/product/${_id}`, { state: { from: location } })
+              }
               htmlFor="product-modal"
               className={"text-sm text-accent tori-link"}
             >
