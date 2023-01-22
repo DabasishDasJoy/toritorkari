@@ -1,15 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BsBagPlusFill } from "react-icons/bs";
+import { BsBagPlusFill, BsFillBagCheckFill } from "react-icons/bs";
 import { HiOutlineEye } from "react-icons/hi";
+import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
+import { getStoredCart } from "../../utils/fakeDb";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
 const Product = ({
+  refetch,
   product,
   product: { name, image, price, status, subCategory, _id },
 }) => {
   const { setSelectedProduct } = useContext(ProductContext);
+  const { addToCart } = useContext(CartContext);
+  const cart = getStoredCart();
+  const [addedToCart, setAddedToCart] = useState(_id in cart);
+
+  const handleAddtoCart = (id) => {
+    addToCart(id);
+    toast.success(`${name} Add to cart`);
+    setAddedToCart(true);
+    refetch();
+  };
 
   return (
     <div className="text-black/90 flex flex-col  gap-2 overflow-hidden bg-white  rounded-sm p-2 product relative">
@@ -74,11 +88,21 @@ const Product = ({
             </span>
           )}
         </span>
-        {status === "In Stock" && (
-          <div className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary">
-            <BsBagPlusFill className="w-4 h-4" />
-          </div>
-        )}
+
+        {/* Add Cart Button */}
+        {status === "In Stock" &&
+          (addedToCart ? (
+            <button className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] bg-primary rounded-sm text-white">
+              <BsFillBagCheckFill />
+            </button>
+          ) : (
+            <button
+              onClick={() => handleAddtoCart(_id)}
+              className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary"
+            >
+              <BsBagPlusFill className="w-4 h-4" />
+            </button>
+          ))}
       </div>
     </div>
   );

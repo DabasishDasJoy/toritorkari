@@ -35,7 +35,11 @@ const Category = () => {
           <Loader></Loader>
         ) : products?.length ? (
           products?.map((product) => (
-            <Product key={product._id} product={product}></Product>
+            <Product
+              refetch={refetch}
+              key={product._id}
+              product={product}
+            ></Product>
           ))
         ) : (
           <NotFound></NotFound>
