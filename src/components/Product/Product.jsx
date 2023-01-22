@@ -18,6 +18,19 @@ const Product = ({
   // Check if the item is already in the cart if so then set yes
   const [addedToCart, setAddedToCart] = useState(existInCart(_id));
 
+  /**
+   * Check quantity of the cart if so then addedToCart must be true
+   * If reduce then reduce the state variable along with the storage by calling reduceFromDb
+   * If reduce state get false along with storage it will render the updated state
+   *  */
+
+  /* 
+      const [quantity, setQuantity] = useState(getQuantity(id));
+      const handleReduceQuantity = (id) => {
+      reduceQuantityFromCart()  which call reduceQuantityFromDb()
+      setQuantity(quantity - 1);
+  } */
+
   // Add to cart
   const handleAddtoCart = (id, product) => {
     addToCart(id);
