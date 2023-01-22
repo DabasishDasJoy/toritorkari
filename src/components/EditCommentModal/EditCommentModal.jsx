@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import axios from "../../AxiosInstance/AxiosInstance";
-import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import ButtonLoader from "../ButtonLoader/ButtonLoader";
 
-const EditCommentModal = ({ editCommentModal, review, refetch }) => {
+const EditCommentModal = ({
+  data,
+  handleClose,
+  handleEdit,
+  editReviewLoading,
+}) => {
   const {
     register,
     formState: { errors },
@@ -13,40 +15,15 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
   } = useForm({
     criteriaMode: "all",
   });
-  const [editReviewLoading, setEditReviewLoading] = useState(false);
-  const { user } = useContext(AuthContext);
 
   // handler
-  const handleEditReview = (data) => {
-    setEditReviewLoading(true);
-    axios
-      .patch(`/reviews/${review?._id}?email=${user?.email}`, data)
-      .then((res) => {
-        if (res?.data?.modifiedCount) {
-          toast.success("Comment Updated!");
-          setEditReviewLoading(false);
-
-          //   Close the modal
-          editCommentModal.current.checked = false;
-          //   Refetch review to update
-          refetch();
-        } else {
-          toast.error("Something went wrong. Please try again!");
-          setEditReviewLoading(false);
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.error(error);
-        setEditReviewLoading(false);
-      });
-    setEditReviewLoading(false);
+  const handleEditReview = (updatedData) => {
+    handleEdit(data, updatedData);
   };
 
   return (
-    <div className="">
+    <div className="absolute">
       <input
-        ref={editCommentModal}
         name="editCommentModal"
         type="checkbox"
         id="editComment-modal"
@@ -55,12 +32,6 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
 
       <div className="modal bg-black/80">
         <div className="modal-box relative rounded-sm ">
-          <label
-            htmlFor="editComment-modal"
-            className="absolute right-2 text-gray-700 hover:text-primary cursor-pointer font-semibold top-1"
-          >
-            ✕
-          </label>
           <h2 className="text-base font-semibold mb-2 text-center">
             Edit Your Comment
           </h2>
@@ -75,7 +46,7 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
                 name="rating-2"
                 className="mask mask-star-2 w-4 h-4 bg-accent"
                 value={1}
-                defaultChecked
+                defaultChecked={data?.ratings === "1"}
                 required
                 {...register("ratings")}
               />
@@ -84,6 +55,7 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
                 name="rating-2"
                 className="mask mask-star-2 w-4 h-4 bg-accent"
                 value={2}
+                defaultChecked={data?.ratings === "2"}
                 required
                 {...register("ratings")}
               />
@@ -93,6 +65,7 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
                 className="mask mask-star-2 w-4 h-4 bg-accent"
                 value={3}
                 required
+                defaultChecked={data?.ratings === "3"}
                 {...register("ratings")}
               />
               <input
@@ -101,6 +74,7 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
                 className="mask mask-star-2 w-4 h-4 bg-accent"
                 value={4}
                 required
+                defaultChecked={data?.ratings === "4"}
                 {...register("ratings")}
               />
               <input
@@ -108,28 +82,33 @@ const EditCommentModal = ({ editCommentModal, review, refetch }) => {
                 name="rating-2"
                 className="mask mask-star-2 w-4 h-4 bg-accent"
                 value={5}
+                defaultChecked={data?.ratings === "5"}
                 required
                 {...register("ratings")}
               />
+              <span className="ml-2">({data?.ratings})</span>
             </div>
             <textarea
               type="text"
               name="review"
               id=""
-              defaultValue={review?.review}
-              placeholder="What's on Your Mind?"
+              defaultValue={data?.review}
+              placeholder={"What's on your mind?"}
               className="border-2 rounded-sm w-full min-h-fit focus:outline-none px-2"
               required
               {...register("review")}
             />
             <div className="flex items-center justify-center gap-5">
               <button className="tori-btn-secondary" type="submit">
-                {editReviewLoading ? (
-                  <ButtonLoader></ButtonLoader>
-                ) : (
-                  "Edit Comment"
-                )}
+                {editReviewLoading ? <ButtonLoader></ButtonLoader> : "Save"}
               </button>
+              <label
+                htmlFor="editComment-modal"
+                onClick={() => handleClose()}
+                className="tori-btn-warning"
+              >
+                Cancel
+              </label>
             </div>
           </form>
         </div>

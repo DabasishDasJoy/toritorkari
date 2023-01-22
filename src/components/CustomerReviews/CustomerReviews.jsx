@@ -4,7 +4,7 @@ const CustomerReviews = () => {
   return (
     <div className="flex flex-col text-gray-700">
       <div className="flex flex-col w-full">
-        <h2 className="text-base font-semibold">Customer reviews</h2>
+        <h2 className="text-base mb-2 font-semibold">Customer reviews</h2>
         <div className="flex flex-wrap items-center mb-1 space-x-2">
           <div className="flex">
             <button

@@ -25,7 +25,7 @@ const AddUserComment = ({ _id, refetch }) => {
       userEmail: user?.email,
       image: user?.photoURL,
       productId: _id,
-      dataAdded: new Date(),
+      dateAdded: new Date(),
     };
     axios
       .post(`/reviews?email=${user?.email}`, data)
