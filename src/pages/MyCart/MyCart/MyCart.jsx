@@ -1,11 +1,32 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsChevronDoubleRight } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
+import axios from "../../../AxiosInstance/AxiosInstance";
+import Loader from "../../../components/Loader/Loader";
 import SidebarHeader from "../../../components/SidebarHeader/SidebarHeader";
+import { getStoredCart } from "../../../utils/fakeDb";
 import CartItem from "../CartItem/CartItem";
+import EmptyCart from "../EmptyCart/EmptyCart";
+
 const MyCart = () => {
   const location = useLocation();
+
+  // Fetch tha cart items from DB
+  const shoppingCart = getStoredCart();
+
+  const {
+    isLoading,
+    error,
+    refetch,
+    data: { data: cartItems } = [],
+  } = useQuery({
+    queryKey: ["shopping-cart"],
+    queryFn: () => {
+      return axios.post("/shopping-cart", shoppingCart);
+    },
+  });
 
   return (
     <>
@@ -22,9 +43,15 @@ const MyCart = () => {
       {/* Cart Items */}
       <div className="my-[65px] divide-y overflow-y-scroll h-full">
         {/* <EmptyCart></EmptyCart> */}
-        {[...Array(10).keys()].map((idx) => (
-          <CartItem></CartItem>
-        ))}
+        {isLoading ? (
+          <Loader></Loader>
+        ) : cartItems ? (
+          cartItems?.map((cartItem) => (
+            <CartItem cartItem={cartItem} key={cartItem?._id}></CartItem>
+          ))
+        ) : (
+          <EmptyCart></EmptyCart>
+        )}
       </div>
       {/* Cart Items End */}
 
