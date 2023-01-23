@@ -40,7 +40,8 @@ const reduceQuantityFromDb = (id) => {
   if (shoppingCart[id]) {
     shoppingCart[id]--;
     localStorage.setItem("shopping-cart", JSON.stringify(shoppingCart));
-  } else {
+  }
+  if (shoppingCart[id] === 0) {
     removeFromDb(id);
   }
 };

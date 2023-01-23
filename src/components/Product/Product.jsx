@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BsBagPlusFill, BsFillBagCheckFill } from "react-icons/bs";
+import { BsBagPlusFill } from "react-icons/bs";
 import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
@@ -13,10 +13,16 @@ const Product = ({
   product: { name, image, price, status, subCategory, _id },
 }) => {
   const { setSelectedProduct } = useContext(ProductContext);
-  const { addToCart, removeFromCart, existInCart } = useContext(CartContext);
+  const {
+    addToCart,
+    removeFromCart,
+    reduceQuantityFromCart,
+    getQuantityOfItem,
+  } = useContext(CartContext);
 
   // Check if the item is already in the cart if so then set yes
-  const [addedToCart, setAddedToCart] = useState(existInCart(_id));
+
+  const [quantity, setQuantity] = useState(getQuantityOfItem(_id) || 0);
 
   /**
    * Check quantity of the cart if so then addedToCart must be true
@@ -24,26 +30,22 @@ const Product = ({
    * If reduce state get false along with storage it will render the updated state
    *  */
 
-  /* 
-      const [quantity, setQuantity] = useState(getQuantity(id));
-      const handleReduceQuantity = (id) => {
-      reduceQuantityFromCart()  which call reduceQuantityFromDb()
-      setQuantity(quantity - 1);
-  } */
+  const handleReduceQuantity = (id, product) => {
+    reduceQuantityFromCart(id);
+    setQuantity(quantity - 1);
+    if (quantity === 1) {
+      toast.success(`${product} Removed from cart`);
+    }
+    refetch();
+  };
 
   // Add to cart
   const handleAddtoCart = (id, product) => {
     addToCart(id);
-    toast.success(`${product} Add to cart`);
-    setAddedToCart(true);
-    refetch();
-  };
-
-  // remove from cart
-  const handleRemoveFromCart = (id, product) => {
-    removeFromCart(id);
-    toast.success(`Removed ${product} from cart`);
-    setAddedToCart(false);
+    setQuantity(quantity + 1);
+    if (quantity === 0) {
+      toast.success(`${product} Added to cart`);
+    }
     refetch();
   };
 
@@ -113,13 +115,30 @@ const Product = ({
 
         {/* Add Cart Button */}
         {status === "In Stock" &&
-          (addedToCart ? (
-            <button
-              onClick={() => handleRemoveFromCart(_id, name)}
-              className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] bg-primary rounded-sm text-white"
-            >
-              <BsFillBagCheckFill />
-            </button>
+          (quantity ? (
+            // <button
+            //   onClick={() => handleRemoveFromCart(_id, name)}
+            //   className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] bg-primary rounded-sm text-white"
+            // >
+            //   <BsFillBagCheckFill />
+            // </button>
+            <div className="text-white rounded-sm items-center bg-primary flex">
+              <button
+                className="px-2 py-1"
+                onClick={() => handleReduceQuantity(_id, name)}
+              >
+                {" "}
+                -{" "}
+              </button>
+              <span>{quantity}</span>
+              <button
+                className="px-2 py-1"
+                onClick={() => handleAddtoCart(_id, name)}
+              >
+                {" "}
+                +{" "}
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => handleAddtoCart(_id, name)}
