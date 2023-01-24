@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsBagPlusFill } from "react-icons/bs";
 import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
+import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
 const Product = ({
@@ -13,16 +14,10 @@ const Product = ({
   product: { name, image, price, status, subCategory, _id },
 }) => {
   const { setSelectedProduct } = useContext(ProductContext);
-  const {
-    addToCart,
-    removeFromCart,
-    reduceQuantityFromCart,
-    getQuantityOfItem,
-  } = useContext(CartContext);
+  const { addToCart, reduceQuantityFromCart } = useContext(CartContext);
 
-  // Check if the item is already in the cart if so then set yes
-
-  const [quantity, setQuantity] = useState(getQuantityOfItem(_id) || 0);
+  // const [quantity, setQuantity] = useState(getQuantityOfItem(_id) || 0);
+  const [quantity] = useGetQuantity(_id);
 
   /**
    * Check quantity of the cart if so then addedToCart must be true
@@ -32,21 +27,17 @@ const Product = ({
 
   const handleReduceQuantity = (id, product) => {
     reduceQuantityFromCart(id);
-    setQuantity(quantity - 1);
     if (quantity === 1) {
       toast.success(`${product} Removed from cart`);
     }
-    refetch();
   };
 
   // Add to cart
   const handleAddtoCart = (id, product) => {
     addToCart(id);
-    setQuantity(quantity + 1);
     if (quantity === 0) {
       toast.success(`${product} Added to cart`);
     }
-    refetch();
   };
 
   return (
@@ -116,12 +107,6 @@ const Product = ({
         {/* Add Cart Button */}
         {status === "In Stock" &&
           (quantity ? (
-            // <button
-            //   onClick={() => handleRemoveFromCart(_id, name)}
-            //   className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] bg-primary rounded-sm text-white"
-            // >
-            //   <BsFillBagCheckFill />
-            // </button>
             <div className="text-white rounded-sm items-center bg-primary flex">
               <button
                 className="px-2 py-1"

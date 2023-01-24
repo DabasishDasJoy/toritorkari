@@ -3,8 +3,8 @@ import { HiShoppingBag } from "react-icons/hi";
 
 const EmptyCart = () => {
   return (
-    <div className="px-5 h-full flex flex-col justify-center items-center">
-      <div className="border rounded-full p-5 bg-primary/25">
+    <div className="px-7 h-full flex flex-col justify-center items-center">
+      <div className="rounded-full p-5 bg-primary/25">
         <HiShoppingBag className="w-10 h-10 text-primary" />
       </div>
       <div className="text-neutral text-center">

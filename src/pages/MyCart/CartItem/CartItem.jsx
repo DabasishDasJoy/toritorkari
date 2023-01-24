@@ -1,44 +1,81 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
+import useGetQuantity from "../../../Hooks/useGetQuantity/useGetQuantity";
 
 const CartItem = ({ cartItem }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity] = useGetQuantity(cartItem?._id);
+
+  const { addToCart, reduceQuantityFromCart, removeFromCart, refetch } =
+    useContext(CartContext);
+
+  // reduce
+  const handleReduceQuantity = (id, product) => {
+    // Make this async function
+    reduceQuantityFromCart(id);
+
+    if (quantity === 1) {
+      toast.success(`${product} Removed from cart`);
+      refetch();
+    }
+  };
+
+  // Add to cart
+  const handleAddtoCart = (id) => {
+    addToCart(id);
+  };
+
+  // Delete
+  const handleDeleteItemsFromCart = (id, name) => {
+    removeFromCart(id);
+    toast.success(`${name} removed from cart`);
+    refetch();
+  };
 
   return (
-    <div className="flex gap-5 items-center justify-center px-5 py-2  hover:bg-slate-50 cursor-pointer">
+    <div className="flex gap-3 border-b text-[#374151] items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
       <div className="">
-        <img src={cartItem?.image} alt="" className="w-10 h-full rounded-lg" />
+        <img src={cartItem?.image} alt="" className="w-14 rounded-lg" />
       </div>
 
-      <div className="">
-        <h5 className="text-sm font-medium leading-6 text-[#374151]">
-          {cartItem?.name}
-        </h5>
-        <p className="text-xs leading-5 text-gray-500">
-          Item Price: ${cartItem?.price}
-        </p>
+      <div className="flex flex-col gap-0 w-full">
+        <h5 className="text-sm font-medium">{cartItem?.name}</h5>
+        <p className="text-xs  text-gray-500">Item Price: ${cartItem?.price}</p>
 
-        <div className="flex justify-between gap-3 mt-1 items-center">
-          <span className="text-black text-sm font-bold">$12.00</span>
-          <div className="flex border text-[#374151] font-semibold items-center">
+        <div className="flex justify-between mt-1 items-center">
+          <span className="text-primary font-semibold text-sm">$12.00</span>
+
+          <div className="border rounded-sm items-center flex">
             <button
-              className="px-2 hover:bg-white"
-              onClick={() => setQuantity(quantity - 1)}
+              onClick={() =>
+                handleReduceQuantity(cartItem?._id, cartItem?.name)
+              }
+              className="px-2 "
+              // onClick={() => handleReduceQuantity(_id, name)}
             >
-              -
+              {" "}
+              -{" "}
             </button>
-            <span className="px-2 text-sm">{quantity}</span>
+            <span className="text-sm mx-1">{quantity}</span>
             <button
-              className="px-2 hover:bg-white"
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={() => handleAddtoCart(cartItem?._id)}
+              className="px-2 "
+              // onClick={() => handleAddtoCart(_id, name)}
             >
-              +
+              {" "}
+              +{" "}
             </button>
           </div>
 
           {/* Delete */}
 
-          <button className="bg-warning/5 hover:bg-warning/20 hover:shadow-md p-2 rounded-full">
+          <button
+            onClick={() =>
+              handleDeleteItemsFromCart(cartItem?._id, cartItem?.name)
+            }
+            className="bg-warning/5 hover:bg-warning/20 hover:shadow-md p-2 rounded-full"
+          >
             <FaRegTrashAlt className="text-warning" />
           </button>
         </div>

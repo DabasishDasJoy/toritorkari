@@ -1,4 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { createContext, useState } from "react";
+import axios from "../../AxiosInstance/AxiosInstance";
 import {
   addToDb,
   getStoredCart,
@@ -12,12 +14,27 @@ const CartProvider = ({ children }) => {
   const cartSize = Object.values(getStoredCart()).reduce((a, b) => a + b, 0);
   const [numberOfCartItems, setNumberOfCartItems] = useState(cartSize);
 
+  const shoppingCart = getStoredCart();
+
+  const {
+    isLoading,
+    error,
+    refetch,
+    data: { data: cartItems } = [],
+  } = useQuery({
+    queryKey: ["shopping-cart"],
+    queryFn: () => {
+      return axios.post("/shopping-cart", getStoredCart());
+    },
+  });
+
   const addToCart = (id) => {
     setNumberOfCartItems(numberOfCartItems + 1);
     return addToDb(id);
   };
 
   const removeFromCart = (id) => {
+    setNumberOfCartItems(numberOfCartItems - getStoredCart()[id]);
     return removeFromDb(id);
   };
 
@@ -35,7 +52,7 @@ const CartProvider = ({ children }) => {
     if (id in shoppingCart) {
       return shoppingCart[id];
     }
-    return false;
+    return 0;
   };
 
   const cartInfo = {
@@ -45,6 +62,9 @@ const CartProvider = ({ children }) => {
     numberOfCartItems,
     reduceQuantityFromCart,
     getQuantityOfItem,
+    cartItems,
+    refetch,
+    isLoading,
   };
   return (
     <CartContext.Provider value={cartInfo}>{children}</CartContext.Provider>

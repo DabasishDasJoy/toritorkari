@@ -4,9 +4,9 @@ import { BsBagCheck } from "react-icons/bs";
 const SidebarHeader = ({ children, title, position, drawer }) => {
   return (
     <div
-      className={`bg-secondary px-3 py-2 fixed w-full top-0 ${position} text-black flex justify-between items-center`}
+      className={`bg-secondary px-3 py-3 fixed right-0 left-0 top-0 ${position} flex justify-between items-center`}
     >
-      <h3 className="font-semibold text-base leading-9 uppercase flex gap-2 items-center">
+      <h3 className="font-semibold text-base  uppercase flex gap-2 items-center">
         <BsBagCheck className="icon" /> {title}
       </h3>
       <label htmlFor={`${drawer}`}>{children}</label>
