@@ -7,8 +7,13 @@ const useGetQuantity = (id) => {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    const qntity = getQuantityOfItem(id);
-    setQuantity(qntity);
+    const usnsubscribe = () => {
+      const qntity = getQuantityOfItem(id);
+      setQuantity(qntity);
+    };
+    return () => {
+      usnsubscribe();
+    };
   }, [getQuantityOfItem, quantity, id]);
 
   return [quantity];

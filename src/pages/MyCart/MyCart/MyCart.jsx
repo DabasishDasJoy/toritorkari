@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsChevronDoubleRight } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../../components/Loader/Loader";
 import SidebarHeader from "../../../components/SidebarHeader/SidebarHeader";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
+import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
 import CartItem from "../CartItem/CartItem";
 import EmptyCart from "../EmptyCart/EmptyCart";
 
@@ -12,6 +13,8 @@ const MyCart = () => {
   const location = useLocation();
 
   const { cartItems, isLoading } = useContext(CartContext);
+  const [subTotal] = useGetSubTotal();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -43,18 +46,20 @@ const MyCart = () => {
       {/* checkout */}
       {cartItems?.length && (
         <div className="px-2 flex justify-center items-center fixed right-0 left-0 bottom-2">
-          <Link
-            to={"/checkout"}
-            state={{ from: location }}
+          <label
+            onClick={() => navigate("/checkout", { state: { from: location } })}
+            htmlFor="cart-drawer"
+            // to={"/checkout"}
+            // state={{ from: location }}
             className="btn-primary text-white w-full rounded-sm p-2 flex items-center justify-between"
           >
             <span className="bg-white text-primary font-bold px-2 rounded-sm">
-              $500
+              ${subTotal ? subTotal : 0}
             </span>
             <span className="flex items-center gap-1 uppercase text-sm font-semibold">
               Checkout <AiOutlineArrowRight />
             </span>
-          </Link>
+          </label>
         </div>
       )}
     </>

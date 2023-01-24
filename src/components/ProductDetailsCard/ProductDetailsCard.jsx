@@ -10,10 +10,14 @@ import "swiper/css/thumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./ProductDetailsCard.css";
 
+import { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { CiCircleMore } from "react-icons/ci";
 import { FreeMode, Thumbs } from "swiper";
+import { CartContext } from "../../Contexts/CartProvider/CartProvider";
+import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 
 const ProductDetailsCard = ({
   children,
@@ -24,6 +28,23 @@ const ProductDetailsCard = ({
   const navigate = useNavigate();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const location = useLocation();
+  const [quantity] = useGetQuantity(_id);
+  const { reduceQuantityFromCart, addToCart } = useContext(CartContext);
+
+  const handleReduceQuantity = (id, product) => {
+    reduceQuantityFromCart(id);
+    if (quantity === 1) {
+      toast.success(`${product} Removed from cart`);
+    }
+  };
+
+  // Add to cart
+  const handleAddtoCart = (id, product) => {
+    addToCart(id);
+    if (quantity === 0) {
+      toast.success(`${product} Added to cart`);
+    }
+  };
 
   return (
     <div className="flex lg:gap-5 text-[16px] text-gray-700 lg:flex-nowrap flex-wrap">
@@ -156,16 +177,34 @@ const ProductDetailsCard = ({
         {/* Button */}
         {status === "In Stock" && (
           <div className="flex lg:justify-start justify-center items-center lg:gap-5 my-3 gap-2 lg:flex-nowrap flex-wrap">
-            <div className="flex py-1 border-2 rounded-sm text-[#374151] font-semibold items-center">
-              <button className="px-5 hover:bg-white">-</button>
-              <span className=" text-sm">1</span>
-              <button className="px-5 hover:bg-white">+</button>
-            </div>
-            <div className="lg:w-[30%] w-[70%]">
-              <button className="tori-btn-secondary w-full">
-                + Add to Cart
-              </button>
-            </div>
+            {quantity ? (
+              <div className="flex hover:bg-white hover:text-primary hover:border-primary border border-white bg-primary text-center rounded-md text-sm text-white  font-semibold items-center">
+                <button
+                  className="px-5 py-[8px]"
+                  onClick={() => handleReduceQuantity(_id, name)}
+                >
+                  {" "}
+                  -{" "}
+                </button>
+                <span className=" text-sm">{quantity}</span>
+                <button
+                  className="px-5 py-1"
+                  onClick={() => handleAddtoCart(_id, name)}
+                >
+                  {" "}
+                  +{" "}
+                </button>
+              </div>
+            ) : (
+              <div className="lg:w-[30%] w-[70%]">
+                <button
+                  onClick={() => handleAddtoCart(_id, name)}
+                  className="tori-btn-secondary w-full"
+                >
+                  + Add to Cart
+                </button>
+              </div>
+            )}
             <div className="">
               <button
                 data-tip="Add to Wishlist"
@@ -182,7 +221,9 @@ const ProductDetailsCard = ({
           <div className={`${display}`}>
             <label
               onClick={() =>
-                navigate(`/product/${_id}`, { state: { from: location } })
+                navigate(`/product/${_id}`, {
+                  state: { Navigatedfrom: location },
+                })
               }
               htmlFor="product-modal"
               className={"text-sm text-accent tori-link"}

@@ -13,8 +13,8 @@ const CartItem = ({ cartItem }) => {
   // reduce
   const handleReduceQuantity = (id, product) => {
     // Make this async function
-    reduceQuantityFromCart(id);
 
+    reduceQuantityFromCart(id);
     if (quantity === 1) {
       toast.success(`${product} Removed from cart`);
       refetch();
@@ -34,22 +34,36 @@ const CartItem = ({ cartItem }) => {
   };
 
   return (
-    <div className="flex gap-3 border-b text-[#374151] items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
+    <div className="flex w-full gap-3 border-b text-[#374151] items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
       <div className="">
         <img src={cartItem?.image} alt="" className="w-14 rounded-lg" />
       </div>
 
       <div className="flex flex-col gap-0 w-full">
         <h5 className="text-sm font-medium">{cartItem?.name}</h5>
-        <p className="text-xs  text-gray-500">Item Price: ${cartItem?.price}</p>
+        <p className="text-xs  text-gray-500">
+          Item Price: $
+          {cartItem?.discount
+            ? ((cartItem?.discount / 100) * cartItem?.price).toFixed(2)
+            : cartItem?.price}
+        </p>
 
         <div className="flex justify-between mt-1 items-center">
-          <span className="text-primary font-semibold text-sm">$12.00</span>
+          <span className="text-primary font-semibold text-sm">
+            $
+            {cartItem?.discount
+              ? (
+                  (cartItem?.discount / 100) *
+                  cartItem?.price *
+                  quantity
+                ).toFixed(2)
+              : (cartItem?.price * quantity).toFixed(2)}
+          </span>
 
           <div className="border rounded-sm items-center flex">
             <button
               onClick={() =>
-                handleReduceQuantity(cartItem?._id, cartItem?.name)
+                quantity && handleReduceQuantity(cartItem?._id, cartItem?.name)
               }
               className="px-2 "
               // onClick={() => handleReduceQuantity(_id, name)}

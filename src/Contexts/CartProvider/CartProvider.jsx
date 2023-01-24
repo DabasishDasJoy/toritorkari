@@ -14,8 +14,6 @@ const CartProvider = ({ children }) => {
   const cartSize = Object.values(getStoredCart()).reduce((a, b) => a + b, 0);
   const [numberOfCartItems, setNumberOfCartItems] = useState(cartSize);
 
-  const shoppingCart = getStoredCart();
-
   const {
     isLoading,
     error,
@@ -35,12 +33,13 @@ const CartProvider = ({ children }) => {
 
   const removeFromCart = (id) => {
     setNumberOfCartItems(numberOfCartItems - getStoredCart()[id]);
+
     return removeFromDb(id);
   };
 
-  const existInCart = (id) => {
-    return id in getStoredCart();
-  };
+  // const existInCart = (id) => {
+  //   return id in getStoredCart();
+  // };
 
   const reduceQuantityFromCart = (id) => {
     setNumberOfCartItems(numberOfCartItems - 1);
@@ -58,7 +57,6 @@ const CartProvider = ({ children }) => {
   const cartInfo = {
     addToCart,
     removeFromCart,
-    existInCart,
     numberOfCartItems,
     reduceQuantityFromCart,
     getQuantityOfItem,

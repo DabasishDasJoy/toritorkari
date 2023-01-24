@@ -9,12 +9,8 @@ import ProductFeature from "../ProductFeature/ProductFeature";
 const ProductDetails = () => {
   const { id } = useParams();
   const location = useLocation();
-  console.log(
-    "🚀 ~ file: ProductDetails.jsx:12 ~ ProductDetails ~ location",
-    location
-  );
 
-  const from = location?.state?.from?.pathname;
+  const from = location?.state?.Navigatedfrom?.pathname;
 
   const {
     isLoading,

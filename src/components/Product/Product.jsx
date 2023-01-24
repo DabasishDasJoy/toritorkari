@@ -96,7 +96,10 @@ const Product = ({
       {/* Price */}
       <div className="flex justify-between items-center flex-1">
         <span className="price">
-          ${product?.discount ? (product.discount / 100) * price : price}{" "}
+          $
+          {product?.discount
+            ? ((product.discount / 100) * price).toFixed(2)
+            : price}{" "}
           {product?.discount && (
             <span className="text-sm  line-through text-black/50">
               ${price}
@@ -107,7 +110,7 @@ const Product = ({
         {/* Add Cart Button */}
         {status === "In Stock" &&
           (quantity ? (
-            <div className="text-white rounded-sm items-center bg-primary flex">
+            <div className="text-white border border-primary hover:bg-white hover:text-primary rounded-sm items-center bg-primary flex">
               <button
                 className="px-2 py-1"
                 onClick={() => handleReduceQuantity(_id, name)}

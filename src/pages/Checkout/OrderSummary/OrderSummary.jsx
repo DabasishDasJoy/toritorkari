@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import Loader from "../../../components/Loader/Loader";
+import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import CartItem from "../../MyCart/CartItem/CartItem";
+import EmptyCart from "../../MyCart/EmptyCart/EmptyCart";
 
 const OrderSummary = () => {
+  const { cartItems, isLoading } = useContext(CartContext);
+
   return (
     <div className="py-3 sticky top-0 bg-white rounded-md flex flex-col gap-3 border">
       <h4 className="tori-title text-black text-center">Order Summury</h4>
       <hr />
-      <div className="h-[300px] overflow-y-scroll flex items-center flex-col items-start">
-        <CartItem></CartItem>
-        <CartItem></CartItem>
-        <CartItem></CartItem>
-        <CartItem></CartItem>
-        <CartItem></CartItem>
-        <CartItem></CartItem>
-        <CartItem></CartItem>
-        <CartItem></CartItem>
+      <div className="h-[300px] overflow-y-scroll flex items-center flex-col">
+        {isLoading ? (
+          <Loader></Loader>
+        ) : cartItems?.length ? (
+          cartItems?.map((cartItem) => (
+            <CartItem cartItem={cartItem} key={cartItem?._id}></CartItem>
+          ))
+        ) : (
+          <EmptyCart></EmptyCart>
+        )}
       </div>
       <div className="flex gap-2 justify-center lg:px-5 px-2">
         <input
