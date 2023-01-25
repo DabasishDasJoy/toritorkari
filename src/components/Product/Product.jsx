@@ -98,7 +98,7 @@ const Product = ({
         <span className="price">
           $
           {product?.discount
-            ? ((product.discount / 100) * price).toFixed(2)
+            ? ((product.discount / 100) * price)?.toFixed(2)
             : price}{" "}
           {product?.discount && (
             <span className="text-sm  line-through text-black/50">

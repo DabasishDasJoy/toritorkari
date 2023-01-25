@@ -51,10 +51,10 @@ const MyCart = () => {
             htmlFor="cart-drawer"
             // to={"/checkout"}
             // state={{ from: location }}
-            className="btn-primary text-white w-full rounded-sm p-2 flex items-center justify-between"
+            className="btn-primary cursor-pointer text-white w-full rounded-sm p-2 flex items-center justify-between"
           >
             <span className="bg-white text-primary font-bold px-2 rounded-sm">
-              ${subTotal ? subTotal : 0}
+              ${subTotal ? subTotal.toFixed(2) : 0}
             </span>
             <span className="flex items-center gap-1 uppercase text-sm font-semibold">
               Checkout <AiOutlineArrowRight />

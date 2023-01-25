@@ -13,11 +13,9 @@ const useGetSubTotal = () => {
       (prev, curr) =>
         prev +
         parseFloat(
-          (
-            (curr?.discount
-              ? curr?.price * (curr?.discount / 100)
-              : curr?.price) * shoppingCart[curr?._id]
-          ).toFixed(2)
+          (curr?.discount
+            ? curr?.price * (curr?.discount / 100)
+            : curr?.price) * shoppingCart[curr?._id]
         ),
       0
     );
