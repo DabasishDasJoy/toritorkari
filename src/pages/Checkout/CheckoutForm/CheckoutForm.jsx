@@ -1,19 +1,32 @@
 import { ErrorMessage } from "@hookform/error-message";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { BsCash } from "react-icons/bs";
 import { FaRegCreditCard } from "react-icons/fa";
 import { FcShipped } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import axios from "../../../AxiosInstance/AxiosInstance";
+import ButtonLoader from "../../../components/ButtonLoader/ButtonLoader";
 import Required from "../../../components/Required/Required";
+import SuccessModal from "../../../components/SuccessModal/SuccessModal";
 import ValidationError from "../../../components/ValidationError/ValidationError";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ grandTotal, setShippingCost }) => {
   const navigate = useNavigate();
   const [creditPayment, setCreditPayment] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const [clientSecret, setClientSecret] = useState("");
+  const [processing, setProccessing] = useState(false);
+  const [trasactionId, setTransactionId] = useState("");
+
+  const { user } = useContext(AuthContext);
+  const { successModal, cartItems, getQuantityOfItem, removeShoppingCart } =
+    useContext(CartContext);
 
   const {
     register,
@@ -23,38 +36,133 @@ const CheckoutForm = () => {
     criteriaMode: "all",
   });
 
+  // Create Payment intent and grab client secret
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    axios
+      .post(`/create-payment-intent?email=${user?.email}`, { grandTotal })
+      .then((res) => {
+        setClientSecret(res?.data?.clientSecret);
+      })
+      .catch((err) => {
+        console.error(err);
+        return;
+      });
+  }, [grandTotal, user?.email]);
+
   const handlePlaceOrder = async (data) => {
-    // Block native form submission.
-    console.log(data);
+    setProccessing(true);
 
-    if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
-      return;
-    }
+    /* 
+        if(creditPayment){
+          stripe payment
+        }
+        else{
+          just save items to db and status to pending
+        }
+    */
 
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
-    const card = elements.getElement(CardElement);
-
-    if (card == null) {
-      return;
-    }
-
-    // Use your card Element with other Stripe.js APIs
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
-    });
-
-    if (error) {
-      console.log("[error]", error);
+    if (!creditPayment) {
+      placeOrderInDb(data);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      if (!stripe || !elements) {
+        // Stripe.js has not loaded yet. Make sure to disable
+        // form submission until Stripe.js has loaded.
+        return;
+      }
+
+      // Get a reference to a mounted CardElement. Elements knows how
+      // to find your CardElement because there can only ever be one of
+      // each type of element.
+      const card = elements.getElement(CardElement);
+
+      if (card == null) {
+        return;
+      }
+
+      // Use your card Element with other Stripe.js APIs
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card,
+      });
+
+      if (error) {
+        console.error("[error]", error);
+        toast.error(error.message);
+        setProccessing(false);
+        return;
+      } else {
+        console.log("[PaymentMethod]", paymentMethod);
+      }
+
+      // Confirm Card Payment
+      stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+            billing_details: {
+              name: data?.firstname,
+              email: data?.email,
+            },
+          },
+        })
+        .then((res) => {
+          if (res?.paymentIntent?.status === "succeeded") {
+            setTransactionId(res?.paymentIntent?.id);
+            // Save payment information in database
+            placeOrderInDb();
+            // navigate to chekcout page
+          }
+          setProccessing(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Something went wrong.Please try again");
+          return;
+        });
     }
   };
 
+  const createCart = () => {
+    const cart = [];
+    cartItems.forEach((item) =>
+      cart.push({
+        name: item?.name,
+        price: item?.discount
+          ? (item?.price - (item?.discount / 100) * item?.price).toFixed(2)
+          : item?.price,
+        productId: item?._id,
+        quantity: getQuantityOfItem(item?._id),
+      })
+    );
+
+    return cart;
+  };
+  const placeOrderInDb = (data) => {
+    const orderDetails = {
+      ...data,
+      amount: grandTotal,
+      trasactionId: trasactionId,
+      cart: createCart(),
+      status: creditPayment ? "paid" : "pending",
+    };
+
+    // Send to Db
+    axios
+      .post("/orders", { orderDetails })
+      .then((res) => {
+        if (res?.data?.acknowledged) {
+          //
+          // Delete shopping cart
+          successModal.current.checked = true;
+          removeShoppingCart();
+        }
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
+  };
   return (
     <form
       onSubmit={handleSubmit(handlePlaceOrder)}
@@ -64,7 +172,7 @@ const CheckoutForm = () => {
       <div className="grid lg:grid-cols-2 gap-x-5 gap-y-3">
         {/* Name */}
         <div className="">
-          <label for="firstname" className="tori-label">
+          <label htmlFor="firstname" className="tori-label">
             First name <Required></Required>
           </label>
           <input
@@ -92,7 +200,7 @@ const CheckoutForm = () => {
           />
         </div>
         <div className="">
-          <label for="lastname" className="tori-label">
+          <label htmlFor="lastname" className="tori-label">
             Last name <Required></Required>
           </label>
           <input
@@ -122,7 +230,7 @@ const CheckoutForm = () => {
 
         {/* Email */}
         <div className="">
-          <label for="email" className="tori-label">
+          <label htmlFor="email" className="tori-label">
             Email <Required></Required>
           </label>
           <input
@@ -157,7 +265,7 @@ const CheckoutForm = () => {
 
         {/* Phone */}
         <div className="">
-          <label for="phone" className="tori-label">
+          <label htmlFor="phone" className="tori-label">
             Phone <Required></Required>
           </label>
           <input
@@ -190,7 +298,7 @@ const CheckoutForm = () => {
       <h4 className="tori-title">02. Shipping Details</h4>
       <div className="flex flex-col lg:gap-3 gap-y-3">
         <div className="">
-          <label for="address" className="tori-label">
+          <label htmlFor="address" className="tori-label">
             Address <Required></Required>
           </label>
           <textarea
@@ -220,7 +328,7 @@ const CheckoutForm = () => {
 
         <div className="flex justify-between lg:flex-nowrap flex-wrap gap-3">
           <div className="w-full">
-            <label for="city" className="tori-label">
+            <label htmlFor="city" className="tori-label">
               City <Required></Required>
             </label>
             <input
@@ -248,7 +356,7 @@ const CheckoutForm = () => {
             />
           </div>
           <div className="w-full">
-            <label for="country" className="tori-label">
+            <label htmlFor="country" className="tori-label">
               Country <Required></Required>
             </label>
             <input
@@ -276,7 +384,7 @@ const CheckoutForm = () => {
             />
           </div>
           <div className="w-full">
-            <label for="zip" className="tori-label">
+            <label htmlFor="zip" className="tori-label">
               Zip Code <Required></Required>
             </label>
             <input
@@ -306,13 +414,13 @@ const CheckoutForm = () => {
         </div>
 
         <div className="">
-          <label for="shippingCost" className="tori-label">
+          <label htmlFor="shippingCost" className="tori-label">
             Shipping Cost <Required></Required>
           </label>
 
           <div className="flex justify-between lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
             <label
-              for="fedx"
+              htmlFor="fedx"
               className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
             >
               <div className="flex gap-3 items-center">
@@ -329,6 +437,7 @@ const CheckoutForm = () => {
                 id="fedx"
                 type="radio"
                 value={60}
+                onClick={() => setShippingCost(60)}
                 className="icon accent-primary"
                 {...register("shippingOption", {
                   required: "Shipping Option is required!",
@@ -337,7 +446,7 @@ const CheckoutForm = () => {
             </label>
 
             <label
-              for="ups"
+              htmlFor="ups"
               className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
             >
               <div className="flex gap-3 items-center">
@@ -355,12 +464,27 @@ const CheckoutForm = () => {
                 type="radio"
                 className="icon accent-primary"
                 value={20}
+                onClick={() => setShippingCost(20)}
                 {...register("shippingOption", {
                   required: "Shipping Option is required!",
                 })}
               />
             </label>
           </div>
+          <ErrorMessage
+            errors={errors}
+            name="shippingOption"
+            render={({ messages }) => {
+              return messages
+                ? Object.entries(messages).map(([type, message]) => (
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
+                : null;
+            }}
+          />
         </div>
       </div>
 
@@ -390,50 +514,66 @@ const CheckoutForm = () => {
           </div>
         </div>
       )}
-      <div className="flex justify-between lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
-        <label
-          onChange={() => setCreditPayment(false)}
-          for="cash-on-delivery"
-          className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
-        >
-          <div className="flex gap-3 items-center">
-            <BsCash className="w-7 h-7" />
-            <div>
-              <span className="text-sm">Cash On Delivery</span>
+      <div>
+        <div className="flex justify-between lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
+          <label
+            onChange={() => setCreditPayment(false)}
+            htmlFor="cash-on-delivery"
+            className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
+          >
+            <div className="flex gap-3 items-center">
+              <BsCash className="w-7 h-7" />
+              <div>
+                <span className="text-sm">Cash On Delivery</span>
+              </div>
             </div>
-          </div>
-          <input
-            id="cash-on-delivery"
-            type="radio"
-            value={"Cash On Delivery"}
-            className="icon accent-primary"
-            {...register("paymentMethod", {
-              required: "Payment Method is required!",
-            })}
-          />
-        </label>
+            <input
+              id="cash-on-delivery"
+              type="radio"
+              value={"Cash On Delivery"}
+              className="icon accent-primary"
+              {...register("paymentMethod", {
+                required: "Payment Method is required!",
+              })}
+            />
+          </label>
 
-        <label
-          onChange={() => setCreditPayment(true)}
-          for="credit-card"
-          className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
-        >
-          <div className="flex gap-3 items-center">
-            <FaRegCreditCard className="w-7 h-7" />
-            <div>
-              <span className="text-sm">Credit Card</span>
+          <label
+            onChange={() => setCreditPayment(true)}
+            htmlFor="credit-card"
+            className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
+          >
+            <div className="flex gap-3 items-center">
+              <FaRegCreditCard className="w-7 h-7" />
+              <div>
+                <span className="text-sm">Credit Card</span>
+              </div>
             </div>
-          </div>
-          <input
-            id="credit-card"
-            type="radio"
-            value={"Credit Card"}
-            className="icon accent-primary"
-            {...register("paymentMethod", {
-              required: "Payment Method is required!",
-            })}
-          />
-        </label>
+            <input
+              id="credit-card"
+              type="radio"
+              value={"Credit Card"}
+              className="icon accent-primary"
+              {...register("paymentMethod", {
+                required: "Payment Method is required!",
+              })}
+            />
+          </label>
+        </div>
+        <ErrorMessage
+          errors={errors}
+          name="paymentMethod"
+          render={({ messages }) => {
+            return messages
+              ? Object.entries(messages).map(([type, message]) => (
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
+              : null;
+          }}
+        />
       </div>
 
       <div className="flex lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
@@ -441,12 +581,13 @@ const CheckoutForm = () => {
         <button
           // onClick={() => navigate("/invoice")}
           className="tori-btn-secondary"
-          disabled={creditPayment && !stripe}
+          disabled={!stripe || !clientSecret || processing}
           type="submit"
         >
-          Confirm
+          Confirm{processing && <ButtonLoader></ButtonLoader>}
         </button>
       </div>
+      <SuccessModal trasactionId={trasactionId}></SuccessModal>
     </form>
   );
 };

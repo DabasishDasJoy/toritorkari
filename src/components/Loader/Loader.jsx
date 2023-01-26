@@ -3,7 +3,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import "./Loader.css";
 const Loader = () => {
   return (
-    <div className="w-16 mx-auto my-auto relative col-span-full">
+    <div className="w-16 flex h-full justify-center items-center mx-auto my-auto relative col-span-full">
       <svg viewBox="0 0 100 100">
         <defs>
           <filter id="shadow">

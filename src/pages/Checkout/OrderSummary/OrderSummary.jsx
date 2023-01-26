@@ -1,21 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Loader from "../../../components/Loader/Loader";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
 import CartItem from "../../MyCart/CartItem/CartItem";
 import EmptyCart from "../../MyCart/EmptyCart/EmptyCart";
 
-const OrderSummary = () => {
+const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
   const { cartItems, isLoading } = useContext(CartContext);
-  const [shippingCost, setShippingCost] = useState(0);
-  const [discount, setDiscount] = useState(0);
+
   const [subTotal] = useGetSubTotal();
-  const grandTotal = subTotal - discount + shippingCost;
 
   const handleApplyDiscount = (e) => {
     e.preventDefault();
     console.log(e.target.promo.value);
-    setDiscount(parseFloat(((10 / 100) * subTotal).toFixed(2)));
+    setDiscount(parseFloat(((10 / 100) * subTotal)?.toFixed(2)));
   };
 
   return (
@@ -50,7 +48,7 @@ const OrderSummary = () => {
       <div className="lg:px-5 px-2 flex flex-col gap-1 text-black/80 text-sm font-medium">
         <div className="flex justify-between ">
           <p>Subtotal</p>
-          <p>${parseFloat(subTotal.toFixed(2))}</p>
+          <p>${parseFloat(subTotal?.toFixed(2))}</p>
         </div>
         <div className="flex justify-between">
           <p>Shipping Cost</p>
@@ -63,7 +61,7 @@ const OrderSummary = () => {
         <hr />
         <div className="flex justify-between font-extrabold text-lg text-primary">
           <p>Total</p>
-          <p>${parseFloat(grandTotal.toFixed(2))}</p>
+          <p>${parseFloat(grandTotal?.toFixed(2))}</p>
         </div>
       </div>
     </div>

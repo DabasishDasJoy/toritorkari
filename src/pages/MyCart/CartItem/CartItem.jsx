@@ -39,22 +39,25 @@ const CartItem = ({ cartItem }) => {
         <img src={cartItem?.image} alt="" className="w-14 rounded-lg" />
       </div>
 
-      <div className="flex flex-col gap-0 w-full">
+      <div className="flex flex-col w-full">
         <h5 className="text-sm font-medium">{cartItem?.name}</h5>
         <p className="text-xs  text-gray-500">
           Item Price: $
           {cartItem?.discount
-            ? ((cartItem?.discount / 100) * cartItem?.price).toFixed(2)
+            ? (
+                cartItem?.price -
+                (cartItem?.discount / 100) * cartItem?.price
+              ).toFixed(2)
             : cartItem?.price}
         </p>
 
-        <div className="flex justify-between mt-1 items-center">
+        <div className="flex justify-between items-center">
           <span className="text-primary font-semibold text-sm">
             $
             {cartItem?.discount
               ? (
-                  (cartItem?.discount / 100) *
-                  cartItem?.price *
+                  (cartItem?.price -
+                    (cartItem?.discount / 100) * cartItem?.price) *
                   quantity
                 ).toFixed(2)
               : (cartItem?.price * quantity).toFixed(2)}

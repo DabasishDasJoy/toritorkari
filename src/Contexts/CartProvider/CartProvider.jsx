@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { createContext, useState } from "react";
+import React, { createContext, useRef, useState } from "react";
 import axios from "../../AxiosInstance/AxiosInstance";
 import {
   addToDb,
+  deleteShoppingCart,
   getStoredCart,
   reduceQuantityFromDb,
   removeFromDb,
@@ -13,6 +14,7 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const cartSize = Object.values(getStoredCart()).reduce((a, b) => a + b, 0);
   const [numberOfCartItems, setNumberOfCartItems] = useState(cartSize);
+  const successModal = useRef();
 
   const {
     isLoading,
@@ -46,6 +48,12 @@ const CartProvider = ({ children }) => {
     return reduceQuantityFromDb(id);
   };
 
+  const removeShoppingCart = () => {
+    deleteShoppingCart();
+    setNumberOfCartItems(0);
+    refetch();
+  };
+
   const getQuantityOfItem = (id) => {
     const shoppingCart = getStoredCart();
     if (id in shoppingCart) {
@@ -63,6 +71,8 @@ const CartProvider = ({ children }) => {
     cartItems,
     refetch,
     isLoading,
+    successModal,
+    removeShoppingCart,
   };
   return (
     <CartContext.Provider value={cartInfo}>{children}</CartContext.Provider>
