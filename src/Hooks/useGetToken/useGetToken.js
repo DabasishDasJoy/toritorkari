@@ -3,7 +3,6 @@ import axios from "../../AxiosInstance/AxiosInstance";
 
 const useGetToken = (email) => {
   const [token, setToken] = useState(null);
-  console.log("Hook hit", email);
 
   useEffect(() => {
     if (email) {

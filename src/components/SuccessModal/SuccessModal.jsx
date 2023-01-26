@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import success from "../../assets/success (1).gif";
-import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 
-const SuccessModal = ({ trasactionId }) => {
+const SuccessModal = ({ trasactionId, unique_id }) => {
   const { successModal } = useContext(CartContext);
-  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -28,7 +26,7 @@ const SuccessModal = ({ trasactionId }) => {
           <p className="text-sm">Transaction ID: {trasactionId}</p>
           <div className="modal-action">
             <label
-              onClick={() => navigate("/invoice")}
+              onClick={() => navigate(`/invoice/${unique_id}`)}
               htmlFor="success-modal"
               className="tori-btn-secondary"
             >

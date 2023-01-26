@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { BsCash } from "react-icons/bs";
 import { FaRegCreditCard } from "react-icons/fa";
 import { FcShipped } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import ButtonLoader from "../../../components/ButtonLoader/ButtonLoader";
 import Required from "../../../components/Required/Required";
@@ -14,19 +14,26 @@ import SuccessModal from "../../../components/SuccessModal/SuccessModal";
 import ValidationError from "../../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
+import { getRandomId } from "../../../utils/GetRandomId/getRandomId";
 
-const CheckoutForm = ({ grandTotal, setShippingCost }) => {
-  const navigate = useNavigate();
+const CheckoutForm = ({
+  grandTotal,
+  setShippingCost,
+  discount,
+  shippingCost,
+}) => {
   const [creditPayment, setCreditPayment] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProccessing] = useState(false);
   const [trasactionId, setTransactionId] = useState("");
-
   const { user } = useContext(AuthContext);
   const { successModal, cartItems, getQuantityOfItem, removeShoppingCart } =
     useContext(CartContext);
+  const [uniqueId, setUniqueId] = useState("");
+
+  const invoiceNumber = getRandomId();
 
   const {
     register,
@@ -37,7 +44,6 @@ const CheckoutForm = ({ grandTotal, setShippingCost }) => {
   });
 
   // Create Payment intent and grab client secret
-
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     axios
@@ -51,18 +57,10 @@ const CheckoutForm = ({ grandTotal, setShippingCost }) => {
       });
   }, [grandTotal, user?.email]);
 
+  /* ===================================== */
+  // Handle Order Confirmation
   const handlePlaceOrder = async (data) => {
     setProccessing(true);
-
-    /* 
-        if(creditPayment){
-          stripe payment
-        }
-        else{
-          just save items to db and status to pending
-        }
-    */
-
     if (!creditPayment) {
       placeOrderInDb(data);
     } else {
@@ -111,7 +109,7 @@ const CheckoutForm = ({ grandTotal, setShippingCost }) => {
           if (res?.paymentIntent?.status === "succeeded") {
             setTransactionId(res?.paymentIntent?.id);
             // Save payment information in database
-            placeOrderInDb();
+            placeOrderInDb(data, res?.paymentIntent?.id);
             // navigate to chekcout page
           }
           setProccessing(false);
@@ -139,18 +137,25 @@ const CheckoutForm = ({ grandTotal, setShippingCost }) => {
 
     return cart;
   };
-  const placeOrderInDb = (data) => {
+  const placeOrderInDb = (data, transId) => {
+    const unique_id = uuid();
+    setUniqueId(unique_id);
     const orderDetails = {
       ...data,
       amount: grandTotal,
-      trasactionId: trasactionId,
+      invoiceId: unique_id,
+      discount: discount,
+      shippingCost: shippingCost,
       cart: createCart(),
       status: creditPayment ? "paid" : "pending",
+      invoice: `#${invoiceNumber}`,
+      date: new Date(),
+      trasactionId: transId,
     };
 
     // Send to Db
     axios
-      .post("/orders", { orderDetails })
+      .post(`/invoices?email=${user?.email}`, { orderDetails })
       .then((res) => {
         if (res?.data?.acknowledged) {
           //
@@ -234,9 +239,10 @@ const CheckoutForm = ({ grandTotal, setShippingCost }) => {
             Email <Required></Required>
           </label>
           <input
+            readOnly
             id="email"
             type="email"
-            placeholder="Your Email"
+            defaultValue={user?.email}
             className="tori-input"
             {...register("email", {
               required: "Email is required!",
@@ -587,7 +593,10 @@ const CheckoutForm = ({ grandTotal, setShippingCost }) => {
           Confirm{processing && <ButtonLoader></ButtonLoader>}
         </button>
       </div>
-      <SuccessModal trasactionId={trasactionId}></SuccessModal>
+      <SuccessModal
+        unique_id={uniqueId}
+        trasactionId={trasactionId}
+      ></SuccessModal>
     </form>
   );
 };

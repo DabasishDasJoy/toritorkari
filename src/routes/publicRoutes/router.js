@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/invoice",
+        path: "/invoice/:uid",
         element: <Invoice></Invoice>,
       },
       {

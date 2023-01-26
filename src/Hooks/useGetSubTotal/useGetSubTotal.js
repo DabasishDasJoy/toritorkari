@@ -6,9 +6,8 @@ const useGetSubTotal = () => {
   const { cartItems } = useContext(CartContext);
   const [subTotal, setSubTotal] = useState(0);
   const shoppingCart = getStoredCart();
-  console.log("Hook Call");
+
   useEffect(() => {
-    console.log("Hook Effect");
     const subTotal = cartItems?.reduce(
       (prev, curr) =>
         prev +

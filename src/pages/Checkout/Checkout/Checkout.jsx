@@ -20,6 +20,8 @@ const Checkout = () => {
       <div className="lg:w-[65%] bg-white rounded-md lg:order-1 order-2">
         <Elements stripe={stripePromise}>
           <CheckoutForm
+            discount={discount}
+            shippingCost={shippingCost}
             setShippingCost={setShippingCost}
             grandTotal={grandTotal}
           ></CheckoutForm>
