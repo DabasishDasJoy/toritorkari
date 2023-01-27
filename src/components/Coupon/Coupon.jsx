@@ -4,7 +4,7 @@ import StatusTag from "../StatusTag/StatusTag";
 
 const Coupon = ({
   refetch,
-  offer: { name, coupon, discount, details, expiresIn, leastAmount },
+  offer: { name, coupon, discount, image, expiresIn, leastAmount },
 }) => {
   // Count down timer
   const [timeDays, setTimeDays] = useState();
@@ -56,11 +56,7 @@ const Coupon = ({
       <div className="lg:w-[65%] w-full lg:border-r-2 border-dashed flex">
         {/* image */}
         <div className="flex items-center">
-          <img
-            src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.ibb.co%2F23kQcB9%2Fins3.jpg&w=128&q=75"
-            alt=""
-            className="w-16"
-          />
+          <img src={image} alt="" className="w-16" />
         </div>
         {/*  */}
         <div className="text-black w-[65%] flex flex-col mx-auto justify-around lg:gap-0 gap-2">
@@ -111,7 +107,7 @@ const Coupon = ({
         >
           {coupon}
         </span>
-        <p className="text-xs font-medium text-black/80">
+        <p className="text-xs font-medium text-center text-black/80">
           Enjoy {discount}% off on{" "}
           <span className="font-semibold"> ${leastAmount} </span>
           shopping or more.

@@ -49,7 +49,7 @@
 }
 
 .tori-link {
-  @apply hover:text-primary border-none cursor-pointer flex items-center gap-1 transition-all delay-[100ms] no-underline;
+  @apply hover:text-primary border-none cursor-pointer flex items-center gap-1 transition-all delay-[50ms] no-underline;
 }
 
 .tori-input {

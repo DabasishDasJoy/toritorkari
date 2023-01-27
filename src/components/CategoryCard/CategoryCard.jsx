@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CategoryCard = ({
   category: { _id, categoryName, image, subCategories },
 }) => {
   const navigate = useNavigate();
+  const [subCat, setSubCat] = useState("All");
 
   return (
     <div
-      onClick={() => navigate(`/category/${_id}`)}
+      onClick={() => navigate(`/category/${_id}?subCat=${subCat}`)}
       className="grid lg:grid-cols-6 bg-white px-2 py-3 cursor-pointer rounded-sm text-sm text-black/80 hover:text-primary shadow-sm hover:shadow-2xl transition-all delay-[30ms]"
     >
       <div className="flex items-center justify-center lg:col-span-2">
@@ -19,13 +20,14 @@ const CategoryCard = ({
         <h6 className="mb-1 text-sm">{categoryName}</h6>
         <div className="flex flex-col gap-1 lg:items-start items-center">
           {subCategories?.map((subCategory, idx) => (
-            <Link
-              to={"/category/id"}
+            <span
+              onMouseEnter={() => setSubCat(subCategory)}
+              onMouseLeave={() => setSubCat("All")}
               key={idx}
               className="tori-link flex items-center gap-1 text-xs text-black/70"
             >
               <BiChevronRight /> {subCategory}
-            </Link>
+            </span>
           ))}
         </div>
       </div>

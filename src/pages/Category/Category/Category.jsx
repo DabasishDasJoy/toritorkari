@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
 import NotFound from "../../../components/NotFound/NotFound";
@@ -11,6 +11,8 @@ import TotalProduct from "../TotalProduct/TotalProduct";
 
 const Category = () => {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const subCat = searchParams.get("subCat");
 
   // Fetch Products
   const {
@@ -19,9 +21,9 @@ const Category = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [id],
+    queryKey: [id, subCat],
     queryFn: () => {
-      return axios.get(`/category/${id}`);
+      return axios.get(`/category/${id}?subCat=${subCat}`);
     },
   });
 
