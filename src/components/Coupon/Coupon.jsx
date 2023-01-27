@@ -1,48 +1,93 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import StatusTag from "../StatusTag/StatusTag";
 
-const Coupon = () => {
+const Coupon = ({ offer: { name, coupon, discount, details, expiresIn } }) => {
+  // Count down timer
+  const [timeDays, setTimeDays] = useState();
+  const [timeHours, setTimeHours] = useState();
+  const [timeMins, setTimeMins] = useState();
+  const [timeSecs, setTimeSecs] = useState();
+
+  let interval;
+  const startTimer = () => {
+    const countDownDate = new Date(expiresIn).getTime();
+
+    interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const days = Math.floor(distance / (24 * 60 * 60 * 1000));
+      const hours = Math.floor(
+        (distance % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
+      );
+      const mins = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+      const secs = Math.floor((distance % (60 * 1000)) / 1000);
+
+      if (distance < 0) {
+        // stop
+        clearInterval(interval.current);
+      } else {
+        // update
+        setTimeDays(days);
+        setTimeHours(hours);
+        setTimeMins(mins);
+        setTimeSecs(secs);
+      }
+    });
+  };
+
+  useEffect(() => {
+    startTimer();
+  });
+
   return (
     <div className="grid lg:grid-cols-6 grid-cols-1 px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
       {/* First Part */}
-      <div className="lg:col-span-4 lg:border-r-2 border-dashed flex gap-3">
+      <div className="lg:col-span-4 lg:border-r-2 border-dashed flex">
         {/* image */}
         <div className="flex items-center">
           <img
             src="https://kachabazar-store.vercel.app/_next/image?url=https%3A%2F%2Fi.ibb.co%2F23kQcB9%2Fins3.jpg&w=128&q=75"
             alt=""
-            className="w-16 h-16"
+            className="w-16"
           />
         </div>
         {/*  */}
-        <div className="text-black flex flex-col justify-center lg:gap-1 gap-2">
+        <div className="text-black w-[65%] flex flex-col mx-auto justify-around lg:gap-0 gap-2">
           <div className="flex items-center justify-between ">
             <p>
-              <span className="text-warning font-bold text-lg">10%</span> Off
+              <span className="text-accent font-bold">{discount}%</span> Off
             </p>
             <StatusTag color={true}>Active</StatusTag>
           </div>
-          <p className="font-semibold lg:text-lg text-md">
-            October Gift Voucher
-          </p>
+          <p className="font-semibold lg:text-base text-base">{name}</p>
 
           {/* countdown */}
-          <div className="">
+          <div className="w-full">
             <p className="text-black font-semibold flex gap-1">
-              <span className="bg-primary text-white px-2  rounded-md">23</span>{" "}
-              :<span className="bg-primary text-white px-2  rounded-md">8</span>{" "}
+              <span className="bg-primary text-white px-2  rounded-md">
+                {timeDays}
+              </span>{" "}
               :
-              <span className="bg-primary text-white px-2  rounded-md">23</span>{" "}
+              <span className="bg-primary text-white px-2  rounded-md">
+                {timeHours}
+              </span>{" "}
               :
-              <span className="bg-primary text-white px-2  rounded-md">23</span>{" "}
+              <span className="bg-primary text-white px-2  rounded-md">
+                {timeMins}
+              </span>{" "}
+              :
+              <span className="bg-primary text-white px-2  rounded-md">
+                {timeSecs}
+              </span>{" "}
             </p>
           </div>
         </div>
       </div>
 
       {/* Side Part */}
-      <div className="lg:col-span-2 px-2 gap-2 flex flex-col lg:items-center items-start">
+      <div className="lg:col-span-2 lg:px-2 gap-2 flex flex-col lg:items-center items-start">
         <span
           className="coupon-tag cursor-pointer tooltip tooltip-secondary"
           data-tip="Click to Copy"
@@ -53,12 +98,9 @@ const Coupon = () => {
             });
           }}
         >
-          October22
+          {coupon}
         </span>
-        <p className="text-xs font-medium text-black/80">
-          Enjoy 10% discount on more than{" "}
-          <span className="font-semibold">$500</span> Shoppings.
-        </p>
+        <p className="text-xs font-medium text-black/80">{details}</p>
       </div>
     </div>
   );

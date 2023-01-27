@@ -5,6 +5,7 @@ import { BsPrinter } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import ReactToPrint from "react-to-print";
 import axios from "../../../AxiosInstance/AxiosInstance";
+import Loader from "../../../components/Loader/Loader";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import "./Invoice.css";
@@ -20,7 +21,7 @@ const Invoice = () => {
     refetch,
     data: { data: invoice } = [],
   } = useQuery({
-    queryKey: ["invoices"],
+    queryKey: ["invoices", uid],
     queryFn: () => {
       return axios.get(`/invoices/${uid}?email=${user?.email}`);
     },
@@ -30,106 +31,113 @@ const Invoice = () => {
 
   return (
     <div className="sub-section bg-[#F9FAFB]">
-      <SuccessMessage></SuccessMessage>
+      {isLoading ? (
+        <Loader></Loader>
+      ) : (
+        <>
+          <SuccessMessage></SuccessMessage>
 
-      <div className="bg-white my-5 text-[17px]" ref={ref}>
-        <div className="bg-[#EEF2FF] rounded-t-md lg:p-5 p-2 text-black">
-          <div className="flex lg:flex-nowrap flex-wrap justify-between">
-            <h1 className="text-3xl uppercase font-bold">Invoice</h1>
-            <div className="lg:text-right text-left">
-              <p>Logo</p>
-              <p>
-                Cecilia Chapman, 561-4535 Nulla LA, <br /> United States 96522
-              </p>
+          <div className="bg-white my-5 text-[17px]" ref={ref}>
+            <div className="bg-[#EEF2FF] rounded-t-md lg:p-5 p-2 text-black">
+              <div className="flex lg:flex-nowrap flex-wrap justify-between">
+                <h1 className="text-3xl uppercase font-bold">Invoice</h1>
+                <div className="lg:text-right text-left">
+                  <p>Logo</p>
+                  <p>
+                    Cecilia Chapman, 561-4535 Nulla LA, <br /> United States
+                    96522
+                  </p>
+                </div>
+              </div>
+              <hr className="bg-white border-white my-2" />
+              <div className="flex lg:flex-nowrap flex-wrap justify-between text-[17px]">
+                <div>
+                  <p className="font-bold">Date</p>
+                  <p>{moment(invoice?.date).format("Do MMMM, YYYY")}</p>
+                </div>
+
+                <div className="text-center">
+                  <p className="font-bold">Invoice No</p>
+                  <p>{invoice?.invoice}</p>
+                </div>
+
+                <div className="lg:text-right">
+                  <p className=" font-bold">Invoice to</p>
+                  <p>
+                    {invoice?.firstname} {invoice?.lastname}
+                  </p>
+                  <p>{invoice?.address}</p>
+                  <p>
+                    {invoice?.city}, {invoice?.country}, {invoice?.zip}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:p-5 p-2">
+              <div className="overflow-x-auto text-black text-center  ">
+                <table className="w-full">
+                  {/* <!-- head --> */}
+                  <thead className="bg-secondary">
+                    <tr>
+                      <th>No</th>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Item Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {invoice?.cart?.map((item, idx) => (
+                      <tr key={item?._id}>
+                        <th>{idx + 1}</th>
+                        <td>{item?.name}</td>
+                        <td>{item?.quantity}</td>
+                        <td>${parseFloat(item?.price).toFixed(2)}</td>
+                        <td>${(item?.price * item?.quantity).toFixed(2)}</td>
+                      </tr>
+                    ))}
+                    {/* <!-- row 1 --> */}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="bg-primary/10 rounded-b-md text-black/80 sub-section lg:flex lg:flex-nowrap flex-wrap justify-between text-center">
+              <div>
+                <p className="text-base font-bold">Payment Method</p>
+                <p>{invoice?.paymentMethod}</p>
+              </div>
+
+              <div>
+                <p className="text-base font-bold">Shipping</p>
+                <p>${parseFloat(invoice?.shippingCost).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">Discount</p>
+                <p>${parseFloat(invoice?.discount).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">Total</p>
+                <p className="text-lg font-bold text-warning">
+                  ${parseFloat(invoice?.amount).toFixed(2)}
+                </p>
+              </div>
             </div>
           </div>
-          <hr className="bg-white border-white my-2" />
-          <div className="flex lg:flex-nowrap flex-wrap justify-between text-[17px]">
-            <div>
-              <p className="font-bold">Date</p>
-              <p>{moment(invoice?.date).format("Do MMMM, YYYY")}</p>
-            </div>
 
-            <div className="text-center">
-              <p className="font-bold">Invoice No</p>
-              <p>{invoice?.invoice}</p>
-            </div>
-
-            <div className="lg:text-right">
-              <p className=" font-bold">Invoice to</p>
-              <p>
-                {invoice?.firstname} {invoice?.lastname}
-              </p>
-              <p>{invoice?.address}</p>
-              <p>
-                {invoice?.city}, {invoice?.country}, {invoice?.zip}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:p-5 p-2">
-          <div className="overflow-x-auto text-black text-center  ">
-            <table className="w-full">
-              {/* <!-- head --> */}
-              <thead className="bg-secondary">
-                <tr>
-                  <th>No</th>
-                  <th>Product</th>
-                  <th>Quantity</th>
-                  <th>Item Price</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {invoice?.cart?.map((item, idx) => (
-                  <tr>
-                    <th>{idx + 1}</th>
-                    <td>{item?.name}</td>
-                    <td>{item?.quantity}</td>
-                    <td>${parseFloat(item?.price).toFixed(2)}</td>
-                    <td>${(item?.price * item?.quantity).toFixed(2)}</td>
-                  </tr>
-                ))}
-                {/* <!-- row 1 --> */}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="bg-primary/10 rounded-b-md text-black/80 sub-section lg:flex lg:flex-nowrap flex-wrap justify-between text-center">
-          <div>
-            <p className="text-base font-bold">Payment Method</p>
-            <p>{invoice?.paymentMethod}</p>
-          </div>
-
-          <div>
-            <p className="text-base font-bold">Shipping</p>
-            <p>${parseFloat(invoice?.shippingCost).toFixed(2)}</p>
-          </div>
-          <div>
-            <p className="text-base font-bold">Discount</p>
-            <p>${parseFloat(invoice?.discount).toFixed(2)}</p>
-          </div>
-          <div>
-            <p className="text-base font-bold">Total</p>
-            <p className="text-lg font-bold text-warning">
-              ${parseFloat(invoice?.amount).toFixed(2)}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <ReactToPrint
-        trigger={() => (
-          <div className="sub-section flex justify-end">
-            <button className="tori-btn-secondary w-[20%] flex justify-center items-center gap-1 ">
-              <BsPrinter className="  text-white" /> Print
-            </button>
-          </div>
-        )}
-        content={() => ref.current}
-      />
+          <ReactToPrint
+            trigger={() => (
+              <div className="sub-section flex justify-end">
+                <button className="tori-btn-secondary w-[20%] flex justify-center items-center gap-1 ">
+                  <BsPrinter className="  text-white" /> Print
+                </button>
+              </div>
+            )}
+            content={() => ref.current}
+          />
+        </>
+      )}
     </div>
   );
 };
