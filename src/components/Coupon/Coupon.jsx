@@ -3,7 +3,6 @@ import { toast } from "react-hot-toast";
 import StatusTag from "../StatusTag/StatusTag";
 
 const Coupon = ({
-  refetch,
   offer: { name, coupon, discount, image, expiresIn, leastAmount },
 }) => {
   // Count down timer

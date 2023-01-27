@@ -9,7 +9,6 @@ import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
 const Product = ({
-  refetch,
   product,
   product: { name, image, price, status, subCategory, _id },
 }) => {

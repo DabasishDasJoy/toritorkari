@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
@@ -13,6 +13,7 @@ const Category = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const subCat = searchParams.get("subCat");
+  const [sort, setSort] = useState("default");
 
   // Fetch Products
   const {
@@ -21,9 +22,9 @@ const Category = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [id, subCat],
+    queryKey: [id, subCat, sort],
     queryFn: () => {
-      return axios.get(`/category/${id}?subCat=${subCat}`);
+      return axios.get(`/category/${id}?subCat=${subCat}&sort=${sort}`);
     },
   });
 
@@ -31,17 +32,17 @@ const Category = () => {
     <div className="bg-[#F9FAFB] section">
       <CategoryAds></CategoryAds>
       <Categories></Categories>
-      <TotalProduct totalProuducts={products?.length}></TotalProduct>
+      <TotalProduct
+        refetch={refetch}
+        setSort={setSort}
+        totalProuducts={products?.length}
+      ></TotalProduct>
       <div className="grid lg:grid-cols-6 grid-cols-2 sub-section gap-3">
         {isLoading ? (
           <Loader></Loader>
         ) : products?.length ? (
           products?.map((product) => (
-            <Product
-              refetch={refetch}
-              key={product._id}
-              product={product}
-            ></Product>
+            <Product key={product._id} product={product}></Product>
           ))
         ) : (
           <NotFound></NotFound>
