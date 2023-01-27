@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
+import ValidationError from "../../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
@@ -11,10 +12,12 @@ import EmptyCart from "../../MyCart/EmptyCart/EmptyCart";
 const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
   const { cartItems, isLoading } = useContext(CartContext);
   const { user } = useContext(AuthContext);
+  const [leastAmountError, setLeastAmountError] = useState("");
 
   const [subTotal] = useGetSubTotal();
 
   const handleApplyDiscount = (e) => {
+    setLeastAmountError("");
     e.preventDefault();
     console.log(e.target.promo.value);
     axios
@@ -24,10 +27,16 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
       .then((res) => {
         console.log(res);
         if (res?.data?.message === "Valid") {
-          setDiscount(
-            parseFloat(((res.data?.discount / 100) * subTotal)?.toFixed(2))
-          );
-          toast.success("Coupon Applied");
+          if (subTotal >= res.data?.leastAmount) {
+            setDiscount(
+              parseFloat(((res.data?.discount / 100) * subTotal)?.toFixed(2))
+            );
+            toast.success("Coupon Applied");
+          } else {
+            setLeastAmountError(
+              `Please shop at least for $${res.data?.leastAmount}`
+            );
+          }
         } else if (res?.data?.message === "Expired") {
           toast.error("Sorry! Coupon Expired!");
         } else {
@@ -69,6 +78,11 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
           Apply
         </button>
       </form>
+      {leastAmountError && (
+        <div className="w-full flex justify-center">
+          <ValidationError message={leastAmountError}></ValidationError>
+        </div>
+      )}
       <div className="lg:px-5 px-2 flex flex-col gap-1 text-black/80 text-sm font-medium">
         <div className="flex justify-between ">
           <p>Subtotal</p>

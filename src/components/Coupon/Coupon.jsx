@@ -4,7 +4,7 @@ import StatusTag from "../StatusTag/StatusTag";
 
 const Coupon = ({
   refetch,
-  offer: { name, coupon, discount, details, expiresIn },
+  offer: { name, coupon, discount, details, expiresIn, leastAmount },
 }) => {
   // Count down timer
   const [timeDays, setTimeDays] = useState();
@@ -75,7 +75,7 @@ const Coupon = ({
           <p className="font-semibold lg:text-base text-base">{name}</p>
 
           {/* countdown */}
-          <div className="w-full">
+          <div className="w-full mt-1">
             <p className="text-black font-semibold flex gap-1">
               <span className="bg-primary text-white px-2  rounded-md">
                 {timeDays}
@@ -111,7 +111,11 @@ const Coupon = ({
         >
           {coupon}
         </span>
-        <p className="text-xs font-medium text-black/80">{details}</p>
+        <p className="text-xs font-medium text-black/80">
+          Enjoy {discount}% off on{" "}
+          <span className="font-semibold"> ${leastAmount} </span>
+          shopping or more.
+        </p>
       </div>
     </div>
   );
