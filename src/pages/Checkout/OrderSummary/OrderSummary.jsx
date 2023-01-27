@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
+import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
 import CartItem from "../../MyCart/CartItem/CartItem";
@@ -7,13 +10,30 @@ import EmptyCart from "../../MyCart/EmptyCart/EmptyCart";
 
 const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
   const { cartItems, isLoading } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
 
   const [subTotal] = useGetSubTotal();
 
   const handleApplyDiscount = (e) => {
     e.preventDefault();
     console.log(e.target.promo.value);
-    setDiscount(parseFloat(((10 / 100) * subTotal)?.toFixed(2)));
+    axios
+      .post(`/offers?email=${user?.email}`, {
+        coupon: e.target.promo.value,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res?.data?.message === "Valid") {
+          setDiscount(
+            parseFloat(((res.data?.discount / 100) * subTotal)?.toFixed(2))
+          );
+          toast.success("Coupon Applied");
+        } else if (res?.data?.message === "Expired") {
+          toast.error("Sorry! Coupon Expired!");
+        } else {
+          toast.error("Sorry! Coupon Invalid!");
+        }
+      });
   };
 
   return (
@@ -41,7 +61,11 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
           placeholder="Enter Discount Code"
           className="tori-input w-full"
         />
-        <button type="submit" className="tori-btn-secondary">
+        <button
+          disabled={discount}
+          type="submit"
+          className="tori-btn-secondary disabled:bg-gray-400 disabled:border-gray-400 disabled:text-white"
+        >
           Apply
         </button>
       </form>
@@ -56,7 +80,7 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
         </div>
         <div className="flex justify-between">
           <p>Discount</p>
-          <p>${parseFloat(discount)}</p>
+          <p className="text-accent">${parseFloat(discount)}</p>
         </div>
         <hr />
         <div className="flex justify-between font-extrabold text-lg text-primary">

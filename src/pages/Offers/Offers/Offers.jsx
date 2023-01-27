@@ -27,7 +27,7 @@ const Offers = () => {
           <Loader></Loader>
         ) : (
           offers?.map((offer) => (
-            <Coupon key={offer?._id} offer={offer}></Coupon>
+            <Coupon key={offer?._id} refetch={refetch} offer={offer}></Coupon>
           ))
         )}
       </div>

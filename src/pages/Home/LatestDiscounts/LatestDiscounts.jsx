@@ -1,7 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import axios from "../../../AxiosInstance/AxiosInstance";
+import Loader from "../../../components/Loader/Loader";
+import Product from "../../../components/Product/Product";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 
 const LatestDiscounts = () => {
+  const {
+    isLoading,
+    error,
+    refetch,
+    data: { data: discounts } = [],
+  } = useQuery({
+    queryKey: ["discounts"],
+    queryFn: () => {
+      return axios.get("/discounts");
+    },
+  });
+
   return (
     <section id="discount" className="bg-[#F9FAFB] section">
       <SectionHeader
@@ -12,17 +28,13 @@ const LatestDiscounts = () => {
         Latest Dicounted Products
       </SectionHeader>
       <div className="grid lg:grid-cols-6 grid-cols-2 gap-3 sub-section">
-        {/* <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product> */}
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          discounts?.map((discount) => (
+            <Product key={discount?._id} product={discount}></Product>
+          ))
+        )}
       </div>
     </section>
   );

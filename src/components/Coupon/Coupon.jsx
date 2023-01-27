@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import StatusTag from "../StatusTag/StatusTag";
 
-const Coupon = ({ offer: { name, coupon, discount, details, expiresIn } }) => {
+const Coupon = ({
+  refetch,
+  offer: { name, coupon, discount, details, expiresIn },
+}) => {
   // Count down timer
   const [timeDays, setTimeDays] = useState();
   const [timeHours, setTimeHours] = useState();
   const [timeMins, setTimeMins] = useState();
   const [timeSecs, setTimeSecs] = useState();
+  const [expired, setExpired] = useState(false);
 
   let interval;
   const startTimer = () => {
@@ -27,6 +31,11 @@ const Coupon = ({ offer: { name, coupon, discount, details, expiresIn } }) => {
       if (distance < 0) {
         // stop
         clearInterval(interval.current);
+        setTimeDays(0);
+        setTimeHours(0);
+        setTimeMins(0);
+        setTimeSecs(0);
+        setExpired(true);
       } else {
         // update
         setTimeDays(days);
@@ -59,7 +68,9 @@ const Coupon = ({ offer: { name, coupon, discount, details, expiresIn } }) => {
             <p>
               <span className="text-accent font-bold">{discount}%</span> Off
             </p>
-            <StatusTag color={true}>Active</StatusTag>
+            <StatusTag color={expired ? false : true}>
+              {expired ? "Expired" : "Active"}
+            </StatusTag>
           </div>
           <p className="font-semibold lg:text-base text-base">{name}</p>
 
