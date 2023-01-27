@@ -21,16 +21,16 @@
 }
 
 .tori-btn-primary {
-  @apply bg-primary text-white rounded-full px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-[100ms] font-bold cursor-pointer;
+  @apply bg-primary text-white rounded-full px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-[50ms] font-bold cursor-pointer;
 }
 .tori-btn-secondary {
-  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-[7px] text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-[100ms] font-bold cursor-pointer;
+  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-[7px] text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-[50ms] font-bold cursor-pointer;
 }
 .tori-btn-warning {
-  @apply flex items-center gap-1 justify-center bg-warning text-white rounded-md px-3 py-[7px] text-sm border border-warning hover:bg-white hover:text-warning transition-colors delay-[100ms] font-bold cursor-pointer;
+  @apply flex items-center gap-1 justify-center bg-warning text-white rounded-md px-3 py-[7px] text-sm border border-warning hover:bg-white hover:text-warning transition-colors delay-[50ms] font-bold cursor-pointer;
 }
 .tori-btn-accent {
-  @apply flex items-center gap-1 justify-center bg-accent text-white rounded-md px-3 py-[7px] text-sm border border-warning hover:bg-white hover:text-warning transition-colors delay-[100ms] font-bold cursor-pointer;
+  @apply flex items-center gap-1 justify-center bg-accent text-white rounded-md px-3 py-[7px] text-sm border border-warning hover:bg-white hover:text-warning transition-colors delay-[50ms] font-bold cursor-pointer;
 }
 .tori-text-neutral {
   @apply text-[#374151];

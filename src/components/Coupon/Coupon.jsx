@@ -42,9 +42,9 @@ const Coupon = ({ offer: { name, coupon, discount, details, expiresIn } }) => {
   });
 
   return (
-    <div className="grid lg:grid-cols-6 grid-cols-1 px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
+    <div className="flex lg:flex-nowrap flex-wrap px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
       {/* First Part */}
-      <div className="lg:col-span-4 lg:border-r-2 border-dashed flex">
+      <div className="lg:w-[65%] w-full lg:border-r-2 border-dashed flex">
         {/* image */}
         <div className="flex items-center">
           <img
@@ -87,7 +87,7 @@ const Coupon = ({ offer: { name, coupon, discount, details, expiresIn } }) => {
       </div>
 
       {/* Side Part */}
-      <div className="lg:col-span-2 lg:px-2 gap-2 flex flex-col lg:items-center items-start">
+      <div className="lg:w-[35%] w-full lg:px-2 gap-2 flex flex-col lg:items-center items-start">
         <span
           className="coupon-tag cursor-pointer tooltip tooltip-secondary"
           data-tip="Click to Copy"

@@ -5,7 +5,7 @@ const AdvertiseProduct = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 w-full py-5 lg:px-10 px-2 lg:h-[346px] bg-secondary rounded-md">
       <div className="lg:col-span-3 flex flex-col justify-center lg:gap-3 gap-2 lg:order-0 order-1">
-        <h1 className="lg:text-3xl text-xl font-bold text-black ">
+        <h1 className="lg:text-3xl text-xl font-bold text-gray-900 ">
           Best Different Type of Grocery Store
         </h1>
         <p className="text-base tori-text-neutral">

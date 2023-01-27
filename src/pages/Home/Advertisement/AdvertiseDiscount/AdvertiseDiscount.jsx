@@ -4,7 +4,7 @@ const AdvertiseDiscount = () => {
   return (
     <div className="bg-[#FFEDD5] col-span-full gap-3 flex lg:flex-row flex-col lg:px-10 lg:py-6 p-5 justify-between lg:items-center items-start rounded-md">
       <div>
-        <h1 className="lg:text-xl text-lg text-black">
+        <h1 className="lg:text-xl text-lg text-gray-800">
           <span className="text-primary font-semibold">
             100% Natural Quality{" "}
           </span>{" "}

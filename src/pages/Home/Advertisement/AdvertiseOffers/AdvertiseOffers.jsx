@@ -18,7 +18,7 @@ const AdvertiseOffers = () => {
   });
 
   return (
-    <div className="border-2  text-sm tori-bg-gray rounded-md border-warning hover:border-primary lg:col-span-2 overflow-hidden">
+    <div className="border-2 lg:text-base text-sm tori-bg-gray rounded-md border-warning hover:border-primary lg:col-span-2 overflow-hidden">
       <div className="bg-[#FFEDD5] text-black text-center py-2 font-medium">
         Latest Super Discount Active Coupon Code
       </div>
