@@ -17,7 +17,14 @@ const AppAdvertise = () => {
               special discount.
             </p>
             <div>
-              <button className="tori-btn-primary mt-5">Download App</button>
+              <a
+                rel="noreferrer"
+                target={"_blank"}
+                href={"https://play.google.com/"}
+                className="tori-btn-primary mt-5"
+              >
+                Download App
+              </a>
             </div>
           </div>
           <div className="lg:col-span-2 lg:order-2 order-1 flex justify-center items-center p-3">

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const AppDownload = () => {
   return (
@@ -22,20 +21,28 @@ const AppDownload = () => {
             offer.
           </p>
           <div className="flex items-center justify-center gap-5 mt-2">
-            <Link>
+            <a
+              rel="noreferrer"
+              target={"_blank"}
+              href={"https://www.apple.com/app-store/"}
+            >
               <img
                 src="https://kachabazar-store.vercel.app/app/app-store.svg"
                 alt=""
                 className="w-32"
               />
-            </Link>
-            <Link>
+            </a>
+            <a
+              rel="noreferrer"
+              target={"_blank"}
+              href={"https://play.google.com/"}
+            >
               <img
                 src="https://kachabazar-store.vercel.app/app/play-store.svg"
                 alt=""
                 className="w-32"
               />
-            </Link>
+            </a>
           </div>
         </div>
         <div className="lg:flex items-center  hidden">

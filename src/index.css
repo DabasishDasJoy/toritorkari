@@ -69,21 +69,21 @@
 }
 
 .social-icon {
-  @apply border rounded-full p-3 cursor-pointer hover:text-white transition-all delay-[100ms];
+  @apply border rounded-full p-2 cursor-pointer flex justify-center items-center text-white transition-all delay-[50ms];
 }
 
 .twitter {
-  @apply hover:bg-[#1DA1F2] text-[#1DA1F2];
+  @apply bg-[#1DA1F2] hover:bg-white hover:text-[#1DA1F2];
 }
 
 .facebook {
-  @apply hover:bg-[#4867AA] text-[#4867AA];
+  @apply bg-[#4867AA] hover:bg-white hover:text-[#4867AA];
 }
 .whatsApp {
-  @apply hover:bg-primary text-primary;
+  @apply bg-primary hover:bg-white hover:text-primary;
 }
 .google {
-  @apply hover:bg-[#DD5144] text-[#DD5144];
+  @apply bg-[#DD5144] hover:bg-white hover:text-[#DD5144];
 }
 
 ::-webkit-scrollbar {
