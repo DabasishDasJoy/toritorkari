@@ -11,6 +11,7 @@ const ProductDetails = () => {
   const location = useLocation();
 
   const from = location?.state?.Navigatedfrom?.pathname;
+  console.log("🚀 ~ file: ProductDetails.jsx:14 ~ ProductDetails ~ from", from);
 
   const {
     isLoading,
@@ -35,8 +36,16 @@ const ProductDetails = () => {
             </Link>
           </li>
           <li>
-            <Link to={from} className="tori-link">
+            <Link to={`${from}?subCat=All`} className="tori-link">
               {selectedProduct?.category}
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`${from}?subCat=${selectedProduct?.subCategory}`}
+              className="tori-link"
+            >
+              {selectedProduct?.subCategory}
             </Link>
           </li>
           <li>{selectedProduct?.name}</li>

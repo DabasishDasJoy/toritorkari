@@ -18,6 +18,7 @@ import { CiCircleMore } from "react-icons/ci";
 import { FreeMode, Thumbs } from "swiper";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
+import RatingsStars from "../RatingsStars/RatingsStars";
 
 const ProductDetailsCard = ({
   children,
@@ -129,7 +130,13 @@ const ProductDetailsCard = ({
         {/* Name */}
         <h5 className="text-xl text-gray-700">{name}</h5>
 
-        <span className="text-accent">Ratings</span>
+        {selectedProduct?.ratings ? (
+          <RatingsStars ratings={selectedProduct?.ratings}></RatingsStars>
+        ) : (
+          <span className="text-gray-400 text-xs leading-none">
+            Not Reviewed Yet!
+          </span>
+        )}
 
         {/* Pice */}
         <h6 className="text-2xl text-primary font-bold">

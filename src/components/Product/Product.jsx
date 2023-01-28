@@ -6,6 +6,7 @@ import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
 import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
+import RatingsStars from "../RatingsStars/RatingsStars";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
 const Product = ({
@@ -40,7 +41,7 @@ const Product = ({
   };
 
   return (
-    <div className="text-black/90 flex flex-col  gap-2 overflow-hidden bg-white  rounded-sm p-2 product relative">
+    <div className="text-black/90 flex flex-col gap-1 overflow-hidden bg-white  rounded-sm p-2 product relative">
       {/* Offers */}
       {product?.discount && (
         <span
@@ -51,7 +52,7 @@ const Product = ({
       )}
 
       {/* View Button */}
-      <div className="action absolute bottom-[39%] right-0 left-0 z-10">
+      <div className="action absolute bottom-[43%] right-0 left-0 z-10">
         <div className="flex max-w-fit mx-auto items-center justify-center p-[2px] gap-2 bg-gray-200 rounded-full">
           <label
             onClick={() => setSelectedProduct(product)}
@@ -92,9 +93,17 @@ const Product = ({
         <p className="text-black/80">{name}</p>
       </div>
 
+      {product?.ratings ? (
+        <RatingsStars ratings={product?.ratings}></RatingsStars>
+      ) : (
+        <span className="text-gray-400 text-xs leading-none">
+          Not Reviewed Yet!
+        </span>
+      )}
+
       {/* Price */}
-      <div className="flex justify-between items-center flex-1">
-        <span className="price">
+      <div className="flex justify-between items-end flex-1 mt-1">
+        <span className="price my-auto">
           $
           {product?.discount
             ? (product?.price - (product.discount / 100) * price)?.toFixed(2)
