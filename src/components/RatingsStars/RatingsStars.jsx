@@ -12,18 +12,13 @@ const RatingsStars = ({ ratings }) => {
           //     name="rating-2"
           //     className="mask mask-star-2 bg-accent w-3 h-3"
           //   />
-          <AiFillStar className="w-3 h-3 text-accent" />
+          <AiFillStar key={idx} className="w-3 h-3 text-accent" />
         ))}
         {ratings > parseInt(ratings) && (
           <RiStarHalfFill className="w-3 h-3 text-accent" />
         )}
         {[...Array(Math.floor(5 - ratings)).keys()].map((idx) => (
-          //   <span
-          //     key={idx}
-          //     name="rating-2"
-          //     className="mask mask-star-2 bg-accent w-3 h-3"
-          //   />
-          <AiOutlineStar className="w-3 h-3 text-accent" />
+          <AiOutlineStar key={idx} className="w-3 h-3 text-accent" />
         ))}
       </div>
 

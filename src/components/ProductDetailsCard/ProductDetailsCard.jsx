@@ -130,7 +130,7 @@ const ProductDetailsCard = ({
         {/* Name */}
         <h5 className="text-xl text-gray-700">{name}</h5>
 
-        {selectedProduct?.ratings ? (
+        {selectedProduct?.ratings > 0 ? (
           <RatingsStars ratings={selectedProduct?.ratings}></RatingsStars>
         ) : (
           <span className="text-gray-400 text-xs leading-none">

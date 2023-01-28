@@ -93,7 +93,7 @@ const Product = ({
         <p className="text-black/80">{name}</p>
       </div>
 
-      {product?.ratings ? (
+      {product?.ratings > 0 ? (
         <RatingsStars ratings={product?.ratings}></RatingsStars>
       ) : (
         <span className="text-gray-400 text-xs leading-none">
