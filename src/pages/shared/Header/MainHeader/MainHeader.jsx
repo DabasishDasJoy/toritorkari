@@ -20,7 +20,7 @@ const MainHeader = ({ setLoginOrRegister }) => {
   // Search Handler
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(e.target.searchtext.value);
+
     /**
      * Grab search text
      * Navigate to search result page

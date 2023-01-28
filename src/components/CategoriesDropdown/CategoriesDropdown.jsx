@@ -52,7 +52,9 @@ const CategoriesDropdown = ({ idText }) => {
               <div className="accordion-content flex flex-col">
                 {category?.subCategories?.map((subCategory, idx) => (
                   <Link
-                    to={`/category/${category?._id}?subCat=${subCategory}`}
+                    to={`/category/${
+                      category?._id
+                    }?subcategory=${subCategory.toLowerCase()}`}
                     className="text-black/80 flex items-center gap-x-2 tori-link"
                     key={idx}
                   >

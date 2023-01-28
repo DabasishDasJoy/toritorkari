@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import axios from "../../AxiosInstance/AxiosInstance";
 import Loader from "../../components/Loader/Loader";
 import NotFound from "../../components/NotFound/NotFound";
+import Pagination from "../../components/Pagination/Pagination";
 import Product from "../../components/Product/Product";
 import Categories from "../Category/Categories/Categories";
 import CategoryAds from "../Category/CategoryAds/CategoryAds";
@@ -13,18 +14,24 @@ const SearchResult = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
   const [sort, setSort] = useState("default");
+  const [size, setSize] = useState(6);
+  const [page, setPage] = useState(0);
 
   const {
-    data: { data: products } = [],
+    data: { data } = [],
     error,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [query],
+    queryKey: [query, sort, page, size],
     queryFn: () => {
-      return axios.get(`/search?query=${query}&sort=${sort}`);
+      return axios.get(
+        `/search?query=${query}&sort=${sort}&page=${page}&size=${size}`
+      );
     },
   });
+  const products = data?.result;
+  const pages = Math.ceil(data?.dataCount / size) || 0;
 
   return (
     <div className="bg-[#F9FAFB] section">
@@ -49,16 +56,7 @@ const SearchResult = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center items-center gap-2">
-        {[...Array(5).keys()].map((idx) => (
-          <button
-            className="border-black/20 border px-2 transition-all delay-75 hover:bg-primary rounded-sm text-black/80 hover:text-white"
-            key={idx}
-          >
-            {idx + 1}
-          </button>
-        ))}
-      </div>
+      <Pagination page={page} setPage={setPage} pages={pages}></Pagination>
     </div>
   );
 };
