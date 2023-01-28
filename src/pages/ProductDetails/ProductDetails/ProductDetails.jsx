@@ -11,7 +11,6 @@ const ProductDetails = () => {
   const location = useLocation();
 
   const from = location?.state?.Navigatedfrom?.pathname;
-  console.log("🚀 ~ file: ProductDetails.jsx:14 ~ ProductDetails ~ from", from);
 
   const {
     isLoading,

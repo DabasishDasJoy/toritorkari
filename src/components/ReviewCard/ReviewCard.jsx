@@ -4,7 +4,6 @@ import React from "react";
 const ReviewCard = ({
   review: { image, userName, ratings, review, dateAdded },
 }) => {
-  console.log("🚀 ~ file: ReviewCard.jsx:7 ~ dateAdded", dateAdded);
   return (
     <div className="text-gray-700">
       {/* Name, image, and star */}

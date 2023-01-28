@@ -1,30 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import axios from "../../../AxiosInstance/AxiosInstance";
-import Loader from "../../../components/Loader/Loader";
-import NotFound from "../../../components/NotFound/NotFound";
-import Product from "../../../components/Product/Product";
-import Categories from "../Categories/Categories";
-import CategoryAds from "../CategoryAds/CategoryAds";
-import TotalProduct from "../TotalProduct/TotalProduct";
+import { useSearchParams } from "react-router-dom";
+import axios from "../../AxiosInstance/AxiosInstance";
+import Loader from "../../components/Loader/Loader";
+import NotFound from "../../components/NotFound/NotFound";
+import Product from "../../components/Product/Product";
+import Categories from "../Category/Categories/Categories";
+import CategoryAds from "../Category/CategoryAds/CategoryAds";
+import TotalProduct from "../Category/TotalProduct/TotalProduct";
 
-const Category = () => {
-  const { id } = useParams();
+const SearchResult = () => {
   const [searchParams] = useSearchParams();
-  const subCat = searchParams.get("subcategory");
+  const query = searchParams.get("query");
   const [sort, setSort] = useState("default");
 
-  // Fetch Products
   const {
     data: { data: products } = [],
     error,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: [id, subCat, sort],
+    queryKey: [query],
     queryFn: () => {
-      return axios.get(`/category/${id}?subcategory=${subCat}&sort=${sort}`);
+      return axios.get(`/search?query=${query}&sort=${sort}`);
     },
   });
 
@@ -37,6 +35,7 @@ const Category = () => {
         setSort={setSort}
         totalProuducts={products?.length}
       ></TotalProduct>
+
       <div className="grid lg:grid-cols-6 grid-cols-2 sub-section gap-3">
         {isLoading ? (
           <Loader></Loader>
@@ -64,4 +63,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default SearchResult;

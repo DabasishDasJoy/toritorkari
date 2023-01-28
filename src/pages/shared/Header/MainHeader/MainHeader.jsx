@@ -3,7 +3,7 @@ import { AiOutlineCaretDown, AiOutlineSearch } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import CategoriesDropdown from "../../../../components/CategoriesDropdown/CategoriesDropdown";
 import Indicator from "../../../../components/Indicator/Indicator";
 import Logo from "../../../../components/Logo/Logo";
@@ -15,6 +15,19 @@ import TopHeader from "../TopHeader/TopHeader";
 
 const MainHeader = ({ setLoginOrRegister }) => {
   const { numberOfCartItems, refetch } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  // Search Handler
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(e.target.searchtext.value);
+    /**
+     * Grab search text
+     * Navigate to search result page
+     * Show results
+     * */
+    navigate(`/search?query=${e.target.searchtext.value.toLowerCase()}`);
+  };
 
   return (
     <div className="drawer">
@@ -67,16 +80,20 @@ const MainHeader = ({ setLoginOrRegister }) => {
               </div>
 
               {/* Text input */}
-              <div className="flex flex-1 justify-between rounded-r-full overflow-hidden bg-white items-center h-full">
+              <form
+                onSubmit={handleSearch}
+                className="flex flex-1 justify-between rounded-r-full overflow-hidden bg-white items-center h-full"
+              >
                 <input
                   type="text"
+                  name="searchtext"
                   placeholder="Search Products(e.g. Fish, Oil etc.)"
                   className="outline-none px-1 w-full"
                 />
-                <button className="lg:px-5 px-1 h-full bg-accent">
+                <button type="submit" className="lg:px-5 px-1 h-full bg-accent">
                   <AiOutlineSearch className="icon text-white" />
                 </button>
-              </div>
+              </form>
             </div>
           </div>
 

@@ -6,11 +6,13 @@ const CategoryCard = ({
   category: { _id, categoryName, image, subCategories },
 }) => {
   const navigate = useNavigate();
-  const [subCat, setSubCat] = useState("All");
+  const [subCat, setSubCat] = useState("all");
 
   return (
     <div
-      onClick={() => navigate(`/category/${_id}?subCat=${subCat}`)}
+      onClick={() =>
+        navigate(`/category/${_id}?subcategory=${subCat.toLowerCase()}`)
+      }
       className="grid lg:grid-cols-6 bg-white px-2 py-3 cursor-pointer rounded-sm text-sm text-black/80 hover:text-primary shadow-sm hover:shadow-2xl transition-all delay-[30ms]"
     >
       <div className="flex items-center justify-center lg:col-span-2">
@@ -22,7 +24,7 @@ const CategoryCard = ({
           {subCategories?.map((subCategory, idx) => (
             <span
               onMouseEnter={() => setSubCat(subCategory)}
-              onMouseLeave={() => setSubCat("All")}
+              onMouseLeave={() => setSubCat("all")}
               key={idx}
               className="tori-link flex items-center gap-1 text-xs text-black/70"
             >

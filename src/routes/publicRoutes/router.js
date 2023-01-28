@@ -9,6 +9,7 @@ import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
 import Offers from "../../pages/Offers/Offers/Offers";
 import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDetails";
+import SearchResult from "../../pages/SearchResult/SearchResult";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         // loader: ({ params }) => {
         //   return axios.get(`/category/${params.categoryName}`);
         // },
+      },
+      {
+        path: "/search",
+        element: <SearchResult></SearchResult>,
       },
       {
         path: "/user/dashboard",
