@@ -46,7 +46,12 @@ const Coupon = ({
   };
 
   useEffect(() => {
+    let isMounted = true;
     startTimer();
+
+    return () => {
+      isMounted = false;
+    };
   });
 
   return (

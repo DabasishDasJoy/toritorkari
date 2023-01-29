@@ -27,8 +27,6 @@ const Invoice = () => {
     },
   });
 
-  console.log(invoice);
-
   return (
     <div className="sub-section bg-[#F9FAFB]">
       {isLoading ? (

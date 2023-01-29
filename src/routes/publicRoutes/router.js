@@ -4,6 +4,8 @@ import Main from "../../layouts/Main/Main";
 import Category from "../../pages/Category/Category/Category";
 import Checkout from "../../pages/Checkout/Checkout/Checkout";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
+import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
+import UpdateProfile from "../../pages/Dashboard/UpdateProfile/UpdateProfile";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
@@ -63,6 +65,14 @@ export const router = createBrowserRouter([
           {
             path: "/user/dashboard",
             element: <Dashboard></Dashboard>,
+          },
+          {
+            path: "/user/dashboard/myorders",
+            element: <MyOrders></MyOrders>,
+          },
+          {
+            path: "/user/dashboard/updateProfile",
+            element: <UpdateProfile></UpdateProfile>,
           },
         ],
       },

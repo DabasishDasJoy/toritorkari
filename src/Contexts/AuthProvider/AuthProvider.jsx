@@ -51,8 +51,8 @@ const AuthProvider = ({ children }) => {
   };
 
   // Update User
-  const updateUser = (name) => {
-    return updateProfile(auth.currentUser, { displayName: name });
+  const updateUser = (data) => {
+    return updateProfile(auth.currentUser, { ...data });
   };
   // Logout
   const logout = () => {

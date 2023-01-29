@@ -21,24 +21,36 @@ const DashboardSidebar = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="bg-white col-span-3 text-black py-10 px-5 rounded-sm">
-      <div className="flex flex-col gap-2">
+    <div className=" lg:w-[30%] relative text-gray-800 ">
+      <div className="flex flex-col divide-y-2 sticky top-0 bg-white px-5 py-3 rounded-sm">
         <Link to={"/user/dashboard"} className="dashboard-link">
-          <RiDashboardLine />
+          <span className="border rounded-full p-1">
+            <RiDashboardLine />
+          </span>
           Dashboard
         </Link>
-        <Link className="dashboard-link">
-          <AiOutlineMenuFold />
+        <Link to={"/user/dashboard/myorders"} className="dashboard-link">
+          <span className="border rounded-full p-1">
+            <AiOutlineMenuFold />
+          </span>
           My Orders
         </Link>
-        <Link className="dashboard-link">
-          <AiOutlineSetting /> Update Profile
+        <Link to={"/user/dashboard/updateProfile"} className="dashboard-link">
+          <span className="border rounded-full p-1">
+            <AiOutlineSetting />
+          </span>
+          Update Profile
         </Link>
         <Link className="dashboard-link">
-          <RiLockPasswordLine /> Change Password
+          <span className="border rounded-full p-1">
+            <RiLockPasswordLine />{" "}
+          </span>{" "}
+          Change Password
         </Link>
         <button onClick={handleLogout} className="dashboard-link">
-          <RiLogoutCircleLine />
+          <span className="border rounded-full p-1">
+            <RiLogoutCircleLine />
+          </span>
           Logout
         </button>
       </div>

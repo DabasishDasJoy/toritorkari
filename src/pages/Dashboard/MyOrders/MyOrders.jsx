@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import moment from "moment/moment";
+import moment from "moment";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
-import OrdersStatistics from "../../../components/OrdersStatistics/OrdersStatistics";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
-const Dashboard = () => {
+const MyOrders = () => {
   const { user } = useContext(AuthContext);
-
   const {
     isLoading,
     error,
@@ -24,9 +23,8 @@ const Dashboard = () => {
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
       <h4 className="text-base text-gray-700 font-semibold leading-none">
-        Dashboard
+        My Orders
       </h4>
-      <OrdersStatistics></OrdersStatistics>
 
       {isLoading ? (
         <Loader></Loader>
@@ -41,6 +39,7 @@ const Dashboard = () => {
                 <th>Method</th>
                 <th>Status</th>
                 <th>Total</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody className="text-xs">
@@ -61,6 +60,14 @@ const Dashboard = () => {
                       ${parseFloat(invoice?.amount).toFixed(2)}
                     </span>
                   </td>
+                  <td>
+                    <Link
+                      to={`/invoice/${invoice?.invoiceId}`}
+                      className="text-primary bg-primary/20 rounded-full px-2 py-[2px] hover:text-white hover:bg-primary"
+                    >
+                      Detials
+                    </Link>
+                  </td>
                 </tr>
               ))}
 
@@ -73,4 +80,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default MyOrders;

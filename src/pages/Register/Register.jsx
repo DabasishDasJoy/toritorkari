@@ -50,7 +50,7 @@ const Register = ({ setLoginOrRegister }) => {
   };
 
   const updateUserProfile = (data) => {
-    updateUser(data.userName)
+    updateUser({ displayName: data.userName })
       .then((res) => {
         // Save user info in DB
         saveUserToDb(data);
