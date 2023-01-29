@@ -1,13 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
+import Blogs from "../../pages/Blogs/Blogs";
 import Category from "../../pages/Category/Category/Category";
 import Checkout from "../../pages/Checkout/Checkout/Checkout";
+import ContactUs from "../../pages/ContactUs/ContactUs";
 import ChangePassword from "../../pages/Dashboard/ChangePassword/ChangePassword";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
 import UpdateProfile from "../../pages/Dashboard/UpdateProfile/UpdateProfile";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
+import FAQ from "../../pages/FaQ/FAQ";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
 import Offers from "../../pages/Offers/Offers/Offers";
@@ -54,6 +57,18 @@ export const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchResult></SearchResult>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/blog",
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "/faq",
+        element: <FAQ></FAQ>,
       },
       {
         path: "/user/dashboard",
