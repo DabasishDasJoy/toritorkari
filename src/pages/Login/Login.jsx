@@ -5,14 +5,14 @@ import { toast } from "react-hot-toast";
 import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useGetToken from "../../Hooks/useGetToken/useGetToken";
 
-const Login = ({ setLoginOrRegister }) => {
+const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
   const { loginModal, signIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
@@ -159,30 +159,27 @@ const Login = ({ setLoginOrRegister }) => {
           {/* Input End */}
 
           {/* Forgot Pass */}
-          <div className="flex justify-between items-center">
+          <div className="flex text-xs justify-between items-center">
             <label className="cursor-pointer flex items-center gap-1">
               <input
                 type="checkbox"
                 className="checkbox w-3 h-3 rounded-sm checkbox-primary"
               />
-              <span className="label-text-alt text-primary text-xs">
-                Remember me
-              </span>
+              <span className="text-primary">Remember me</span>
             </label>
-            <label className="">
-              <Link
-                href="#"
-                className="label-text-alt hover text-primary hover:font-bold transition-all delay-75"
-              >
-                Forgot password?
-              </Link>
-            </label>
+
+            <button
+              onClick={() => setIsPasswordReset(true)}
+              className="hover text-primary hover:font-bold transition-all delay-75"
+            >
+              Forgot password?
+            </button>
           </div>
           {/* End */}
 
           {/* Submit */}
           <button
-            className="tori-btn-secondary disabled:bg-primary/80"
+            className="tori-btn-secondary mt-2 disabled:bg-primary/80"
             disabled={loginLoading}
           >
             {loginLoading ? <ButtonLoader></ButtonLoader> : "Sign In"}
@@ -204,7 +201,7 @@ const Login = ({ setLoginOrRegister }) => {
         {/* Form end */}
 
         {/* Divider */}
-        <div className="divider mt-5 mb-2 after:bg-gray-100 before:bg-gray-100 after:h-[1px] before:h-[1px] text-black/60 text-xs">
+        <div className="divider mt-5 mb-2 after:bg-gray-200 before:bg-gray-200 after:h-[1px] before:h-[1px] text-black/60 text-xs">
           Or Login with Social Account
         </div>
         {/* Social Login */}

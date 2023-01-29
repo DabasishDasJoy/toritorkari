@@ -7,7 +7,7 @@ const ConfirmationModal = ({ handleDelete, data, handleClose }) => {
 
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="confirmation-modal" className="modal-toggle" />
-      <div className="modal">
+      <div className="modal bg-black/80">
         <div className="modal-box rounded-sm max-w-xs text-center text-gray-600">
           <h3 className="font-bold text-lg">Are you sure want to delete?</h3>
 

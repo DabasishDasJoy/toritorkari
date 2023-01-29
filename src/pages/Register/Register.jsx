@@ -234,7 +234,7 @@ const Register = ({ setLoginOrRegister }) => {
 
           {/* SUbmit */}
           <button
-            className={`tori-btn-secondary disabled:bg-primary/80`}
+            className={`tori-btn-secondary mt-2 disabled:bg-primary/80`}
             disabled={registerLoading}
           >
             {registerLoading ? <ButtonLoader /> : "Sign Up"}
@@ -255,7 +255,7 @@ const Register = ({ setLoginOrRegister }) => {
         {/* Form end */}
 
         {/* Divider */}
-        <div className="divider mt-5 mb-2 after:bg-gray-100 before:bg-gray-100 after:h-[1px] before:h-[1px] text-black/60 text-xs">
+        <div className="divider mt-5 mb-2 after:bg-gray-200 before:bg-gray-200 after:h-[1px] before:h-[1px] text-black/60 text-xs">
           Or Login with Social Account
         </div>
         {/* Social Login */}
