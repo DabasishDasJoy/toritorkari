@@ -6,7 +6,9 @@ function App() {
   const [preLoading, setPreLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setPreLoading(false), 2000);
+    const timer = setTimeout(() => setPreLoading(false), 2000);
+
+    return () => clearTimeout(timer);
   }, []);
   return (
     <div className="font-rubik max-w-screen-2xl mx-auto">

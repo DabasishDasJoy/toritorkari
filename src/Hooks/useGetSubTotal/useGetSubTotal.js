@@ -8,17 +8,24 @@ const useGetSubTotal = () => {
   const shoppingCart = getStoredCart();
 
   useEffect(() => {
-    const subTotal = cartItems?.reduce(
-      (prev, curr) =>
-        prev +
-        parseFloat(
-          (curr?.discount
-            ? curr?.price - curr?.price * (curr?.discount / 100)
-            : curr?.price) * shoppingCart[curr?._id]
-        ),
-      0
-    );
-    setSubTotal(subTotal);
+    let isMounted = true;
+    if (isMounted) {
+      const subTotal = cartItems?.reduce(
+        (prev, curr) =>
+          prev +
+          parseFloat(
+            (curr?.discount
+              ? curr?.price - curr?.price * (curr?.discount / 100)
+              : curr?.price) * shoppingCart[curr?._id]
+          ),
+        0
+      );
+      setSubTotal(subTotal);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [shoppingCart]);
 
   return [subTotal, setSubTotal];

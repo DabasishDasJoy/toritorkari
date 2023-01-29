@@ -7,12 +7,14 @@ const useGetQuantity = (id) => {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    const usnsubscribe = () => {
+    let isMounted = true;
+    if (isMounted) {
       const qntity = getQuantityOfItem(id);
       setQuantity(qntity);
-    };
+    }
+
     return () => {
-      usnsubscribe();
+      isMounted = false;
     };
   }, [getQuantityOfItem, quantity, id]);
 
