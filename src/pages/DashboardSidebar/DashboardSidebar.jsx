@@ -41,7 +41,7 @@ const DashboardSidebar = () => {
           </span>
           Update Profile
         </Link>
-        <Link className="dashboard-link">
+        <Link to={"/user/dashboard/changepassword"} className="dashboard-link">
           <span className="border rounded-full p-1">
             <RiLockPasswordLine />{" "}
           </span>{" "}

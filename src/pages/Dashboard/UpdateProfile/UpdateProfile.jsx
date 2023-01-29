@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { BiPhoneCall } from "react-icons/bi";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { MdDriveFileRenameOutline, MdEmail } from "react-icons/md";
+import Required from "../../../components/Required/Required";
 import ValidationError from "../../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
@@ -63,85 +64,108 @@ const UpdateProfile = () => {
         className="lg:w-[80%] mx-auto border rounded-md p-5 flex flex-col gap-3 "
       >
         {/* Email */}
-        <div className="tori-input-wrapper">
-          <MdEmail />
-          <input
-            readOnly
-            type="email"
-            defaultValue={user?.email}
-            className="tori-input border-none"
-            {...register("email")}
-          />
+        <div>
+          <label htmlFor="firstname" className="tori-label">
+            Email <Required></Required>
+          </label>
+          <div className="tori-input-wrapper">
+            <MdEmail />
+            <input
+              readOnly
+              type="email"
+              defaultValue={user?.email}
+              className="tori-input border-none"
+              {...register("email")}
+            />
+          </div>
         </div>
+
         {/* name */}
-        <div className="tori-input-wrapper">
-          <MdDriveFileRenameOutline />
-          <input
-            type="text"
-            defaultValue={user?.displayName}
-            placeholder="Your Name"
-            className="tori-input border-none"
-            {...register("username")}
-            required
-          />
+        <div>
+          <label htmlFor="firstname" className="tori-label">
+            User Name <Required></Required>
+          </label>
+          <div className="tori-input-wrapper">
+            <MdDriveFileRenameOutline />
+            <input
+              type="text"
+              defaultValue={user?.displayName}
+              placeholder="Your Name"
+              className="tori-input border-none"
+              {...register("username")}
+              required
+            />
+          </div>
         </div>
 
         {/* Phone */}
-        <div className="tori-input-wrapper">
-          <BiPhoneCall />
-          <input
-            type="text"
-            placeholder="Your Phone Number"
-            className="tori-input border-none"
-            {...register("phone", {
-              required: "Phone number is required!",
-            })}
+        <div>
+          <label htmlFor="firstname" className="tori-label">
+            Phone Number <Required></Required>
+          </label>
+          <div className="tori-input-wrapper">
+            <BiPhoneCall />
+            <input
+              type="text"
+              placeholder="Your Phone Number"
+              className="tori-input border-none"
+              {...register("phone", {
+                required: "Phone number is required!",
+              })}
+            />
+          </div>
+          <ErrorMessage
+            errors={errors}
+            name="phone"
+            render={({ messages }) => {
+              return messages
+                ? Object.entries(messages).map(([type, message]) => (
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
+                : null;
+            }}
           />
         </div>
-        <ErrorMessage
-          errors={errors}
-          name="phone"
-          render={({ messages }) => {
-            return messages
-              ? Object.entries(messages).map(([type, message]) => (
-                  <ValidationError
-                    key={type}
-                    message={message}
-                  ></ValidationError>
-                ))
-              : null;
-          }}
-        />
 
         {/* Image */}
-        <div className="tori-input-wrapper">
-          <HiOutlinePhotograph />
-          <input
-            type="file"
-            placeholder="Your Photo"
-            className="tori-input border-none"
-            {...register("photoURL", {
-              required: "Photo is required!",
-            })}
+        <div>
+          <label htmlFor="firstname" className="tori-label">
+            Image <Required></Required>
+          </label>
+          <div className="tori-input-wrapper">
+            <HiOutlinePhotograph />
+            <input
+              type="file"
+              placeholder="Your Photo"
+              className="tori-input border-none"
+              {...register("photoURL", {
+                required: "Photo is required!",
+              })}
+            />
+          </div>
+          <ErrorMessage
+            errors={errors}
+            name="photoURL"
+            render={({ messages }) => {
+              return messages
+                ? Object.entries(messages).map(([type, message]) => (
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
+                : null;
+            }}
           />
         </div>
-        <ErrorMessage
-          errors={errors}
-          name="photoURL"
-          render={({ messages }) => {
-            return messages
-              ? Object.entries(messages).map(([type, message]) => (
-                  <ValidationError
-                    key={type}
-                    message={message}
-                  ></ValidationError>
-                ))
-              : null;
-          }}
-        />
 
         <div>
-          <button className="tori-btn-secondary">Update</button>
+          <button type="submit" className="tori-btn-secondary">
+            Update
+          </button>
         </div>
       </form>
     </div>

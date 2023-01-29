@@ -3,6 +3,7 @@ import moment from "moment";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
+import EmptyOrders from "../../../components/EmptyOrders/EmptyOrders";
 import Loader from "../../../components/Loader/Loader";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
@@ -22,59 +23,63 @@ const MyOrders = () => {
 
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
-      <h4 className="text-base text-gray-700 font-semibold leading-none">
-        My Orders
-      </h4>
-
       {isLoading ? (
         <Loader></Loader>
-      ) : (
-        <div className="overflow-x-auto text-gray-700 border text-center">
-          <table className="w-full">
-            {/* <!-- head --> */}
-            <thead className="bg-secondary">
-              <tr>
-                <th>Invoice</th>
-                <th>Date</th>
-                <th>Method</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody className="text-xs">
-              {invoices?.map((invoice) => (
-                <tr key={invoice?._id}>
-                  <th>{invoice?.invoice}</th>
-                  <td>{moment(invoice?.date).format("DD/MM/YYYY")}</td>
-                  <td>{invoice?.paymentMethod}</td>
-                  <td>
-                    {invoice?.status === "paid" ? (
-                      <span className="text-primary">Paid</span>
-                    ) : (
-                      <span className="text-accent"> Pending</span>
-                    )}
-                  </td>
-                  <td>
-                    <span className="font-semibold">
-                      ${parseFloat(invoice?.amount).toFixed(2)}
-                    </span>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/invoice/${invoice?.invoiceId}`}
-                      className="text-primary bg-primary/20 rounded-full px-2 py-[2px] hover:text-white hover:bg-primary"
-                    >
-                      Detials
-                    </Link>
-                  </td>
-                </tr>
-              ))}
+      ) : invoices?.length ? (
+        <>
+          <h4 className="text-base text-gray-700 font-semibold leading-none">
+            My Orders
+          </h4>
 
-              {/* <!-- row 1 --> */}
-            </tbody>
-          </table>
-        </div>
+          <div className="overflow-x-auto text-gray-700 border text-center">
+            <table className="w-full">
+              {/* <!-- head --> */}
+              <thead className="bg-secondary">
+                <tr>
+                  <th>Invoice</th>
+                  <th>Date</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody className="text-xs">
+                {invoices?.map((invoice) => (
+                  <tr key={invoice?._id}>
+                    <th>{invoice?.invoice}</th>
+                    <td>{moment(invoice?.date).format("DD/MM/YYYY")}</td>
+                    <td>{invoice?.paymentMethod}</td>
+                    <td>
+                      {invoice?.status === "paid" ? (
+                        <span className="text-primary">Paid</span>
+                      ) : (
+                        <span className="text-accent"> Pending</span>
+                      )}
+                    </td>
+                    <td>
+                      <span className="font-semibold">
+                        ${parseFloat(invoice?.amount).toFixed(2)}
+                      </span>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/invoice/${invoice?.invoiceId}`}
+                        className="text-primary bg-primary/20 rounded-full px-2 py-[2px] hover:text-white hover:bg-primary"
+                      >
+                        Detials
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+
+                {/* <!-- row 1 --> */}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <EmptyOrders></EmptyOrders>
       )}
     </div>
   );

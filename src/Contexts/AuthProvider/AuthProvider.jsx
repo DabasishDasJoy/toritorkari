@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import React, { createContext, useEffect, useRef, useState } from "react";
@@ -60,6 +61,11 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // change password
+  const changePassword = (newPassword) => {
+    return updatePassword(auth.currentUser, newPassword);
+  };
+
   //   manage user
   useEffect(() => {
     const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
@@ -82,6 +88,7 @@ const AuthProvider = ({ children }) => {
     updateUser,
     signIn,
     facebookSignIn,
+    changePassword,
   };
 
   return (

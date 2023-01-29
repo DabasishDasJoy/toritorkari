@@ -3,6 +3,7 @@ import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
 import Category from "../../pages/Category/Category/Category";
 import Checkout from "../../pages/Checkout/Checkout/Checkout";
+import ChangePassword from "../../pages/Dashboard/ChangePassword/ChangePassword";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
 import UpdateProfile from "../../pages/Dashboard/UpdateProfile/UpdateProfile";
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
           {
             path: "/user/dashboard/updateProfile",
             element: <UpdateProfile></UpdateProfile>,
+          },
+          {
+            path: "/user/dashboard/changepassword",
+            element: <ChangePassword />,
           },
         ],
       },
