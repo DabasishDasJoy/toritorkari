@@ -21,7 +21,7 @@ const DashboardSidebar = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className=" lg:w-[30%] relative text-gray-800 ">
+    <div className="lg:w-[30%] w-full relative text-gray-800 ">
       <div className="flex flex-col divide-y-2 sticky top-0 bg-white px-5 py-3 rounded-sm">
         <Link to={"/user/dashboard"} className="dashboard-link">
           <span className="border rounded-full p-1">

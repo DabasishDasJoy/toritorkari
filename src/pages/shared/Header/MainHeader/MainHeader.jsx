@@ -121,9 +121,11 @@ const MainHeader = ({ setLoginOrRegister }) => {
       </div>
       <div className="drawer-side">
         <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
-        <div className="menu w-80 bg-base-100">
+        <div className="menu bg-white text-gray-700 relative min-h-screen max-h-screen w-[80%]">
           {/* <!-- Sidebar content here --> */}
-          <MobileSideBarLayout></MobileSideBarLayout>
+          <MobileSideBarLayout
+            setLoginOrRegister={setLoginOrRegister}
+          ></MobileSideBarLayout>
         </div>
       </div>
     </div>

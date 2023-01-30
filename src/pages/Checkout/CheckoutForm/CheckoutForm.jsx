@@ -46,31 +46,26 @@ const CheckoutForm = ({
   // Create Payment intent and grab client secret
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    const abortController = new AbortController();
-    (async function createPaymentIntent() {
-      try {
-        axios
-          .post(
-            `/create-payment-intent?email=${user?.email}`,
-            { grandTotal },
-            {
-              signal: abortController.signal,
-            }
-          )
-          .then((res) => {
+    let isMounted = true;
+
+    try {
+      axios
+        .post(`/create-payment-intent?email=${user?.email}`, { grandTotal })
+        .then((res) => {
+          if (isMounted) {
             setClientSecret(res?.data?.clientSecret);
-          })
-          .catch((err) => {
-            console.error(err);
-            return;
-          });
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          return;
+        });
+    } catch (error) {
+      console.error(error);
+    }
 
     return () => {
-      abortController.abort();
+      isMounted = false;
     };
   }, [grandTotal, user?.email]);
 

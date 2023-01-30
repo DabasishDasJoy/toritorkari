@@ -28,7 +28,7 @@ const Checkout = () => {
         </Elements>
       </div>
 
-      <div className="lg:w-[30%] relative transition-all delay-75 lg:order-2 order-1">
+      <div className="lg:w-[30%] w-full relative transition-all delay-75 lg:order-2 order-1">
         <OrderSummary
           shippingCost={shippingCost}
           setShippingCost={setShippingCost}

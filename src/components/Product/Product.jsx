@@ -79,7 +79,7 @@ const Product = ({
         // to={`/product/${_id}`}
         className="cursor-pointer flex justify-center items-center border-b overflow-hidden"
       >
-        <img src={image} alt="" className="w-28 h-full image z-0" />
+        <img src={image} alt="" className="lg:w-28 h-full image z-0" />
       </label>
 
       {/* Text */}

@@ -26,7 +26,7 @@ const useGetSubTotal = () => {
     return () => {
       isMounted = false;
     };
-  }, [shoppingCart]);
+  }, [shoppingCart, cartItems]);
 
   return [subTotal, setSubTotal];
 };

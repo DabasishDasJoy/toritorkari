@@ -15,7 +15,7 @@ html {
 }
 
 .sidebarMenu {
-  @apply border w-full py-1;
+  @apply border w-full py-1 focus:bg-primary focus:text-white;
 }
 .section {
   @apply lg:py-5 pb-2;

@@ -7,7 +7,7 @@ import OrderStatisticsCard from "../OrderStatisticsCard/OrderStatisticsCard";
 
 const OrdersStatistics = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex lg:flex-nowrap flex-wrap  gap-3 lg:justify-between">
       {/* Total Orders */}
       <OrderStatisticsCard text={"Total Orders"} number={200}>
         <div className="bg-warning/30 text-warning p-2 inline-block rounded-full">

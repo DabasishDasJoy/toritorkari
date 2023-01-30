@@ -2,7 +2,7 @@ import React from "react";
 
 const OrderStatisticsCard = ({ text, number, children }) => {
   return (
-    <div className="border rounded-md text-base p-2 flex justify-center items-center gap-2">
+    <div className="border w-full rounded-md text-base p-2 flex justify-center items-center gap-2">
       {/* image */}
       {children}
 
