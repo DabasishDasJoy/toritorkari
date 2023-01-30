@@ -11,7 +11,7 @@ const AdvertiseOffers = () => {
     refetch,
     data: { data: offers } = [],
   } = useQuery({
-    queryKey: ["offer"],
+    queryKey: ["offers"],
     queryFn: () => {
       return axios.get(`/offers?size=${2}`);
     },
