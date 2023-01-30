@@ -22,7 +22,7 @@ const Offers = () => {
     <div>
       <PageBanner></PageBanner>
 
-      <div className="sub-section grid grid-cols-2 gap-x-10 gap-y-5 bg-[#F9FAFB]">
+      <div className="px-10 py-16 grid grid-cols-2 gap-x-10 gap-y-5 bg-[#F9FAFB]">
         {isLoading ? (
           <Loader></Loader>
         ) : (

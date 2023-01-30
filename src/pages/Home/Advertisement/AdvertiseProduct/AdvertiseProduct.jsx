@@ -1,5 +1,5 @@
 import React from "react";
-import meat from "../../../../assets/veg1.png";
+import meat from "../../../../assets/veg2.png";
 
 const AdvertiseProduct = () => {
   return (

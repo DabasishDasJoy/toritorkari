@@ -14,7 +14,7 @@ const SearchResult = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
   const [sort, setSort] = useState("default");
-  const [size, setSize] = useState(6);
+  const [size, setSize] = useState(12);
   const [page, setPage] = useState(0);
 
   const {
