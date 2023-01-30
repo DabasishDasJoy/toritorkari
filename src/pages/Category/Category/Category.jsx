@@ -15,7 +15,7 @@ const Category = () => {
   const [searchParams] = useSearchParams();
   const subCat = searchParams.get("subcategory");
   const [sort, setSort] = useState("default");
-  const [size, setSize] = useState(6);
+  const [size, setSize] = useState(12);
   const [page, setPage] = useState(0);
 
   // Fetch Products
@@ -34,6 +34,7 @@ const Category = () => {
   });
 
   const products = data?.result;
+
   const pages = Math.ceil(data?.dataCount / size) || 0;
 
   return (

@@ -11,7 +11,7 @@ const AdvertiseOffers = () => {
     refetch,
     data: { data: offers } = [],
   } = useQuery({
-    queryKey: ["offers"],
+    queryKey: ["offer"],
     queryFn: () => {
       return axios.get(`/offers?size=${2}`);
     },
@@ -22,15 +22,15 @@ const AdvertiseOffers = () => {
       <div className="bg-[#FFEDD5] text-black text-center py-2 font-medium">
         Latest Super Discount Active Coupon Code
       </div>
-      <div className="flex flex-col gap-2 justify-center px-2 py-4">
-        {isLoading ? (
-          <Loader></Loader>
-        ) : (
-          offers?.map((offer) => (
+      {isLoading ? (
+        <Loader></Loader>
+      ) : (
+        <div className="flex flex-col gap-2 justify-center px-2 py-4">
+          {offers?.map((offer) => (
             <Coupon offer={offer} key={offer?._id}></Coupon>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

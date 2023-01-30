@@ -27,15 +27,15 @@ const LatestDiscounts = () => {
       >
         Latest Dicounted Products
       </SectionHeader>
-      <div className="grid lg:grid-cols-6 grid-cols-2 gap-3 sub-section">
-        {isLoading ? (
-          <Loader></Loader>
-        ) : (
-          discounts?.map((discount) => (
+      {isLoading ? (
+        <Loader></Loader>
+      ) : (
+        <div className="grid lg:grid-cols-6 grid-cols-2 gap-3 sub-section">
+          {discounts?.map((discount) => (
             <Product key={discount?._id} product={discount}></Product>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

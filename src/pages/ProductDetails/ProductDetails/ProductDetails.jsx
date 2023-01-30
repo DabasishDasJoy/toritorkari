@@ -6,6 +6,7 @@ import Loader from "../../../components/Loader/Loader";
 import ProductDetailsCard from "../../../components/ProductDetailsCard/ProductDetailsCard";
 import DescriptionOrReview from "../DescriptionOrReview/DescriptionOrReview";
 import ProductFeature from "../ProductFeature/ProductFeature";
+import RelatedProducts from "../RelatedProducts/RelatedProducts";
 const ProductDetails = () => {
   const { id } = useParams();
   const location = useLocation();
@@ -35,13 +36,13 @@ const ProductDetails = () => {
             </Link>
           </li>
           <li>
-            <Link to={`${from}?subCat=All`} className="tori-link">
+            <Link to={`${from}?subcategory=all`} className="tori-link">
               {selectedProduct?.category}
             </Link>
           </li>
           <li>
             <Link
-              to={`${from}?subCat=${selectedProduct?.subCategory}`}
+              to={`${from}?subcategory=${selectedProduct?.subCategory}`}
               className="tori-link"
             >
               {selectedProduct?.subCategory}
@@ -66,12 +67,10 @@ const ProductDetails = () => {
       ></DescriptionOrReview>
 
       {/* related products */}
-      <div className="">
-        <h3 className="text-lg font-bold">Related Products</h3>
-        <div className="section grid lg:grid-cols-6 grid-cols-2 gap-3">
-          {/* Related Proudcts Here */}
-        </div>
-      </div>
+      <RelatedProducts
+        selectedProduct={selectedProduct}
+        from={from}
+      ></RelatedProducts>
     </div>
   );
 };
