@@ -57,9 +57,11 @@ const Category = () => {
           <NotFound></NotFound>
         )}
       </div>
+      {products?.length && (
+        <Pagination page={page} setPage={setPage} pages={pages}></Pagination>
+      )}
 
       {/* Pagination */}
-      <Pagination page={page} setPage={setPage} pages={pages}></Pagination>
     </div>
   );
 };

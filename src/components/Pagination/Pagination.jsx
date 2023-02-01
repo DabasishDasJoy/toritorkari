@@ -21,7 +21,7 @@ const Pagination = ({ pages, setPage, page }) => {
         </div>
         <div className="text-[17px] text-gray-400">
           <p>
-            Showing page {page + 1} of {pages} pages.
+            Showing page {page + 1} of {pages} pages
           </p>
         </div>
       </div>

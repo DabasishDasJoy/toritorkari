@@ -24,7 +24,7 @@ const ProductDetailsCard = ({
   children,
   display,
   selectedProduct,
-  selectedProduct: { image, tags, name, price, status, desc, _id },
+  selectedProduct: { image, tags, name, price, status, desc, _id, net },
 }) => {
   const navigate = useNavigate();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -121,7 +121,7 @@ const ProductDetailsCard = ({
         {/* tags */}
         <div className="flex gap-2">
           {tags?.map((tag, idx) => (
-            <Link className="border rounded-full px-2" key={idx}>
+            <Link className="border rounded-full px-2 bg-primary/20" key={idx}>
               {tag}
             </Link>
           ))}
@@ -159,7 +159,7 @@ const ProductDetailsCard = ({
         {/* Tax & Brand */}
         <div className="flex flex-col gap-1">
           <p>
-            Ex tax: <span className="text-primary/80">$95.00</span>
+            Net Weight: <span className="text-primary/80">{net}</span>
           </p>
           <p>
             Product Code: <span className="text-primary/80">abc1234</span>
@@ -168,7 +168,9 @@ const ProductDetailsCard = ({
             Availability:{" "}
             <span
               className={`${
-                status === "In Stock" ? "text-primary/80" : "text-warning/80"
+                status?.toLowerCase() === "in stock"
+                  ? "text-primary/80"
+                  : "text-warning/80"
               }`}
             >
               {status}
@@ -182,7 +184,7 @@ const ProductDetailsCard = ({
         </div>
 
         {/* Button */}
-        {status === "In Stock" && (
+        {status?.toLowerCase() === "in stock" && (
           <div className="flex lg:justify-start justify-center items-center lg:gap-5 my-3 gap-2 lg:flex-nowrap flex-wrap">
             {quantity ? (
               <div className="flex hover:bg-white hover:text-primary hover:border-primary border border-white bg-primary text-center rounded-md text-sm text-white  font-semibold items-center">

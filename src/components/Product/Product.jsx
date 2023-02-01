@@ -11,7 +11,7 @@ import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
 const Product = ({
   product,
-  product: { name, image, price, status, subCategory, _id },
+  product: { name, image, price, status, subCategory, net, _id },
 }) => {
   const { setSelectedProduct } = useContext(ProductContext);
   const { addToCart, reduceQuantityFromCart } = useContext(CartContext);
@@ -85,8 +85,10 @@ const Product = ({
       {/* Text */}
       <div className="text-sm font-medium z-10 mt-1">
         <div className="flex justify-between items-center">
-          <span className="text-xs text-black/60">{subCategory}</span>
-          <StatusTag color={status === "In Stock" ? true : false}>
+          <span className="text-xs text-black/60">{net}</span>
+          <StatusTag
+            color={status?.toLowerCase() === "in stock" ? true : false}
+          >
             {status}
           </StatusTag>
         </div>
@@ -116,7 +118,7 @@ const Product = ({
         </span>
 
         {/* Add Cart Button */}
-        {status === "In Stock" &&
+        {status?.toLowerCase() === "in stock" &&
           (quantity ? (
             <div className="text-white border border-primary hover:bg-white hover:text-primary rounded-sm items-center bg-primary flex">
               <button

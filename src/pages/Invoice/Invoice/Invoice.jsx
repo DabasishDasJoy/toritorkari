@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import ReactToPrint from "react-to-print";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
+import Logo from "../../../components/Logo/Logo";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import "./Invoice.css";
@@ -39,8 +40,10 @@ const Invoice = () => {
             <div className="bg-[#EEF2FF] rounded-t-md lg:p-5 p-2 text-black">
               <div className="flex lg:flex-nowrap flex-wrap justify-between">
                 <h1 className="text-3xl uppercase font-bold">Invoice</h1>
-                <div className="lg:text-right text-left">
-                  <p>Logo</p>
+                <div className="lg:text-right text-left flex flex-col items-end">
+                  <div className="border flex justify-center w-max bg-primary text-white rounded-full px-2 py-1">
+                    <Logo></Logo>
+                  </div>
                   <p>
                     Cecilia Chapman, 561-4535 Nulla LA, <br /> United States
                     96522
@@ -124,16 +127,16 @@ const Invoice = () => {
             </div>
           </div>
 
-          <ReactToPrint
-            trigger={() => (
-              <div className="sub-section flex justify-end">
+          <div className="sub-section flex justify-end">
+            <ReactToPrint
+              trigger={() => (
                 <button className="tori-btn-secondary w-[20%] flex justify-center items-center gap-1 ">
                   <BsPrinter className="  text-white" /> Print
                 </button>
-              </div>
-            )}
-            content={() => ref.current}
-          />
+              )}
+              content={() => ref.current}
+            />
+          </div>
         </>
       )}
     </div>
