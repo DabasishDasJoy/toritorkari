@@ -6,10 +6,10 @@ const Coupon = ({
   offer: { name, coupon, discount, image, expiresIn, leastAmount },
 }) => {
   // Count down timer
-  const [timeDays, setTimeDays] = useState();
-  const [timeHours, setTimeHours] = useState();
-  const [timeMins, setTimeMins] = useState();
-  const [timeSecs, setTimeSecs] = useState();
+  const [timeDays, setTimeDays] = useState(0);
+  const [timeHours, setTimeHours] = useState(0);
+  const [timeMins, setTimeMins] = useState(0);
+  const [timeSecs, setTimeSecs] = useState(0);
   const [expired, setExpired] = useState(false);
 
   let interval;
@@ -50,7 +50,11 @@ const Coupon = ({
   });
 
   return (
-    <div className="flex lg:flex-nowrap flex-wrap px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2">
+    <div
+      className={`flex lg:flex-nowrap flex-wrap px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2 ${
+        expired && "border-warning border"
+      }`}
+    >
       {/* First Part */}
       <div className="lg:w-[65%] w-full lg:border-r-2 border-dashed flex">
         {/* image */}
