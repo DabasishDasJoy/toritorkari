@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
 import React, { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import EmptyOrders from "../../../components/EmptyOrders/EmptyOrders";
@@ -23,6 +24,10 @@ const MyOrders = () => {
 
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
+      <Helmet>
+        <title>ToriTorkari Bazar - Dashboard</title>
+        <meta name="description" content="User Dashboard" />
+      </Helmet>
       {isLoading ? (
         <Loader></Loader>
       ) : invoices?.length ? (

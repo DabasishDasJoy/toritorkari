@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams, useSearchParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
@@ -14,7 +15,6 @@ const Category = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const subCat = searchParams.get("subcategory");
-  console.log("🚀 ~ file: Category.jsx:17 ~ Category ~ subCat", subCat);
   const [sort, setSort] = useState("default");
   const [size, setSize] = useState(12);
   const [page, setPage] = useState(0);
@@ -43,6 +43,13 @@ const Category = () => {
 
   return (
     <div className="bg-[#F9FAFB] section">
+      <Helmet>
+        <title>ToriTorkari Bazar - Category</title>
+        <meta
+          name="description"
+          content="Explore a specific category on the shop"
+        />
+      </Helmet>
       <CategoryAds></CategoryAds>
       <Categories></Categories>
       <TotalProduct

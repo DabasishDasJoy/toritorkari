@@ -1,6 +1,7 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import OrderSummary from "../OrderSummary/OrderSummary";
@@ -17,6 +18,13 @@ const Checkout = () => {
 
   return (
     <div className="sub-section bg-[#F9FAFB] flex lg:flex-nowrap flex-wrap justify-between gap-5">
+      <Helmet>
+        <title>ToriTorkari Bazar - Checkout</title>
+        <meta
+          name="description"
+          content="Place order by confirming payment and checkout."
+        />
+      </Helmet>
       <div className="lg:w-[65%] bg-white rounded-md lg:order-1 order-2">
         <Elements stripe={stripePromise}>
           <CheckoutForm

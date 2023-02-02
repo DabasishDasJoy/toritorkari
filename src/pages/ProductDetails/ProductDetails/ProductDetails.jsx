@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
@@ -27,7 +28,11 @@ const ProductDetails = () => {
 
   return (
     <div className="bg-[#F9FAFB] text-black sub-section">
-      {/* Bread Cubs */}
+      <Helmet>
+        <title>ToriTorkari Bazar - Product Details</title>
+        <meta name="description" content="Explore details of a product" />
+      </Helmet>
+      {/* Bread Cumbs */}
       <div className="text-[16px] breadcrumbs">
         <ul>
           <li>

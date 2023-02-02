@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { CiCircleMore } from "react-icons/ci";
+import { MdOutlineMore } from "react-icons/md";
 import { FreeMode, Thumbs } from "swiper";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
@@ -237,8 +237,7 @@ const ProductDetailsCard = ({
               htmlFor="product-modal"
               className={"text-sm text-accent tori-link"}
             >
-              <CiCircleMore />
-              More Info
+              More Info <MdOutlineMore />
             </label>
           </div>
           {children}

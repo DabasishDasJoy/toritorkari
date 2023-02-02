@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
 import React, { useContext, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import { BsPrinter } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import ReactToPrint from "react-to-print";
@@ -30,6 +31,13 @@ const Invoice = () => {
 
   return (
     <div className="sub-section bg-[#F9FAFB]">
+      <Helmet>
+        <title>ToriTorkari Bazar - Invoice</title>
+        <meta
+          name="description"
+          content="Order details with confirmation of the user."
+        />
+      </Helmet>
       {isLoading ? (
         <Loader></Loader>
       ) : (

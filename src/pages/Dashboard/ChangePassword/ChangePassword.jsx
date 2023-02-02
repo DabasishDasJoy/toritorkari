@@ -1,5 +1,6 @@
 import { ErrorMessage } from "@hookform/error-message";
 import React, { useContext, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
@@ -29,6 +30,10 @@ const ChangePassword = () => {
   };
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
+      <Helmet>
+        <title>ToriTorkari Bazar - Dashboard</title>
+        <meta name="description" content="User Dashboard" />
+      </Helmet>
       <h4 className="text-base text-gray-700 font-semibold leading-none">
         Change Password
       </h4>
