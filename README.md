@@ -23,7 +23,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./src/assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">ToriTorkari</h3>
@@ -31,9 +31,9 @@
   <p align="center">
     An online grocery shop where all the regular grocery items can be found in a place.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
+    <!-- <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a> -->
+    <!-- <br /> -->
+    <!-- <br /> -->
     <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
     <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
@@ -173,7 +173,7 @@ Dabasish Das Joy - [@linkedIn](https://www.linkedin.com/in/dabasishjoy/) - dabas
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: ./src/assets/Screenshot%202023-02-03%20002515.png
 [next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [next-url]: https://nextjs.org/
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
