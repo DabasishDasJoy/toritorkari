@@ -142,7 +142,7 @@ const ProductDetailsCard = ({
         <h6 className="text-2xl text-primary font-bold">
           $
           {selectedProduct?.discount
-            ? (selectedProduct.discount / 100) * price
+            ? ((selectedProduct.discount / 100) * price).toFixed(2)
             : price}{" "}
           {selectedProduct?.discount && (
             <>
