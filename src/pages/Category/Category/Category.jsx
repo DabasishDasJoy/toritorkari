@@ -14,6 +14,7 @@ const Category = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const subCat = searchParams.get("subcategory");
+  console.log("🚀 ~ file: Category.jsx:17 ~ Category ~ subCat", subCat);
   const [sort, setSort] = useState("default");
   const [size, setSize] = useState(12);
   const [page, setPage] = useState(0);
@@ -28,7 +29,10 @@ const Category = () => {
     queryKey: [id, subCat, sort, page, size],
     queryFn: () => {
       return axios.get(
-        `/category/${id}?subcategory=${subCat}&sort=${sort}&page=${page}&size=${size}`
+        `/category/${id}?subcategory=${subCat.replace(
+          "&",
+          "%26"
+        )}&sort=${sort}&page=${page}&size=${size}`
       );
     },
   });

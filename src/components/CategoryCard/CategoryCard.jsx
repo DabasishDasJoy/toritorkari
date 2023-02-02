@@ -23,7 +23,7 @@ const CategoryCard = ({
         <div className="flex flex-col gap-1 lg:items-start items-center">
           {subCategories?.map((subCategory, idx) => (
             <span
-              onMouseEnter={() => setSubCat(subCategory)}
+              onMouseEnter={() => setSubCat(subCategory.replace("&", "%26"))}
               onMouseLeave={() => setSubCat("all")}
               key={idx}
               className="tori-link flex items-center gap-1 text-xs text-black/70"
