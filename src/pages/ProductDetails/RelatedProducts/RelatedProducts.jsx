@@ -17,7 +17,7 @@ const RelatedProducts = ({ from, selectedProduct }) => {
     queryKey: ["category", id, selectedProduct],
     queryFn: () => {
       return axios.get(
-        `category/${id}?subcategory=${selectedProduct?.subCategory}&&size=${6}`
+        `search?query=${selectedProduct?.subCategory}&size=${6}`
       );
     },
   });

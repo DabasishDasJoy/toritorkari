@@ -41,7 +41,7 @@ const Product = ({
   };
 
   return (
-    <div className="text-black/90 flex flex-col justify-between gap-1 overflow-hidden bg-white  rounded-sm p-2 product">
+    <div className="text-black/90 flex flex-col justify-between gap-1 overflow-hidden bg-white  rounded-sm p-2 product relative">
       {/* Offers */}
       {product?.discount && (
         <span
