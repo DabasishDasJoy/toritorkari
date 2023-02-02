@@ -41,7 +41,7 @@ const Product = ({
   };
 
   return (
-    <div className="text-black/90 flex flex-col gap-1 overflow-hidden bg-white  rounded-sm p-2 product relative">
+    <div className="text-black/90 flex flex-col justify-between gap-1 overflow-hidden bg-white  rounded-sm p-2 product">
       {/* Offers */}
       {product?.discount && (
         <span
@@ -51,35 +51,35 @@ const Product = ({
         </span>
       )}
 
-      {/* View Button */}
-      <div className="action absolute bottom-[43%] right-0 left-0 z-10">
-        <div className="flex max-w-fit mx-auto items-center justify-center p-[2px] gap-2 bg-gray-200 rounded-full">
-          <label
-            onClick={() => setSelectedProduct(product)}
-            htmlFor="product-modal"
-            data-tip="View"
-            className=" transition-all cursor-pointer delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
-          >
-            <HiOutlineEye className="" />
-          </label>
-          <button
-            data-tip="Add to Wishlist"
-            className=" transition-all delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
-          >
-            <AiOutlineHeart className="" />
-          </button>
-        </div>
-      </div>
-      {/* end */}
-
       {/* Image */}
       <label
         onClick={() => setSelectedProduct(product)}
         htmlFor="product-modal"
         // to={`/product/${_id}`}
-        className="cursor-pointer flex justify-center items-center border-b overflow-hidden"
+        className="cursor-pointer flex justify-center items-center border-b relative overflow-hidden"
       >
-        <img src={image} alt="" className="lg:w-28 h-full image z-0" />
+        <img src={image} alt="" className="w-28 h-28 image z-0" />
+
+        {/* View Button */}
+        <div className="action absolute bottom-1 right-0 left-0 z-10">
+          <div className="flex max-w-fit mx-auto items-center justify-center p-[2px] gap-2 bg-gray-200 rounded-full">
+            <label
+              onClick={() => setSelectedProduct(product)}
+              htmlFor="product-modal"
+              data-tip="View"
+              className=" transition-all cursor-pointer delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
+            >
+              <HiOutlineEye className="" />
+            </label>
+            <button
+              data-tip="Add to Wishlist"
+              className=" transition-all delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
+            >
+              <AiOutlineHeart className="" />
+            </button>
+          </div>
+        </div>
+        {/* end */}
       </label>
 
       {/* Text */}
@@ -104,16 +104,14 @@ const Product = ({
       )}
 
       {/* Price */}
-      <div className="flex justify-between items-end flex-1 mt-1">
+      <div className="flex justify-between items-end mt-[2px]">
         <span className="price my-auto">
           $
           {product?.discount
             ? (product?.price - (product.discount / 100) * price)?.toFixed(2)
             : price}{" "}
           {product?.discount && (
-            <span className="text-sm  line-through text-black/50">
-              ${price}
-            </span>
+            <span className="text-sm line-through text-black/50">${price}</span>
           )}
         </span>
 
