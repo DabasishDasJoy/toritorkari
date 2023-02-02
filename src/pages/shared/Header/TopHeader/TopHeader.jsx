@@ -36,7 +36,7 @@ const TopHeader = ({ setLoginOrRegister }) => {
             className="tori-link flex gap-1 items-center"
           >
             <FaRegUser className="" />
-            Account / Dashboard
+            Dashboard
           </Link>
         ) : (
           <div className="dropdown dropdown-end dropdown-bottom dropdown-hover">
