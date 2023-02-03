@@ -34,7 +34,10 @@ const MainHeader = ({ setLoginOrRegister }) => {
       <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
+        {/* top header */}
         <TopHeader setLoginOrRegister={setLoginOrRegister}></TopHeader>
+
+        {/* Menu Icon for mobile */}
         <div className="w-full navbar bg-primary lg:px-10 min-h-16 text-white justify-between">
           {/* menu icon */}
           <div className="flex-none lg:hidden ">
@@ -106,8 +109,8 @@ const MainHeader = ({ setLoginOrRegister }) => {
             </div>
 
             {/* cart */}
-            <div className="indicator">
-              <label htmlFor="cart-drawer" onClick={() => refetch()}>
+            <div className="indicator" onMouseEnter={() => refetch()}>
+              <label htmlFor="cart-drawer">
                 <BsCart3 className="icon" />
                 <Indicator>{numberOfCartItems}</Indicator>
               </label>
@@ -119,6 +122,7 @@ const MainHeader = ({ setLoginOrRegister }) => {
         <Outlet></Outlet>
         <Footer></Footer>
       </div>
+
       <div className="drawer-side">
         <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
         <div className="menu bg-white text-gray-700 relative min-h-screen max-h-screen w-[80%]">
