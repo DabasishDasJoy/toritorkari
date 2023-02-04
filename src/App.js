@@ -11,6 +11,7 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
   return (
     <div className="font-rubik max-w-screen-2xl mx-auto">
       {preLoading ? (

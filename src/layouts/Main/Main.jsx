@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
 import Indicator from "../../components/Indicator/Indicator";
 import LoginModal from "../../components/LoginModal/LoginModal";
+import NewsLetterModal from "../../components/NewsLetterModal/NewsLetterModal";
 import ProductModal from "../../components/ProductModal/ProductModal";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
@@ -22,11 +23,10 @@ const Main = () => {
           setLoginOrRegister={setLoginOrRegister}
         ></LoginModal>
         <ProductModal></ProductModal>
-
+        <NewsLetterModal></NewsLetterModal>
         {/* Cart On Bottom */}
-
         <label
-          className="lg:block hidden bg-primary absolute bottom-5 p-4 rounded-sm shadow-lg cursor-pointer right-5"
+          className="lg:block hidden bg-primary absolute bottom-5 p-3 rounded-sm shadow-lg cursor-pointer right-5"
           htmlFor="cart-drawer"
           onMouseEnter={() => refetch()}
         >
