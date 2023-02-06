@@ -17,8 +17,8 @@ const Home = () => {
           content="Ecommerce, grocery, online shop, vegetables"
         />
       </Helmet>
-      <Advertisements></Advertisements>
 
+      <Advertisements></Advertisements>
       <FeaturedCategories></FeaturedCategories>
       <PopularProducts></PopularProducts>
       <AppAdvertise></AppAdvertise>
