@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
@@ -12,9 +12,20 @@ const Checkout = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [subTotal] = useGetSubTotal();
-  const grandTotal = parseFloat(
-    (subTotal - discount + shippingCost || 0).toFixed(2)
-  );
+  const [grandTotal, setGrandTotal] = useState(0);
+  // const grandTotal = parseFloat(
+  //   (subTotal - discount + shippingCost || 0).toFixed(2)
+  // );
+
+  useEffect(() => {
+    setGrandTotal(
+      parseFloat((subTotal - discount + shippingCost || 0).toFixed(2))
+    );
+
+    return () => {
+      // Clean up function
+    };
+  }, [subTotal, discount, shippingCost]);
 
   return (
     <div className="sub-section bg-[#F9FAFB] flex lg:flex-nowrap flex-wrap justify-between gap-5">

@@ -16,7 +16,7 @@ const useGetQuantity = (id) => {
     return () => {
       isMounted = false;
     };
-  }, [getQuantityOfItem, quantity, id]);
+  }, [getQuantityOfItem, id]);
 
   return [quantity];
 };
