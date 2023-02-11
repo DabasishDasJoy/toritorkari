@@ -11,7 +11,7 @@ const AppDownload = () => {
             className="w-4/5 mx-auto"
           />
         </div>
-        <div className="text-black lg:text-center flex text-center flex-col justify-center gap-3 lg:p-0 p-2">
+        <div className="text-gray-800 lg:text-center flex text-center flex-col justify-center gap-3 lg:p-0 p-2">
           <h1 className="lg:text-2xl text-xl font-bold">
             Get Your Daily Needs From Our ToriTorkari Store
           </h1>

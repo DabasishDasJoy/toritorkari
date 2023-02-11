@@ -47,6 +47,10 @@ const Coupon = ({
 
   useEffect(() => {
     startTimer();
+
+    return () => {
+      clearInterval(interval);
+    };
   });
 
   return (

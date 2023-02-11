@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../../components/Logo/Logo";
 import AppDownload from "../../Home/AppDownload/AppDownload";
 import Supports from "../../Home/Supports/Supports";
@@ -9,31 +10,41 @@ const Footer = () => {
       <AppDownload></AppDownload>
       <Supports></Supports>
       <div className="border-t-[1px] w-[50%] mx-auto"></div>
-      <footer className="footer p-10 text-black">
+      <footer className="footer p-10 text-gray-700">
         <div>
           <div className="border flex justify-center w-max bg-primary text-white rounded-full px-2 py-1">
             <Logo></Logo>
           </div>
+
+          <div>
+            <p>
+              987 Andre Plain Suite High Street 838, <br /> Lake Hestertown, USA{" "}
+              <br />
+              Tell: 02.356.1666
+              <br />
+              Email: ccruidk@test.com
+            </p>
+          </div>
         </div>
         <div>
-          <span className="footer-title">Services</span>
-          <a className="tori-link link-hover">Branding</a>
-          <a className="tori-link link-hover">Design</a>
-          <a className="tori-link link-hover">Marketing</a>
-          <a className="tori-link link-hover">Advertisement</a>
+          <span className="footer-title text-gray-700">Services</span>
+          <Link className="tori-link link-hover">Branding</Link>
+          <Link className="tori-link link-hover">Design</Link>
+          <Link className="tori-link link-hover">Marketing</Link>
+          <Link className="tori-link link-hover">Advertisement</Link>
         </div>
         <div>
-          <span className="footer-title">Company</span>
-          <a className="tori-link link-hover">About us</a>
-          <a className="tori-link link-hover">Contact</a>
-          <a className="tori-link link-hover">Jobs</a>
-          <a className="tori-link link-hover">Press kit</a>
+          <span className="footer-title text-gray-700">Company</span>
+          <Link className="tori-link link-hover">About us</Link>
+          <Link className="tori-link link-hover">Contact</Link>
+          <Link className="tori-link link-hover">Jobs</Link>
+          <Link className="tori-link link-hover">Press kit</Link>
         </div>
         <div>
-          <span className="footer-title">Legal</span>
-          <a className="tori-link link-hover">Terms of use</a>
-          <a className="tori-link link-hover">Privacy policy</a>
-          <a className="tori-link link-hover">Cookie policy</a>
+          <span className="footer-title text-gray-700">Legal</span>
+          <Link className="tori-link link-hover">Terms of use</Link>
+          <Link className="tori-link link-hover">Privacy policy</Link>
+          <Link className="tori-link link-hover">Cookie policy</Link>
         </div>
       </footer>
       <div className="border-t-[1px] w-[50%] mx-auto"></div>
