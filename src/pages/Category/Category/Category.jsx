@@ -55,6 +55,7 @@ const Category = () => {
       <TotalProduct
         refetch={refetch}
         setSort={setSort}
+        sort={sort}
         totalProuducts={products?.length}
       ></TotalProduct>
       <div className="grid lg:grid-cols-6 grid-cols-2 sub-section gap-3">

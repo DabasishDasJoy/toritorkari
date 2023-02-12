@@ -9,7 +9,7 @@ import OrdersStatistics from "../../../components/OrdersStatistics/OrdersStatist
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const {
     isLoading,
