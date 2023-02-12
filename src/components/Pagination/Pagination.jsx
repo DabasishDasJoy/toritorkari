@@ -13,7 +13,7 @@ const Pagination = ({ pages, setPage, page }) => {
               className={`${
                 idx === page && "bg-primary text-white"
               }  border px-2 text-sm transition-all delay-75 hover:bg-primary rounded-sm text-black/80 hover:text-white`}
-              key={idx}
+              key={Math.random()}
             >
               {idx + 1}
             </button>

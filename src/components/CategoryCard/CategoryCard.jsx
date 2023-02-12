@@ -25,7 +25,7 @@ const CategoryCard = ({
             <span
               onMouseEnter={() => setSubCat(subCategory.replace("&", "%26"))}
               onMouseLeave={() => setSubCat("all")}
-              key={idx}
+              key={Math.random()}
               className="tori-link flex items-center gap-1 text-xs text-black/70"
             >
               <BiChevronRight /> {subCategory}

@@ -12,13 +12,13 @@ const RatingsStars = ({ ratings }) => {
           //     name="rating-2"
           //     className="mask mask-star-2 bg-accent w-3 h-3"
           //   />
-          <AiFillStar key={idx} className="w-3 h-3 text-accent" />
+          <AiFillStar key={Math.random()} className="w-3 h-3 text-accent" />
         ))}
         {ratings > parseInt(ratings) && (
           <RiStarHalfFill className="w-3 h-3 text-accent" />
         )}
         {[...Array(Math.floor(5 - ratings)).keys()].map((idx) => (
-          <AiOutlineStar key={idx} className="w-3 h-3 text-accent" />
+          <AiOutlineStar key={Math.random()} className="w-3 h-3 text-accent" />
         ))}
       </div>
 

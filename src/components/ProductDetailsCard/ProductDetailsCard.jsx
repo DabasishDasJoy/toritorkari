@@ -121,7 +121,10 @@ const ProductDetailsCard = ({
         {/* tags */}
         <div className="flex gap-2">
           {tags?.map((tag, idx) => (
-            <Link className="border rounded-full px-2 bg-primary/20" key={idx}>
+            <Link
+              className="border rounded-full px-2 bg-primary/20"
+              key={Math.random()}
+            >
               {tag}
             </Link>
           ))}

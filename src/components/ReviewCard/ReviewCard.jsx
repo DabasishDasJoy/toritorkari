@@ -18,7 +18,7 @@ const ReviewCard = ({
         <div className="rating ">
           {[...Array(parseInt(ratings)).keys()].map((idx) => (
             <span
-              key={idx}
+              key={Math.random()}
               type="radio"
               name="rating-2"
               className="mask mask-star-2 bg-accent w-3 h-3"

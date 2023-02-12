@@ -22,7 +22,7 @@ const CategoryAds = () => {
   return (
     <div className="component flex gap-5 lg:flex-nowrap flex-wrap">
       {ads.map((ad, idx) => (
-        <CategoryAd key={idx} ad={ad}></CategoryAd>
+        <CategoryAd key={Math.random()} ad={ad}></CategoryAd>
       ))}
     </div>
   );

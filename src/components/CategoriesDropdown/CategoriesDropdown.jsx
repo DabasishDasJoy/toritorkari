@@ -56,7 +56,7 @@ const CategoriesDropdown = ({ idText }) => {
                       category?._id
                     }?subcategory=${subCategory.toLowerCase()}`}
                     className="text-black/80 flex items-center gap-x-2 tori-link"
-                    key={idx}
+                    key={Math.random()}
                   >
                     <AiOutlineRight />
                     {subCategory}
