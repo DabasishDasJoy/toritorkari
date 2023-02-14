@@ -30,7 +30,6 @@ const MyCart = () => {
 
       {/* Cart Items */}
       <div className="my-[60px] overflow-y-scroll w-[350px] h-full">
-        {/* <EmptyCart></EmptyCart> */}
         {isLoading ? (
           <Loader></Loader>
         ) : cartItems?.length ? (
@@ -53,9 +52,13 @@ const MyCart = () => {
             // state={{ from: location }}
             className="btn-primary cursor-pointer text-white w-full rounded-sm p-2 flex items-center justify-between"
           >
-            <span className="bg-white text-primary font-bold px-2 rounded-sm">
-              ${subTotal ? subTotal.toFixed(2) : 0}
-            </span>
+            <div className="bg-white text-primary font-bold px-2 rounded-sm">
+              {subTotal ? (
+                `$ ${subTotal.toFixed(2)}`
+              ) : (
+                <span className="text-xs">Calculating...</span>
+              )}
+            </div>
             <span className="flex items-center gap-1 uppercase text-sm font-semibold">
               Checkout <AiOutlineArrowRight />
             </span>

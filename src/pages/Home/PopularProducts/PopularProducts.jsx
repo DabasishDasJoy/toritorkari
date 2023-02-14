@@ -12,7 +12,7 @@ const PopularProducts = () => {
     refetch,
     data: { data: products } = [],
   } = useQuery({
-    queryKey: ["popular"],
+    queryKey: ["products"],
     queryFn: () => {
       return axios.get("/products/popular");
     },

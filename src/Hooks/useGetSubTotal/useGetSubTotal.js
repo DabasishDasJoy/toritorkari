@@ -6,7 +6,6 @@ const useGetSubTotal = () => {
   const { cartItems } = useContext(CartContext);
   // const [subTotal, setSubTotal] = useState(0);
   const shoppingCart = getStoredCart();
-
   const subtotalRef = useRef(0);
 
   const subtotal = useMemo(() => {
