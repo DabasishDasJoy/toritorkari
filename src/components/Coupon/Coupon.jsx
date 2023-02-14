@@ -47,7 +47,6 @@ const Coupon = ({
   };
 
   useEffect(() => {
-    console.log("mounter");
     startTimer();
 
     return () => {
