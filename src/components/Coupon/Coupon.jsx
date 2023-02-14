@@ -37,6 +37,7 @@ const Coupon = ({
         setExpired(true);
       } else {
         // update
+        // console.log("ticking");
         setTimeDays(days);
         setTimeHours(hours);
         setTimeMins(mins);
@@ -46,12 +47,13 @@ const Coupon = ({
   };
 
   useEffect(() => {
+    console.log("mounter");
     startTimer();
 
     return () => {
       clearInterval(interval);
     };
-  });
+  }, []);
 
   return (
     <div
