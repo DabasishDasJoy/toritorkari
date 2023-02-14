@@ -29,12 +29,14 @@ const CartProvider = ({ children }) => {
   });
 
   const addToCart = (id) => {
-    setNumberOfCartItems(numberOfCartItems + 1);
+    setNumberOfCartItems((numberOfCartItems) => numberOfCartItems + 1);
     return addToDb(id);
   };
 
   const removeFromCart = (id) => {
-    setNumberOfCartItems(numberOfCartItems - getStoredCart()[id]);
+    setNumberOfCartItems(
+      (numberOfCartItems) => numberOfCartItems - getStoredCart()[id]
+    );
 
     return removeFromDb(id);
   };
@@ -44,7 +46,7 @@ const CartProvider = ({ children }) => {
   // };
 
   const reduceQuantityFromCart = (id) => {
-    setNumberOfCartItems(numberOfCartItems - 1);
+    setNumberOfCartItems((numberOfCartItems) => numberOfCartItems - 1);
     return reduceQuantityFromDb(id);
   };
 
