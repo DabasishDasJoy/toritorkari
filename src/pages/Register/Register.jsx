@@ -1,4 +1,3 @@
-import { ErrorMessage } from "@hookform/error-message";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -10,12 +9,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../AxiosInstance/AxiosInstance";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-import ValidationError from "../../components/ValidationError/ValidationError";
+import ValidationErrorMessage from "../../components/ValidationErrorMessage/ValidationErrorMessage";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useGetToken from "../../Hooks/useGetToken/useGetToken";
 
 const Register = ({ setLoginOrRegister }) => {
   const { loginModal, signUp, updateUser } = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const [registerLoading, setRegisterLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -114,20 +114,10 @@ const Register = ({ setLoginOrRegister }) => {
                 })}
               />
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"userName"}
               errors={errors}
-              name="userName"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
 
           {/* Email */}
@@ -147,20 +137,10 @@ const Register = ({ setLoginOrRegister }) => {
                 })}
               />
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"email"}
               errors={errors}
-              name="email"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
 
           {/* Password */}
@@ -202,20 +182,10 @@ const Register = ({ setLoginOrRegister }) => {
                 />
               )}
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"password"}
               errors={errors}
-              name="password"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
 
           {/* Input End */}
@@ -258,6 +228,7 @@ const Register = ({ setLoginOrRegister }) => {
         <div className="divider mt-5 mb-2 after:bg-gray-200 before:bg-gray-200 after:h-[1px] before:h-[1px] text-black/60 text-xs">
           Or Login with Social Account
         </div>
+
         {/* Social Login */}
         <SocialLogin loginModal={loginModal}></SocialLogin>
       </div>

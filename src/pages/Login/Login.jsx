@@ -1,4 +1,3 @@
-import { ErrorMessage } from "@hookform/error-message";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -8,7 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { useLocation, useNavigate } from "react-router-dom";
 import ButtonLoader from "../../components/ButtonLoader/ButtonLoader";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-import ValidationError from "../../components/ValidationError/ValidationError";
+import ValidationErrorMessage from "../../components/ValidationErrorMessage/ValidationErrorMessage";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useGetToken from "../../Hooks/useGetToken/useGetToken";
 
@@ -37,7 +36,6 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
     setLoginLoading(true);
     signIn(data.email, data.password)
       .then((res) => {
-        console.log(res.user?.email);
         setEmail(res?.user?.email);
         // toast
         toast.success(`Welcome ${res.user?.displayName}`);
@@ -73,7 +71,7 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
             <div className="tori-input-wrapper">
               <MdEmail />
               <input
-                type="email"
+                type="text"
                 placeholder="Enter Your Email"
                 className="tori-input border-none"
                 {...register("email", {
@@ -85,20 +83,10 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
                 })}
               />
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"email"}
               errors={errors}
-              name="email"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
 
           {/* Password */}
@@ -140,20 +128,10 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
                 />
               )}
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"password"}
               errors={errors}
-              name="password"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
 
           {/* Input End */}
@@ -204,6 +182,7 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
         <div className="divider mt-5 mb-2 after:bg-gray-200 before:bg-gray-200 after:h-[1px] before:h-[1px] text-black/60 text-xs">
           Or Login with Social Account
         </div>
+
         {/* Social Login */}
         <SocialLogin loginModal={loginModal}></SocialLogin>
       </div>
