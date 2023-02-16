@@ -9,6 +9,7 @@ import PopularProducts from "../PopularProducts/PopularProducts";
 const Home = () => {
   return (
     <div>
+      {/* Setting title and description */}
       <Helmet>
         <title>ToriTorkari Bazar - Home</title>
         <meta name="description" content="An online grocery shop" />

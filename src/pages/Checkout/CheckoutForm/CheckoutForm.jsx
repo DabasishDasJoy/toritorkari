@@ -1,4 +1,3 @@
-import { ErrorMessage } from "@hookform/error-message";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,7 +10,7 @@ import axios from "../../../AxiosInstance/AxiosInstance";
 import ButtonLoader from "../../../components/ButtonLoader/ButtonLoader";
 import Required from "../../../components/Required/Required";
 import SuccessModal from "../../../components/SuccessModal/SuccessModal";
-import ValidationError from "../../../components/ValidationError/ValidationError";
+import ValidationErrorMessage from "../../../components/ValidationErrorMessage/ValidationErrorMessage";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import { getRandomId } from "../../../utils/GetRandomId/getRandomId";
@@ -201,22 +200,13 @@ const CheckoutForm = ({
               required: "Firstname is required!",
             })}
           />
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"firstname"}
             errors={errors}
-            name="firstname"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
-        <div className="">
+
+        <div>
           <label htmlFor="lastname" className="tori-label">
             Last name <Required></Required>
           </label>
@@ -229,20 +219,10 @@ const CheckoutForm = ({
               required: "Last Name is required!",
             })}
           />
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"lastname"}
             errors={errors}
-            name="lastname"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
 
         {/* Email */}
@@ -265,20 +245,10 @@ const CheckoutForm = ({
             })}
           />
 
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"email"}
             errors={errors}
-            name="email"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
 
         {/* Phone */}
@@ -296,20 +266,10 @@ const CheckoutForm = ({
             })}
           />
 
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"phone"}
             errors={errors}
-            name="phone"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
       </div>
 
@@ -328,20 +288,10 @@ const CheckoutForm = ({
               required: "Address is required!",
             })}
           />
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"address"}
             errors={errors}
-            name="address"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
 
         <div className="flex justify-between lg:flex-nowrap flex-wrap gap-3">
@@ -358,20 +308,10 @@ const CheckoutForm = ({
                 required: "City  is required!",
               })}
             />
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"city"}
               errors={errors}
-              name="city"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
           <div className="w-full">
             <label htmlFor="country" className="tori-label">
@@ -386,20 +326,10 @@ const CheckoutForm = ({
                 required: "Country  is required!",
               })}
             />
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"country"}
               errors={errors}
-              name="country"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
           <div className="w-full">
             <label htmlFor="zip" className="tori-label">
@@ -414,20 +344,10 @@ const CheckoutForm = ({
                 required: "Zip  is required!",
               })}
             />
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"zip"}
               errors={errors}
-              name="zip"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
         </div>
 
@@ -489,20 +409,10 @@ const CheckoutForm = ({
               />
             </label>
           </div>
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"shippingOption"}
             errors={errors}
-            name="shippingOption"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
       </div>
 
@@ -578,20 +488,10 @@ const CheckoutForm = ({
             />
           </label>
         </div>
-        <ErrorMessage
+        <ValidationErrorMessage
+          name={"paymentMethod"}
           errors={errors}
-          name="paymentMethod"
-          render={({ messages }) => {
-            return messages
-              ? Object.entries(messages).map(([type, message]) => (
-                  <ValidationError
-                    key={type}
-                    message={message}
-                  ></ValidationError>
-                ))
-              : null;
-          }}
-        />
+        ></ValidationErrorMessage>
       </div>
 
       <div className="flex lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
