@@ -1,9 +1,8 @@
-import { ErrorMessage } from "@hookform/error-message";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { MdEmail } from "react-icons/md";
-import ValidationError from "../../components/ValidationError/ValidationError";
+import ValidationErrorMessage from "../../components/ValidationErrorMessage/ValidationErrorMessage";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const ResetPassword = () => {
@@ -56,20 +55,10 @@ const ResetPassword = () => {
                 })}
               />
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"email"}
               errors={errors}
-              name="email"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
 
           <button className="tori-btn-secondary mt-2 disabled:bg-primary/80">

@@ -1,4 +1,3 @@
-import { ErrorMessage } from "@hookform/error-message";
 import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
@@ -6,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { AiFillEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import { RiLockPasswordFill } from "react-icons/ri";
 import Required from "../../../components/Required/Required";
-import ValidationError from "../../../components/ValidationError/ValidationError";
+import ValidationErrorMessage from "../../../components/ValidationErrorMessage/ValidationErrorMessage";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const ChangePassword = () => {
@@ -85,20 +84,10 @@ const ChangePassword = () => {
                 />
               )}
             </div>
-            <ErrorMessage
+            <ValidationErrorMessage
+              name={"password"}
               errors={errors}
-              name="password"
-              render={({ messages }) => {
-                return messages
-                  ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
-                  : null;
-              }}
-            />
+            ></ValidationErrorMessage>
           </div>
         </div>
 

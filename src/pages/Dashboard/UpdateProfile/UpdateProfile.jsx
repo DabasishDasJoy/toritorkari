@@ -1,4 +1,3 @@
-import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
@@ -8,7 +7,7 @@ import { BiPhoneCall } from "react-icons/bi";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { MdDriveFileRenameOutline, MdEmail } from "react-icons/md";
 import Required from "../../../components/Required/Required";
-import ValidationError from "../../../components/ValidationError/ValidationError";
+import ValidationErrorMessage from "../../../components/ValidationErrorMessage/ValidationErrorMessage";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const UpdateProfile = () => {
@@ -122,20 +121,10 @@ const UpdateProfile = () => {
               })}
             />
           </div>
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"phone"}
             errors={errors}
-            name="phone"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
 
         {/* Image */}
@@ -154,20 +143,10 @@ const UpdateProfile = () => {
               })}
             />
           </div>
-          <ErrorMessage
+          <ValidationErrorMessage
+            name={"photoURL"}
             errors={errors}
-            name="photoURL"
-            render={({ messages }) => {
-              return messages
-                ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
-                : null;
-            }}
-          />
+          ></ValidationErrorMessage>
         </div>
 
         <div>
