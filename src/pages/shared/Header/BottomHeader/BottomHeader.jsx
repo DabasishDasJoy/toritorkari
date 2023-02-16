@@ -19,22 +19,29 @@ const BottomHeader = () => {
           <CategoriesDropdown idText={"bottomHeader"}></CategoriesDropdown>
         </div>
 
-        <NavLink>Todays Deal</NavLink>
         <NavLink
           to={"/offers"}
           className={
-            "bg-warning/20 text-warning rounded-sm px-2 relative indicator"
+            " bg-warning/20 text-warning rounded-sm px-2 relative indicator"
           }
         >
           Offer
           <span className="live absolute w-2 h-2 rounded-full -top-1 -right-1 "></span>
         </NavLink>
-        <NavLink>Sell</NavLink>
-        <NavLink>Customer Service</NavLink>
+        <NavLink className={"tori-link"} to={"/sell"}>
+          Sell
+        </NavLink>
+        <NavLink className={"tori-link"} to={"/customer-service"}>
+          Customer Service
+        </NavLink>
       </div>
       <div className="flex gap-5">
-        <NavLink>Privacy Policy</NavLink>
-        <NavLink>Terms & Conditions</NavLink>
+        <NavLink className={"tori-link"} to={"/privacy"}>
+          Privacy Policy
+        </NavLink>
+        <NavLink className={"tori-link"} to={"/terms-and-conditions"}>
+          Terms & Conditions
+        </NavLink>
       </div>
     </div>
   );
