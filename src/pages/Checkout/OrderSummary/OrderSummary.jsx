@@ -57,7 +57,7 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
             <CartItem cartItem={cartItem} key={cartItem?._id}></CartItem>
           ))
         ) : (
-          <EmptyCart></EmptyCart>
+          <EmptyCart text={"Cart"}></EmptyCart>
         )}
       </div>
       <form

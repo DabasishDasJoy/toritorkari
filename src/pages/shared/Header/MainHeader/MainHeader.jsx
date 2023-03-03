@@ -13,7 +13,7 @@ import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
 import TopHeader from "../TopHeader/TopHeader";
 
-const MainHeader = ({ setLoginOrRegister }) => {
+const MainHeader = ({ setLoginOrRegister, setIsCart }) => {
   const { numberOfCartItems, refetch } = useContext(CartContext);
   const navigate = useNavigate();
 
@@ -101,15 +101,18 @@ const MainHeader = ({ setLoginOrRegister }) => {
           </div>
 
           {/* Navbar icons */}
-          {/* wishlist */}
+
           <div className="flex gap-5 items-center">
-            <div className="indicator">
-              <FaRegHeart className="icon" />
-              <Indicator></Indicator>
+            {/* wishlist */}
+            <div onClick={() => setIsCart(false)} className="indicator">
+              <label htmlFor="cart-drawer">
+                <FaRegHeart className="icon" />
+                <Indicator></Indicator>
+              </label>
             </div>
 
             {/* cart */}
-            <div className="indicator" onMouseEnter={() => refetch()}>
+            <div onClick={() => setIsCart(true)} className="indicator">
               <label htmlFor="cart-drawer">
                 <BsCart3 className="icon" />
                 <Indicator>{numberOfCartItems}</Indicator>

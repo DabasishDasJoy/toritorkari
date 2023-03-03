@@ -37,7 +37,7 @@ const MyCart = () => {
             <CartItem cartItem={cartItem} key={cartItem?._id}></CartItem>
           ))
         ) : (
-          <EmptyCart></EmptyCart>
+          <EmptyCart text={"Cart"}></EmptyCart>
         )}
       </div>
       {/* Cart Items End */}
