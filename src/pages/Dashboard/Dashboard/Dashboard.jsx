@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import EmptyOrders from "../../../components/EmptyOrders/EmptyOrders";
+import Error from "../../../components/Error/Error";
 import Loader from "../../../components/Loader/Loader";
 import OrdersStatistics from "../../../components/OrdersStatistics/OrdersStatistics";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
@@ -29,7 +30,10 @@ const Dashboard = () => {
         <title>ToriTorkari Bazar - Dashboard</title>
         <meta name="description" content="User dashboard." />
       </Helmet>
-      {isLoading ? (
+
+      {true ? (
+        <Error></Error>
+      ) : isLoading ? (
         <Loader></Loader>
       ) : invoices?.length ? (
         <>

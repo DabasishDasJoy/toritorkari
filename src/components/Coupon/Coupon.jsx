@@ -81,19 +81,35 @@ const Coupon = ({
           {/* countdown */}
           <div className="w-full mt-1">
             <p className="text-black font-semibold flex gap-1">
-              <span className="bg-primary text-white px-2  rounded-md">
+              <span
+                className={`${
+                  timeDays ? "bg-primary" : "bg-warning"
+                } text-white px-2  rounded-md`}
+              >
                 {timeDays}
               </span>{" "}
               :
-              <span className="bg-primary text-white px-2  rounded-md">
+              <span
+                className={`${
+                  timeDays ? "bg-primary" : "bg-warning"
+                } text-white px-2  rounded-md`}
+              >
                 {timeHours}
               </span>{" "}
               :
-              <span className="bg-primary text-white px-2  rounded-md">
+              <span
+                className={`${
+                  timeDays ? "bg-primary" : "bg-warning"
+                } text-white px-2  rounded-md`}
+              >
                 {timeMins}
               </span>{" "}
               :
-              <span className="bg-primary text-white px-2  rounded-md">
+              <span
+                className={`${
+                  timeSecs ? "bg-primary" : "bg-warning"
+                } text-white px-2  rounded-md`}
+              >
                 {timeSecs}
               </span>{" "}
             </p>
