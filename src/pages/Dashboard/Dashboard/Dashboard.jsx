@@ -31,7 +31,7 @@ const Dashboard = () => {
         <meta name="description" content="User dashboard." />
       </Helmet>
 
-      {true ? (
+      {error ? (
         <Error></Error>
       ) : isLoading ? (
         <Loader></Loader>

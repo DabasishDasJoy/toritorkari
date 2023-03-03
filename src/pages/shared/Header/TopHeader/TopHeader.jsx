@@ -44,11 +44,11 @@ const TopHeader = ({ setLoginOrRegister }) => {
               tabIndex={0}
               className="flex tori-link cursor-pointer  items-center gap-1"
             >
-              <FaRegUser className="" /> Account
+              <FaRegUser /> Account
             </label>
             <div
               tabIndex={0}
-              className="dropdown-content px-5 py-3 shadow bg-base-100 rounded-sm flex flex-col gap-1 w-40 h-24 justify-center text-center"
+              className="dropdown-content px-5 py-3 shadow-xl bg-base-100 rounded-sm flex flex-col gap-2 w-40 h-24 justify-center text-center"
             >
               <label
                 onClick={() => setLoginOrRegister("login")}
