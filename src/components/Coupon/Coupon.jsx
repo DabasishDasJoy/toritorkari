@@ -107,7 +107,7 @@ const Coupon = ({
               :
               <span
                 className={`${
-                  timeSecs ? "bg-primary" : "bg-warning"
+                  timeDays ? "bg-primary" : "bg-warning"
                 } text-white px-2  rounded-md`}
               >
                 {timeSecs}
